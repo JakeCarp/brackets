@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Login from './views/Login.vue'
+import create from './views/create.vue'
+import join from './views/join.vue'
 
 Vue.use(Router)
 
@@ -11,6 +14,24 @@ export default new Router({
       name: 'home',
       component: Home
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/create',
+      name: 'create',
+      component: create
+
+    },
+    {
+      path: '/join',
+      name: 'join',
+      component: join
+
+    }
+
     // {
     //   path: '/about',
     //   name: 'about',

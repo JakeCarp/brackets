@@ -1,18 +1,50 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col-12" @click="">
+        <router-link :to="{name: 'create'}">
+          <div class="jumbotron">
+            <h1 class="display-3">Create</h1>
+            <p class="lead">Click to create a new tournament</p>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-12">
+        <router-link :to="{name: 'join'}">
+          <div class="jumbotron">
+            <h1 class="display-3">Join</h1>
+            <p class="lead">Click to join a tournament</p>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-12">
+        <div class="jumbotron">
+          <h1 class="display-3">Active</h1>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  export default {
+    name: 'home',
+    data() {
+      return {
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+      }
+    },
+    computed: {},
+    methods: {},
+    components: {},
+    props: [],
   }
-}
+
 </script>
+
+<style>
+  .jumbotron {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+</style>
