@@ -5,6 +5,8 @@ import router from './router'
 
 let baseUrl = '//localhost:3000/'
 
+
+
 let auth = Axios.create({
   baseURL: baseUrl + "auth/",
   timeout: 3000,
@@ -59,6 +61,29 @@ export default new Vuex.Store({
         })
       router.push({ name: 'login' })
     },
+
+    //tournaments
+    getTourneys({ commit, dispatch }) {
+      api.get('tournaments')
+        .then(res => {
+          commit('setTourneys', res.data)
+        })
+    },
+    addTourney({ commit, dispatch }, tournamentData) {
+      api.post('tournaments', tournamentData)
+        .then(serverTournament => {
+          dispatch('getTourneys')
+        })
+    },
+    deleteTourney({ commit, dispatch }, tournamentId) {
+      api.delete('tournaments/' + tournamentId)
+        .then(res => {
+          dispatch('getTourneys')
+        })
+    },
+
+
+
 
   }
 })

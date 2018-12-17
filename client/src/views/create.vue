@@ -17,7 +17,9 @@
     },
     computed: {},
     methods: {
-      addTourney
+      addTourney() {
+        this.$store.dispatch("addTourney")
+      }
     },
     components: {},
     props: [],
