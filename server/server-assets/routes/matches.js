@@ -1,33 +1,5 @@
 let router = require('express').Router()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let Matches = require('../models/match')
 
 
 

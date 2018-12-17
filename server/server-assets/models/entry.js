@@ -9,8 +9,9 @@ let schema = new Schema({
   wins: { type: Number },
   draws: { type: Number },
   losses: { type: Number },
-  tournament: { type: ObjectId, ref: 'Tournament' },
-  match: { type: ObjectId, ref: 'Match' }
+  tournamentId: { type: ObjectId, ref: 'Tournament' },
+  matchId: { type: ObjectId, ref: 'Match' },
+  standing: { type: String }
 })
 
 
