@@ -12,7 +12,8 @@ let schema = new Schema({
   //every email must be unique on the database
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  created: { type: Number, required: true, default: Date.now() }
+  created: { type: Number, required: true, default: Date.now() },
+  img: { type: String }
 })
 
 
@@ -29,3 +30,6 @@ schema.methods.validatePassword = function (password) {
 }
 
 module.exports = mongoose.model(schemaName, schema)
+
+
+
