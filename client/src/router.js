@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import create from './views/create.vue'
 import join from './views/join.vue'
+import active from './views/active'
 
 Vue.use(Router)
 
@@ -23,13 +24,16 @@ export default new Router({
       path: '/create',
       name: 'create',
       component: create
-
     },
     {
       path: '/join',
       name: 'join',
       component: join
-
+    },
+    {
+      path: '/active',
+      name: 'active',
+      component: active
     }
 
     // {

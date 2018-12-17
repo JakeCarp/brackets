@@ -18,9 +18,12 @@
         </router-link>
       </div>
       <div class="col-12">
-        <div class="jumbotron">
-          <h1 class="display-3">Active</h1>
-        </div>
+        <router-link :to="{name: 'active'}">
+          <div class="jumbotron">
+            <h1 class="display-3">Active</h1>
+            <p>Click to view the current tournaments you are particiapting in</p>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
