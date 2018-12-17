@@ -2,11 +2,9 @@ var express = require('express')
 var bp = require('body-parser')
 var server = express()
 var cors = require('cors')
-var port = process.env.PORT || 3000
+var port = 3000
 
-server.use(express.static(__dirname + '/../client/dist'))
-
-var whitelist = ['http://localhost:8080', 'https://jake-joel-kanban.herokuapp.com/'];
+var whitelist = ['http://localhost:8080'];
 var corsOptions = {
   origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -19,6 +17,8 @@ server.use(cors(corsOptions))
 //Fire up database connection
 require('./server-assets/db/mlab-config')
 
+
+//REGISTER MIDDLEWEAR
 server.use(bp.json())
 server.use(bp.urlencoded({
   extended: true
@@ -28,6 +28,7 @@ server.use(bp.urlencoded({
 let auth = require('./server-assets/auth/routes')
 server.use(auth.session)
 server.use(auth.router)
+
 
 //Gate Keeper Must login to access any route below this code
 server.use((req, res, next) => {
@@ -39,7 +40,11 @@ server.use((req, res, next) => {
   next()
 })
 
-//Routes
+//ROUTES!
+
+
+
+
 
 
 
