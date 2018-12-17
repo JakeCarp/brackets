@@ -1,7 +1,8 @@
 <template>
   <div class="create">
-    <form>
+    <form @submit="addTourney">
       <input type="text" placeholder="test">
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </template>
@@ -15,7 +16,9 @@
       }
     },
     computed: {},
-    methods: {},
+    methods: {
+      addTourney
+    },
     components: {},
     props: [],
   }

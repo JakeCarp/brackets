@@ -10,7 +10,7 @@
         </router-link>
       </div>
       <div class="col-12">
-        <router-link :to="{name: 'create-view'}">
+        <router-link :to="{name: 'join'}">
           <div class="jumbotron">
             <h1 class="display-3">Join</h1>
             <p class="lead">Click to join a tournament</p>
