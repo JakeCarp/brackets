@@ -57,10 +57,17 @@ router.put(':entryId', (req, res, next) => {
 //get all users for autocomplete
 router.get('/', (req, res, next) => {
   Users.find({})
-    .then(user => {
-      res.send(user)
+    .then(users => {
+      users.forEach(user => {
+        delete user._doc.password
+      })
+      res.send(users)
     })
-    .catch(err => { console.log(err) })
+    .catch(err => {
+      console.log(err)
+      next()
+      return
+    })
 })
 
 
