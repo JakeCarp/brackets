@@ -1,5 +1,5 @@
 <template>
-  <div class="login container-fluid">
+  <div class="login container-fluid home">
     <div class="row" style="height: 30vh"></div>
     <div class="row login-info">
       <div class="col-4"></div>

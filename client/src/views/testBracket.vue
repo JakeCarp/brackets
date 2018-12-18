@@ -1,15 +1,12 @@
 <template>
-  <div class="join home">
-    <form>
-      <h1>Enter Your Bracket Code Below</h1>
-      <input type="text" placeholder="Bracket Code">
-    </form>
+  <div class="">
+
   </div>
 </template>
 
 <script>
   export default {
-    name: 'join',
+    name: '',
     data() {
       return {
 
