@@ -37,21 +37,21 @@ export default new Vuex.Store({
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          router.push({ name: 'home' })
         })
     },
     authenticate({ commit, dispatch }) {
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
         })
+        .catch(() => { router.push({ name: 'login' }) })
     },
     login({ commit, dispatch }, creds) {
       auth.post('login', creds)
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          router.push({ name: 'home' })
         })
     },
     logout({ commit, dispatch }) {
@@ -69,7 +69,7 @@ export default new Vuex.Store({
           commit('setTourneys', res.data)
         })
     },
-    addTourney({ commit, dispatch }, tournamentData) {
+    addTournament({ commit, dispatch }, tournamentData) {
       api.post('tournaments', tournamentData)
         .then(serverTournament => {
           dispatch('getTourneys')

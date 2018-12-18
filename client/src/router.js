@@ -1,11 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// @ts-ignore
 import Home from './views/Home.vue'
+// @ts-ignore
 import Login from './views/Login.vue'
+// @ts-ignore
 import create from './views/create.vue'
+// @ts-ignore
 import join from './views/join.vue'
+// @ts-ignore
 import active from './views/active.vue'
+// @ts-ignore
 import about from './views/about.vue'
+// @ts-ignore
 import test from './views/testBracket.vue'
 
 Vue.use(Router)
@@ -14,13 +21,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '/create',
@@ -45,6 +52,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test
+    },
+
+    {
+      path: "*",
+      redirect: '/'
     }
 
     // {

@@ -8,5 +8,8 @@ import store from './store'
 new Vue({
   router,
   store,
+  created() {
+    this.$store.dispatch('authenticate')
+  },
   render: function (h) { return h(App) }
 }).$mount('#app')

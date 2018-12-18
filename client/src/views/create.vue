@@ -53,7 +53,7 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-10">
-          <button @submit="addTourney" type="submit" class="btn btn-primary">Create Bracket</button>
+          <button @submit="addTournament" type="submit" class="btn btn-primary">Create Bracket</button>
         </div>
       </div>
     </form>
@@ -70,8 +70,8 @@
     },
     computed: {},
     methods: {
-      addTourney() {
-        this.$store.dispatch("addTourney")
+      addTournament() {
+        this.$store.dispatch("addTournament")
       }
     },
     components: {},
