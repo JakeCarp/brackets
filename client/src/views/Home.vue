@@ -50,4 +50,8 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
+  .home {
+    font-family: 'Permanent Marker', cursive;
+  }
 </style>

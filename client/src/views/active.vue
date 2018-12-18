@@ -1,5 +1,5 @@
 <template>
-  <div class="active container-fluid">
+  <div class="active container-fluid home">
     <activeComponent class="row"></activeComponent>
   </div>
 </template>

@@ -4,7 +4,9 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import create from './views/create.vue'
 import join from './views/join.vue'
-import active from './views/active'
+import active from './views/active.vue'
+import about from './views/about.vue'
+import test from './views/testBracket.vue'
 
 Vue.use(Router)
 
@@ -34,6 +36,15 @@ export default new Router({
       path: '/active',
       name: 'active',
       component: active
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: about
+    }, {
+      path: '/test',
+      name: 'test',
+      component: test
     }
 
     // {
