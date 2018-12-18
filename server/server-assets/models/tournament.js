@@ -6,9 +6,10 @@ let schemaName = "Tournament"
 
 
 let schema = new Schema({
-  champion: { type: ObjectId, ref: 'Entry', required: true },
-
-
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  owner: { type: ObjectId, ref: 'User' },
+  entrycode: { type: String, required: true }
 })
 
 
