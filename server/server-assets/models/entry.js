@@ -5,13 +5,13 @@ let schemaName = "Entry"
 
 let schema = new Schema({
   name: { type: String, required: true },
-  members: { type: ObjectId, ref: 'User', required: true },
-  wins: { type: Number },
-  draws: { type: Number },
-  losses: { type: Number },
+  members: [{ type: ObjectId, ref: "User" }],
+  wins: { type: Number, default: 0 },
+  draws: { type: Number, default: 0 },
+  losses: { type: Number, default: 0 },
   tournamentId: { type: ObjectId, ref: 'Tournament' },
-  matchId: { type: ObjectId, ref: 'Match' },
-  standing: { type: String }
+  standing: { type: String },
+  seed: { type: Number }
 })
 
 

@@ -45,10 +45,7 @@ let tournamentRoutes = require('./server-assets/routes/tournaments')
 server.use('/api/tournament', tournamentRoutes)
 let entryRoutes = require('./server-assets/routes/entries')
 server.use('/api/entry', entryRoutes)
-let roundRoutes = require('./server-assets/routes/rounds')
-server.use('/api/round', roundRoutes)
-let matchRoutes = require('./server-assets/routes/matches')
-server.use('/api/match', matchRoutes)
+
 
 
 
