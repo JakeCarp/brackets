@@ -3,6 +3,7 @@
     <form>
       <h1>Enter Your Bracket Code Below</h1>
       <input type="text" placeholder="Bracket Code">
+      <button @submit="joinTournament(entryCode)">Submit</button>
     </form>
   </div>
 </template>
@@ -16,7 +17,11 @@
       }
     },
     computed: {},
-    methods: {},
+    methods: {
+      joinTournament(entryCode) {
+        this.$store.dispatch(joinTournament)
+      }
+    },
     components: {},
     props: [],
   }
