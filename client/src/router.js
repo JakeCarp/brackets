@@ -35,7 +35,7 @@ export default new Router({
       component: create
     },
     {
-      path: '/join',
+      path: '/join/:tournamentId',
       name: 'join',
       component: join
     },
