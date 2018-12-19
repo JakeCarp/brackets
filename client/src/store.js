@@ -94,14 +94,20 @@ export default new Vuex.Store({
           dispatch('getTournament')
         })
     },
-    joinTournament({ commit, dispatch }, entryCode) {
-      api.put('tournament/' + entryCode)
-        .then(res => {
-          router.push({ name: 'join', params: { entryCode: entryCode } })
+    getTournamentByEntryCode({ commit, dispatch }, entryCode) {
+      debugger
+      api.get('join/' + entryCode)
+        .then(tournament => {
+          router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
+          dispatch('joinTournament', tournament.data)
+        })
+    },
+    joinTournament({ commit, dispatch }, tournament) {
+      api.put('/:tournamentId', tournament)
+        .then(tournament => {
           dispatch('getTournament')
         })
     }
-
-
   }
 })
+// router.push({ name: 'join', params: { entryCode: entryCode } })

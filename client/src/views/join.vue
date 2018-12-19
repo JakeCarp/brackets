@@ -1,9 +1,9 @@
 <template>
   <div class="join home">
-    <form>
+    <form @submit.prevent="getTournamentByEntryCode">
       <h1>Enter Your Bracket Code Below</h1>
-      <input type="text" placeholder="Bracket Code">
-      <button @submit="joinTournament(entryCode)">Submit</button>
+      <input type="text" placeholder="Bracket Code" v-model="entryCode">
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -13,13 +13,16 @@
     name: 'join',
     data() {
       return {
-
+        entryCode: "",
+        newEntry: {
+          tournamentId: this.$route.params.tournamentId
+        }
       }
     },
     computed: {},
     methods: {
-      joinTournament(entryCode) {
-        this.$store.dispatch(joinTournament)
+      getTournamentByEntryCode() {
+        this.$store.dispatch('getTournamentByEntryCode', this.entryCode)
       }
     },
     components: {},
