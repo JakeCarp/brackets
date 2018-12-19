@@ -21,7 +21,7 @@
         <router-link :to="{name: 'active'}">
           <div class="jumbotron">
             <h1 class="display-3">Active</h1>
-            <p>Click to view the current tournaments you are particiapting in</p>
+            <p>Current tournament</p>
           </div>
         </router-link>
       </div>
