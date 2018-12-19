@@ -74,16 +74,16 @@ router.get('/:tournamentId/entries', (req, res, next) => {
     .then(activeTournament => {
       Entries.find({ tournamentId: req.params.tournamentId })
         .then(data => {
-          if (activeTournament.style === "Single-Elimination" || "Double-Elimination") {
+          if (activeTournament.style == "Single-Elimination" || activeTournament.style == "Double-Elimination") {
             res.send(data)
             next()
           }
-          if (activeTournament.style === "Round-Robin-Split") {
+          if (activeTournament.style == "Round-Robin-Split") {
             let group1 = []
             let group2 = []
             let out = []
-            for (let i = 0; i < activeTournament.length - 1; i++) {
-              const entry = activeTournament[i];
+            for (let i = 1; i < data.length - 1; i++) {
+              const entry = data[i];
               if (i % 2) {
                 group1.push(entry)
               } else {
@@ -93,7 +93,6 @@ router.get('/:tournamentId/entries', (req, res, next) => {
             out.push(robin(group1.length, group1))
             out.push(robin(group2.length, group2))
             res.send(out)
-            next()
           }
           if (activeTournament.style === "Round-Robin") {
             res.send(robin(data.length, data))
