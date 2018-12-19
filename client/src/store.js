@@ -37,6 +37,7 @@ export default new Vuex.Store({
   },
   actions: {
     register({ commit, dispatch }, newUser) {
+      debugger
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
@@ -76,17 +77,24 @@ export default new Vuex.Store({
     addTournament({ commit, dispatch }, tournamentData) {
       api.post('tournament', tournamentData)
         .then(tournament => {
-          debugger
+          router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
           dispatch('getTournament', tournament.data._id)
+
         })
     },
     deleteTournament({ commit, dispatch }, tournamentId) {
       api.delete('tournament/' + tournamentId)
         .then(res => {
+          router.push({ name: 'home' })
           dispatch('getTournament')
         })
     },
-
+    editTournament({ commit, dispatch }, tournamentId) {
+      api.put('tournament/' + tournamentId)
+        .then(res => {
+          dispatch('getTournament')
+        })
+    }
 
 
 

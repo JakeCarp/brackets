@@ -40,7 +40,7 @@ export default new Router({
       component: join
     },
     {
-      path: '/active',
+      path: '/tournament/:tournamentId',
       name: 'active',
       component: active
     },

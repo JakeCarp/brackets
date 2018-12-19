@@ -9,7 +9,6 @@
           <input type="password" v-model="creds.password" placeholder="password" style="margin-bottom: 5px"><br>
           <div class="action" @click="loginForm = !loginForm">
             <p v-if="loginForm" class="login-text">No account? Click here to Register</p>
-            <p v-else>Already have an account? Click here to Login</p>
           </div>
           <button type="submit">Login</button>
         </form>
@@ -17,7 +16,11 @@
           <input type="text" v-model="newUser.name" placeholder="name">
           <input type="email" v-model="newUser.email" placeholder="email">
           <input type="password" v-model="newUser.password" placeholder="password">
-          <button type="submit">Create Account</button>
+          <p class="password">*must be 6 or more characters*</p>
+          <div class="action" @click="loginForm = !loginForm">
+            <p v-if="!loginForm">Already have an account? Click here to Login</p>
+          </div>
+          <button class="mt-2" type="submit">Create Account</button>
         </form>
       </div>
     </div>
@@ -53,6 +56,12 @@
   };
 </script>
 
-<style>
+<style scoped>
+  input {
+    margin-top: 10px;
+  }
 
+  .password {
+    font-size: 1rem;
+  }
 </style>

@@ -18,6 +18,7 @@
             <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link>
             <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
               Bracket</router-link>
+            <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/login">Logout</router-link>
           </ul>
         </div>
       </div>

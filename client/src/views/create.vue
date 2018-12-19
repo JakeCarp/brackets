@@ -1,7 +1,7 @@
 <template>
   <div class="create home">
     <div class="containter-fluid">
-      <form @submit="addTournament()">
+      <form @submit.prevent="addTournament">
         <div class="form-group row">
           <div class="col-12">
             <label class="col-6" for="title">Bracket Title: </label>
