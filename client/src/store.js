@@ -24,11 +24,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
-
+    tournament: {},
   },
   mutations: {
     setUser(state, user) {
       state.user = user
+    },
+    setTournament(state, tournament) {
+      state.tournament = tournament
     }
 
   },
@@ -63,22 +66,24 @@ export default new Vuex.Store({
     },
 
     //tournaments
-    getTourneys({ commit, dispatch }) {
-      api.get('tournaments')
+    getTournament({ commit, dispatch }, tournamentId) {
+
+      api.get('tournament/' + tournamentId)
         .then(res => {
-          commit('setTourneys', res.data)
+          commit('setTournament', res.data)
         })
     },
     addTournament({ commit, dispatch }, tournamentData) {
-      api.post('tournaments', tournamentData)
-        .then(serverTournament => {
-          dispatch('getTourneys')
+      api.post('tournament', tournamentData)
+        .then(tournament => {
+          debugger
+          dispatch('getTournament', tournament.data._id)
         })
     },
-    deleteTourney({ commit, dispatch }, tournamentId) {
-      api.delete('tournaments/' + tournamentId)
+    deleteTournament({ commit, dispatch }, tournamentId) {
+      api.delete('tournament/' + tournamentId)
         .then(res => {
-          dispatch('getTourneys')
+          dispatch('getTournament')
         })
     },
 

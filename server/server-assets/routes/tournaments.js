@@ -5,7 +5,7 @@ let robin = require("roundrobin")
 
 //get a Tournament by Id
 router.get('/:tournamentId', (req, res, next) => {
-  Tournaments.find({ _id: req.params.tournamentId })
+  Tournaments.findOne({ _id: req.params.tournamentId })
     .then(data => {
       res.send(data)
     })
@@ -97,4 +97,7 @@ router.get('/join/:entryCode', (req, res, next) => {
       next()
     })
 })
+
+
+//Get tournaments by userID
 module.exports = router

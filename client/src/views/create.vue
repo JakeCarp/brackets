@@ -1,62 +1,42 @@
 <template>
   <div class="create home">
-    <form>
-      <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label">Bracket Title</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="title" placeholder="Bracket Title">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="description" class="col-sm-2 col-form-label">Bracket Description</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="description" placeholder="Bracket Description">
-        </div>
-      </div>
-      <fieldset class="form-group">
-        <div class="row">
-          <legend class="col-form-label col-sm-2 pt-0">Bracket Type</legend>
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-              <label class="form-check-label" for="gridRadios1">
-                Single Elimination
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-              <label class="form-check-label" for="gridRadios2">
-                Double Elimination
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
-              <label class="form-check-label" for="gridRadios3">
-                Round Robin
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-              <label class="form-check-label" for="gridRadios2">
-                Round Robin Split
-              </label>
-            </div>
-            <label for="entries">Number of Bracket Entries</label><input id="entries" type="number" value="5" />
+    <div class="containter-fluid">
+      <form @submit="addTournament()">
+        <div class="form-group row">
+          <div class="col-12">
+            <label class="col-6" for="title">Bracket Title: </label>
+            <input v-model="newTournament.title" class="col-6" type="text" name="title">
           </div>
         </div>
-      </fieldset>
-      <div class="form-group row">
-        <label for="passcode" class="col-sm-2 col-form-label">Bracket Code</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="passcode" placeholder="Create a unique passcode for your Bracket">
+        <div class="form-group row">
+          <div class="col-12">
+            <label class="col-6" for="description">Description: </label>
+            <input v-model="newTournament.description" class="col-6" type="field" name="description">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button @submit="addTournament" type="submit" class="btn btn-primary">Create Bracket</button>
+        <div class="form-group row">
+          <div class="dropdown col-12 d-flex">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{newTournament.style}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <h4 @click="setTournamentType('Single-Elimitation')" class="dropdown-item">Single-Elimination</h4>
+              <h4 @click="setTournamentType('Double-Elimination')" class="dropdown-item">Double-Elimination</h4>
+              <h4 @click="setTournamentType('Round-Robin')" class="dropdown-item">Round-Robin</h4>
+              <h4 @click="setTournamentType('Round-Robin-Split')" class="dropdown-item">Round-Robin-Split</h4>
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
+        <div class="form-group row">
+          <div class="col-12">
+            <label class="col-6" for="title">Entry Code: </label>
+            <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex. SoftballSeason2018">
+          </div>
+        </div>
+        <button type="submit">Create Bracket</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -65,13 +45,23 @@
     name: 'create',
     data() {
       return {
+        newTournament: {
+          title: '',
+          description: '',
+          style: 'Choose Your Style',
+          numberOfEntries: 0,
+          entrycode: ''
+        }
 
       }
     },
     computed: {},
     methods: {
       addTournament() {
-        this.$store.dispatch("addTournament")
+        this.$store.dispatch("addTournament", this.newTournament)
+      },
+      setTournamentType(str) {
+        this.newTournament.style = str
       }
     },
     components: {},
@@ -80,7 +70,18 @@
 
 </script>
 
-<style>
+<style scoped>
+  label {
+    font-size: 1.75rem;
 
+  }
 
+  .dropdown {
+    justify-content: center;
+  }
+
+  input {
+    font-size: 1.25rem;
+    margin-left: 10px;
+  }
 </style>
