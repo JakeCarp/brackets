@@ -27,6 +27,25 @@ export default new Vuex.Store({
     tournament: {
       entries: ["player 1", "player 2", "player 3", "player 4", "player 5", "player 6", "player 7", "player 8", "player 9", "player 10", "player 11", "player 12", "player 13", "player 14", "player 15", "player 16", "player 17"]
     },
+    // config2: {
+    //   container: "#OrganiseChart-simple",
+    //   levelSeparation: 20,
+    //   siblingSeparation: 15,
+    //   subTeeSeparation: 15,
+    //   rootOrientation: "EAST",
+    //   node: {
+    //     HTMLclass: "tennis-draw",
+    //     drawLineThrough: true
+    //   },
+    //   connectors: {
+    //     type: "straight",
+    //     style: {
+    //       "stroke-width": 2,
+    //       "stroke": "#ccc"
+    //     }
+    //   }
+    // },
+    bracketArray: [],
   },
   mutations: {
     setUser(state, user) {
@@ -34,6 +53,9 @@ export default new Vuex.Store({
     },
     setTournament(state, tournament) {
       state.tournament = tournament
+    },
+    setBracketArray(state, bracketArray) {
+      state.bracketArray = bracketArray
     }
 
   },
@@ -126,7 +148,6 @@ export default new Vuex.Store({
     //testing tourney generation
     //finding the sweetSpot 
     calcPreGames({ commit, dispatch }, payload) {
-      debugger
       for (let i = 0; i < payload.sweetSpots.length; i++) {
         if (payload.sweetSpots[i] > payload.entries) {
           return payload.sweetSpots[i - 1]
@@ -134,11 +155,20 @@ export default new Vuex.Store({
       }
     },
 
-
     //making the tree
-    buildTree({ commit, dispatch }, arr) {
+    buildTree({ commit, dispatch }, payload) {
+      let arr = payload.entries
+      let sweetSpot = 0
+      function calcPreGames() {
+        for (let i = 0; i < payload.sweetSpots.length; i++) {
+          if (payload.sweetSpots[i] > payload.entries) {
+            return sweetSpot = payload.sweetSpots[i - 1]
+          }
+        }
+      }
+      calcPreGames()
       let root = { text: { name: "winner" } }
-      let preGamesNeeded = arr.length - dispatch('calcPreGames'(sweetSpots, arr.length))
+      let preGamesNeeded = arr.length - sweetSpot
       let tree = []
 
       let competitors = arr.length - preGamesNeeded
@@ -154,8 +184,6 @@ export default new Vuex.Store({
       function assignParents() {
         tree.push([root])
         tree.reverse()
-        console.log(tree)
-        debugger
         let nextRound = []
         for (let j = tree.length - 1; j > 0; j--) {
           const currRound = tree[j];
@@ -177,17 +205,17 @@ export default new Vuex.Store({
       assignParents()
 
       function assignPreGames() {
-        let preGames = []
+        let preGameCompetitors = []
         for (let pg = 1; pg <= preGamesNeeded; pg++) {
-          preGames.push({ text: { name: "pregame " + pg } }, { text: { name: "pregame " + pg } })
+          preGameCompetitors.push({ text: { name: "pregame " + pg } }, { text: { name: "pregame " + pg } })
         }
         let parentCount = 0
-        for (let i = 0; i < preGames.length; i += 2) {
-          preGames[i].parent = tree[tree.length - 1][parentCount]
-          preGames[i + 1].parent = tree[tree.length - 1][parentCount]
+        for (let i = 0; i < preGameCompetitors.length; i += 2) {
+          preGameCompetitors[i].parent = tree[tree.length - 1][parentCount]
+          preGameCompetitors[i + 1].parent = tree[tree.length - 1][parentCount]
           parentCount++
         }
-        tree.push(preGames)
+        tree.push(preGameCompetitors)
       }
       assignPreGames()
 
@@ -204,7 +232,7 @@ export default new Vuex.Store({
         const person = arr[b];
         bracketArray[(bracketArray.length - 1) - b].text.name = person
       }
-      return { tree, bracketArray }
+      commit('setBracketArray', bracketArray)
     }
 
 
