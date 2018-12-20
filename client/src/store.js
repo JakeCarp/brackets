@@ -25,6 +25,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     tournament: {},
+    schedule: {}
+
   },
   mutations: {
     setUser(state, user) {
@@ -32,6 +34,9 @@ export default new Vuex.Store({
     },
     setTournament(state, tournament) {
       state.tournament = tournament
+    },
+    setSchedule(state, schedule) {
+      state.schedule = schedule
     }
 
   },
@@ -106,6 +111,13 @@ export default new Vuex.Store({
       api.put('/:tournamentId', tournament)
         .then(tournament => {
           dispatch('getTournament')
+        })
+    },
+    //Schedules
+    getSchedule({ commit, dispatch }, tournamentId) {
+      api.get('/tournament' + tournamentId + '/entries')
+        .then(res => {
+          commit("setSchedule", res.data)
         })
     }
   }

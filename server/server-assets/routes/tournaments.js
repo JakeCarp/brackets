@@ -81,21 +81,40 @@ router.get('/:tournamentId/entries', (req, res, next) => {
           if (activeTournament.style == "Round-Robin-Split") {
             let group1 = []
             let group2 = []
-            let out = []
-            for (let i = 1; i < data.length - 1; i++) {
-              const entry = data[i];
+            let out = {
+              group1: {},
+              group2: {}
+            }
+            for (let i = 1; i < data.length + 1; i++) {
+              const entry = data[i - 1];
               if (i % 2) {
                 group1.push(entry)
               } else {
                 group2.push(entry)
               }
             }
-            out.push(robin(group1.length, group1))
-            out.push(robin(group2.length, group2))
+            let group1Rounds = robin(group1.length, group1)
+            let group2Rounds = robin(group2.length, group2)
+            let count = 1
+            group1Rounds.forEach(round => {
+              out.group1["round" + count++] = round
+              count = 1
+            })
+            group2Rounds.forEach(round => {
+              out.group2["round" + count++] = round
+            })
+            out["entries"] = data
             res.send(out)
           }
           if (activeTournament.style === "Round-Robin") {
-            res.send(robin(data.length, data))
+            let out = {}
+            let rounds = robin(data.length, data)
+            let count = 1
+            rounds.forEach(round => {
+              out["round" + count++] = round
+            })
+            out.entries = data
+            res.send(out)
           }
         })
         .catch(err => {
