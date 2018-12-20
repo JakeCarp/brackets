@@ -1,6 +1,6 @@
 <template>
   <div class="active container-fluid home">
-    <roundRobin v-if="tournament.style == 'Round-Robin'" :scheduleData="schedule" />
+    <roundRobin v-if="tournament.style == 'Round-Robin'" />
     <activeComponent class="row"></activeComponent>
   </div>
 </template>

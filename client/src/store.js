@@ -148,7 +148,7 @@ export default new Vuex.Store({
         })
     },
     getSchedule({ commit, dispatch }, tournamentId) {
-      api.get('/' + tournamentId + '/entries')
+      api.get('/tournament/' + tournamentId + '/entries')
         .then(res => {
           commit("setSchedule", res.data)
         })
