@@ -67,7 +67,6 @@ export default new Vuex.Store({
 
     //tournaments
     getTournament({ commit, dispatch }, tournamentId) {
-
       api.get('tournament/' + tournamentId)
         .then(res => {
           commit('setTournament', res.data)
@@ -98,16 +97,20 @@ export default new Vuex.Store({
       api.get('tournament/join/' + entryCode)
         .then(tournament => {
           router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
-          dispatch('joinTournament', tournament.data)
+          commit("setTournament", tournament.data)
         })
     },
-    joinTournament({ commit, dispatch }, tournament) {
-
-      api.put('tournament/:tournamentId', tournament)
-        .then(tournament => {
-          dispatch('getTournament')
+    // not using this so repurpose to create entry
+    createEntry({ commit, dispatch }, newEntry) {
+      debugger
+      api.post('entry/', newEntry)
+        //you'll receive the newly created entry - 
+        // can do:
+        //1) save this one entry to your state
+        //2) and/or two get all entries with the same tourney id
+        .then(() => {
+          // dispatch('getTournament')
         })
     }
   }
 })
-// router.push({ name: 'join', params: { entryCode: entryCode } })
