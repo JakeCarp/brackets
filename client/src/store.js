@@ -159,13 +159,13 @@ export default new Vuex.Store({
 
     //testing tourney generation
     //finding the sweetSpot 
-    calcPreGames({ commit, dispatch }, payload) {
-      for (let i = 0; i < payload.sweetSpots.length; i++) {
-        if (payload.sweetSpots[i] > payload.entries) {
-          return payload.sweetSpots[i - 1]
-        }
-      }
-    },
+    // calcPreGames({ commit, dispatch }, payload) {
+    //   for (let i = 0; i < payload.sweetSpots.length; i++) {
+    //     if (payload.sweetSpots[i] > payload.entries) {
+    //       return payload.sweetSpots[i - 1]
+    //     }
+    //   }
+    // },
 
     //making the tree
     buildTree({ commit, dispatch }, payload) {
@@ -173,7 +173,8 @@ export default new Vuex.Store({
       let sweetSpot = 0
       function calcPreGames() {
         for (let i = 0; i < payload.sweetSpots.length; i++) {
-          if (payload.sweetSpots[i] > payload.entries) {
+          console.log(payload.sweetSpots[i])
+          if (payload.sweetSpots[i] > payload.entries.length) {
             return sweetSpot = payload.sweetSpots[i - 1]
           }
         }
@@ -236,6 +237,7 @@ export default new Vuex.Store({
           round.push({ text: { name: "match " + (i + 1) + ' round ' + roundNum } })
         }
         return round
+        debugger
       }
 
       let bracketArray = [].concat(...tree)
