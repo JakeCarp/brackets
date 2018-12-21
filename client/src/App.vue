@@ -15,7 +15,7 @@
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/home">Home</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/about">About</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/create">Create</router-link>
-              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/join">Join</router-link>
+              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" :to="{name: 'join'}">Join</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
                 Bracket</router-link>
