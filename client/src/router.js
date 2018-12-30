@@ -14,6 +14,7 @@ import active from './views/active.vue'
 import about from './views/about.vue'
 // @ts-ignore
 import test from './views/testBracket.vue'
+import profile from './views/profile.vue'
 
 Vue.use(Router)
 
@@ -48,10 +49,16 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: about
-    }, {
+    },
+    {
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profile
     },
 
     {
