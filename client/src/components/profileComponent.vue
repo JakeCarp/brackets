@@ -1,6 +1,7 @@
 <template>
   <div class="profileComponent">
     <div class="row">
+      <div class="col-12">Welcome {{getUser.name}}</div>
       <div class="col-3">
         <div class="row">
           <div class="col-12"> <img :src="getUser.picture" alt=""></div>
