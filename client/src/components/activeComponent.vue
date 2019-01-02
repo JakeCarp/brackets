@@ -18,45 +18,50 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <form @submit.prevent="editTournament">
-          <input type="text" placeholder="New Tournament Name" </form> </div> </div> </div> </template> <script>
-            export default {
-              name: 'active-component',
-              data() {
-                return {
+          <input type="text" placeholder="New Tournament Name"></form>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    name: 'active-component',
+    data() {
+      return {
 
-                }
-              },
-              computed: {
-                tournament() {
-                  return this.$store.state.tournament
-                },
-                user() {
-                  return this.$store.state.user
-                }
-              },
-              methods: {
-                deleteTournament() {
+      }
+    },
+    computed: {
+      tournament() {
+        return this.$store.state.tournament
+      },
+      user() {
+        return this.$store.state.user
+      }
+    },
+    methods: {
+      deleteTournament() {
 
-                  this.$store.dispatch('deleteTournament', this.tournament._id)
+        this.$store.dispatch('deleteTournament', this.tournament._id)
 
-                },
-                editTournament() {
-                  this.$store.dispatch('editTournament', this.tournament._id)
-                }
-              },
-              components: {},
-              props: [],
-              mounted() {
-                this.$store.dispatch("getTournament", this.$route.params.tournamentId)
-              }
-            }
+      },
+      editTournament() {
+        this.$store.dispatch('editTournament', this.tournament._id)
+      }
+    },
+    components: {},
+    props: [],
+    mounted() {
+      this.$store.dispatch("getTournament", this.$route.params.tournamentId)
+    }
+  }
 
-          </script>
+</script>
 
-          <style>
-            .tournamentCard {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-          </style>
+<style>
+  .tournamentCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

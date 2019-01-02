@@ -14,13 +14,15 @@ import active from './views/active.vue'
 import about from './views/about.vue'
 // @ts-ignore
 import test from './views/testBracket.vue'
+// @ts-ignore
+import bracket from './views/bracket.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       component: Login
     },
@@ -52,6 +54,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/bracket',
+      name: 'bracket',
+      component: bracket
     },
 
     {

@@ -19,7 +19,10 @@
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
                 Bracket</router-link>
-              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/login">Logout</router-link>
+              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/bracket">
+                Bracket</router-link>
+              <router-link @click.native='logout()' class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                to="/login">Logout</router-link>
             </ul>
           </div>
         </div>
@@ -29,6 +32,16 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: "navbar",
+    methods: {
+      logout() {
+        this.$store.dispatch("logout")
+      }
+    }
+  }
+</script>
 
 <style>
   #app {
