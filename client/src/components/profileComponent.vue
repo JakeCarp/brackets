@@ -15,11 +15,7 @@
       </div>
       <div class="col-9">
         <ul>
-<<<<<<< HEAD
-          <li v-for="tournament in getUser.tournament">{{tournament}}</li>
-=======
           <li v-for="tournament in getTournaments">{{tournament.title}}</li>
->>>>>>> 8396a56668914336badf754ed4524bdc22831e62
         </ul>
       </div>
     </div>
