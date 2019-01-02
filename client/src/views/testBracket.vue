@@ -1,16 +1,10 @@
 <template>
-<<<<<<< HEAD
   <div>
     <navbar />
     <div class="testBracket">
       <div id="treeMe" v-if="bracketArray.length">
       </div>
       <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
-=======
-  <div class="testBracket">
-    <div id="treeMe" v-if="bracketArray.length">
-
->>>>>>> b3c2a61ecbcc4bcb30746c9660b16abc1bcc34df
     </div>
   </div>
 </template>
