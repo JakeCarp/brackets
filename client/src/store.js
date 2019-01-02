@@ -128,7 +128,6 @@ export default new Vuex.Store({
     },
     // not using this so repurpose to create entry
     createEntry({ commit, dispatch }, newEntry) {
-      debugger
       api.post('entry/', newEntry)
         //you'll receive the newly created entry - 
         // can do:
