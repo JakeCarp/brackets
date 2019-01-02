@@ -19,14 +19,14 @@
             </div>
           </router-link>
         </div>
-        <div class="col-12">
+        <!-- <div class="col-12">
           <router-link :to="{name: 'active'}">
             <div class="jumbotron">
               <h1 class="display-3">Active</h1>
               <p>Current tournament</p>
             </div>
           </router-link>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

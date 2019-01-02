@@ -2,7 +2,9 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <h1>Teams</h1>
+        <div class="col-12 Teams">
+          <h1>Competitors</h1>
+        </div>
       </div>
       <div class="row">
         <div v-for="entry in schedule.entries" class="card">
@@ -43,5 +45,8 @@
 </script>
 
 <style>
-
+  .teams {
+    display: flex;
+    justify-content: center;
+  }
 </style>
