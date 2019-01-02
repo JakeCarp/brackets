@@ -2,7 +2,7 @@
   <div class="login container-fluid home">
     <div class="row">
       <div class="col-12 header">
-        <h4>[Brackets]</h4>
+        <h4 class="mt-4">[Brackets]</h4>
       </div>
     </div>
     <div class="row login-info mt-5">
@@ -61,15 +61,22 @@
 </script>
 
 <style scoped>
+  .home {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+    font-family: 'Anton', sans-serif;
+  }
+
   input {
     margin-top: 10px;
   }
 
-  header {
+  .header {
     display: flex;
-    align-items: flex-end;
-    height: 10vh;
+    justify-content: flex-end;
+    min-height: 10vh;
     background-color: #18BC9C;
+    color: whitesmoke;
   }
 
   .password {

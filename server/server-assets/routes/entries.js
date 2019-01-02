@@ -71,7 +71,6 @@ router.get('/', (req, res, next) => {
 })
 
 //get tournament Ids for a User Id
-
 //get all entries with a particular user Id
 router.get('/:userId', (req, res, next) => {
   let tournamentIds = []
