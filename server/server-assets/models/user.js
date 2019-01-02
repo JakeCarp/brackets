@@ -13,7 +13,6 @@ let schema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   created: { type: Number, required: true, default: Date.now() },
-  tournaments: { type: ObjectId, ref: 'Tournament' },
   picture: {
     type: String, default: 'https://via.placeholder.com/150'
   }
