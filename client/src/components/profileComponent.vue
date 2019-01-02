@@ -15,7 +15,7 @@
       </div>
       <div class="col-9">
         <ul>
-          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
+          <li v-for="tournament in getTournaments">{{tournament}}</li>
         </ul>
       </div>
     </div>
