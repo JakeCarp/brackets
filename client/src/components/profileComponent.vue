@@ -15,7 +15,7 @@
       </div>
       <div class="col-9">
         <ul>
-          <li v-for="tournament in getUser.tournaments">{{tournament}}</li>
+          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
         </ul>
       </div>
     </div>
@@ -33,6 +33,10 @@
     computed: {
       getUser() {
         return this.$store.state.user
+      },
+      getTournaments() {
+        console.log(this.$store.state.tournaments)
+        return this.$store.state.tournaments
       }
     },
     methods: {
@@ -43,6 +47,9 @@
     },
     components: {},
     props: [],
+    mounted() {
+      this.$store.dispatch("getTournaments2", this.getUser._id)
+    }
   }
 
 </script>
