@@ -1,5 +1,6 @@
 <template>
   <div class="active container-fluid home">
+    <singleElimination v-if="tournament.style == 'Single-Elimination'" />
     <roundRobin v-if="tournament.style == 'Round-Robin'" />
     <activeComponent class="row"></activeComponent>
   </div>
@@ -9,6 +10,7 @@
   import activeComponent from "@/components/activeComponent"
   import roundRobin from "@/components/roundRobin"
   import roundRobinSplit from "@/components/roundRobinSplit"
+  import singleElimination from "@/components/singleElimination"
 
   export default {
     name: 'active',
@@ -32,7 +34,8 @@
     components: {
       activeComponent,
       roundRobin,
-      roundRobinSplit
+      roundRobinSplit,
+      singleElimination
     },
     props: [],
   }

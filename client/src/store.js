@@ -36,6 +36,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user
+      console.log(user)
     },
     setTournament(state, tournament) {
       state.tournament = tournament
@@ -79,7 +80,7 @@ export default new Vuex.Store({
     logout({ commit, dispatch }) {
       auth.delete('logout')
         .then(res => {
-          commit('setUser')
+          commit('setUser', res.data)
         })
       router.push({ name: 'login' })
     },
@@ -147,7 +148,7 @@ export default new Vuex.Store({
     },
 
     getSchedule({ commit, dispatch }, tournamentId) {
-      api.get('/tournament/' + tournamentId + '/entries')
+      api.get('tournament/' + tournamentId + '/entries')
         .then(res => {
           commit("setSchedule", res.data)
         })

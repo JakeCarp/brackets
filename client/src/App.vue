@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="font spacing">
+  <div id="app" class="font spacing App">
     <div class="testing123">
       <nav class="navbar navbar-dark bg-dark">
         <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
@@ -13,13 +13,17 @@
           <div class="bg-dark p-4">
             <ul class="navbar-nav mt-2 mt-lg-0 menu">
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/home">Home</router-link>
+              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/profile">Profile</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/about">About</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/create">Create</router-link>
-              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/join">Join</router-link>
+              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" :to="{name: 'join'}">Join</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
                 Bracket</router-link>
-              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/login">Logout</router-link>
+              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/bracket">
+                Bracket</router-link>
+              <router-link @click.native='logout()' class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                to="/login">Logout</router-link>
             </ul>
           </div>
         </div>
@@ -29,6 +33,37 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: "navbar",
+    methods: {
+      logout() {
+        this.$store.dispatch("logout")
+      }
+    }
+  }
+</script>
+
+<script>
+  export default {
+    name: 'App',
+    data() {
+      return {
+
+      }
+    },
+    computed: {},
+    methods: {
+      logout() {
+        // debugger
+        this.$store.dispatch('logout')
+      }
+    },
+    components: {},
+    props: [],
+  }
+
+</script>
 
 <style>
   #app {
