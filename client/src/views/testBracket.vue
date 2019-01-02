@@ -1,7 +1,7 @@
 <template>
   <div class="testBracket">
     <div id="treeMe" v-if="bracketArray.length">
-      <playerpool> </playerpool>
+
     </div>
     <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
   </div>

@@ -20,7 +20,8 @@
     computed: {},
     methods: {},
     components: {
-      profileComponent
+      profileComponent,
+      navbar
     },
     props: [],
   }
