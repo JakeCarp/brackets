@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import navbar from "@/components/navbar"
   import raphael from '@/assets/treant/raphael.js'
   import Treant from '@/assets/treant/Treant.js'
   export default {
@@ -59,6 +60,7 @@
       }
     },
     components: {
+      navbar
       // Treant
     },
     props: [],
