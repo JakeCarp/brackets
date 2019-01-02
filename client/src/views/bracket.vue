@@ -1,10 +1,12 @@
 <template>
   <div>
+    <navbar />
     <playerPool> </playerPool>
   </div>
 </template>
 
 <script>
+  import navbar from "@/components/navbar"
   import playerPool from '@/components/playerPool'
 
   export default {

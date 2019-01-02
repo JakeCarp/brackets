@@ -1,12 +1,16 @@
 <template>
-  <div class="active container-fluid home">
-    <singleElimination v-if="tournament.style == 'Single-Elimination'" />
-    <roundRobin v-if="tournament.style == 'Round-Robin'" />
-    <activeComponent class="row"></activeComponent>
+  <div>
+    <navbar />
+    <div class="active container-fluid home">
+      <singleElimination v-if="tournament.style == 'Single-Elimination'" />
+      <roundRobin v-if="tournament.style == 'Round-Robin'" />
+      <activeComponent class="row"></activeComponent>
+    </div>
   </div>
 </template>
 
 <script>
+  import navbar from "@/components/navbar"
   import activeComponent from "@/components/activeComponent"
   import roundRobin from "@/components/roundRobin"
   import roundRobinSplit from "@/components/roundRobinSplit"
@@ -35,7 +39,8 @@
       activeComponent,
       roundRobin,
       roundRobinSplit,
-      singleElimination
+      singleElimination,
+      navbar
     },
     props: [],
   }
