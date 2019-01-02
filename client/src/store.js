@@ -36,6 +36,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user
+      console.log(user)
     },
     setTournament(state, tournament) {
       state.tournament = tournament

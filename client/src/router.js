@@ -16,6 +16,8 @@ import about from './views/about.vue'
 import test from './views/testBracket.vue'
 // @ts-ignore
 import bracket from './views/bracket.vue'
+// @ts-ignore
+import profile from './views/profile.vue'
 
 Vue.use(Router)
 
@@ -50,7 +52,8 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: about
-    }, {
+    },
+    {
       path: '/test',
       name: 'test',
       component: test
@@ -59,6 +62,11 @@ export default new Router({
       path: '/bracket',
       name: 'bracket',
       component: bracket
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profile
     },
 
     {
