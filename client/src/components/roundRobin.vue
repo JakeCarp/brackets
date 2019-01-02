@@ -5,7 +5,7 @@
 
         <div class="card-body">
           <div class="card-title w-18rem">
-            <h2>{{entry.name}}</h2>
+            <h2><u>{{entry.name}}</u></h2>
           </div>
           <div class="card-subtitle">
             <div class="row">
