@@ -20,16 +20,10 @@
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link>
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
                 Bracket</router-link>
-<<<<<<< HEAD
               <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/bracket">
                 Bracket</router-link>
               <router-link @click.native='logout()' class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent"
                 to="/login">Logout</router-link>
-=======
-              <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/">
-                <div @click="logout">Logout</div>
-              </router-link>
->>>>>>> 19feb1d86bbc4e426bb19a603a0ed469ab680088
             </ul>
           </div>
         </div>
