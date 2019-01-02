@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="font spacing App">
-
     <router-view />
   </div>
 </template>

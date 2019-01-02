@@ -2,8 +2,7 @@
   <div>
     <navbar />
     <div class="testBracket">
-      <div id="treeMe" v-if="bracketArray.length">
-      </div>
+      <div id="treeMe"></div>
       <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
     </div>
   </div>
@@ -11,8 +10,7 @@
 
 <script>
   import navbar from "@/components/navbar"
-  import raphael from '@/assets/treant/raphael.js'
-  import Treant from '@/assets/treant/Treant.js'
+  require('../assets/treant/Treant.js')
   export default {
     name: 'testBracket',
     data() {
@@ -29,7 +27,7 @@
             drawLineThrough: true
           },
           connectors: {
-            type: "straight",
+            type: "step",
             style: {
               "stroke-width": 2,
               "stroke": "#ccc"
@@ -37,7 +35,8 @@
           }
         },
         theBracket: {},
-        treant: {}
+        treant: {},
+        chartData: []
       }
     },
     computed: {
@@ -50,15 +49,34 @@
     },
     methods: {
       buildTree() {
-        // debugger
         this.$store.dispatch("buildTree", { entries: this.tournament, sweetSpots: this.sweetSpots })
-        var config = [this.config2, ...this.bracketArray]
-        this.treant = new Treant.Treant(config)
+        this.chartData = [this.config2, ...this.bracketArray]
+        this.treant = new window.Treant(this.chartData, this.handleNodeClick)
         // this.treant = new Treant.Treant(config)
         console.log(this.treant)
       },
       bracketMaker(bracketA) {
         // return new Treant([this.config2, ...bracketA])
+      },
+      handleNodeClick(e) {
+        document.querySelectorAll("div[id^='node-']").forEach(node => {
+          node.addEventListener('click', () => {
+            console.log('this context', this)
+            console.log("NODE ID", node.id)
+
+            let bracketNode = this.bracketArray.find(n => n.HTMLid == node.id)
+            console.log(bracketNode)
+
+            if (bracketNode.children) {
+              if (bracketNode.text.name == bracketNode.children[0].text.name) {
+                bracketNode.text.name = bracketNode.children[1].text.name
+              } else {
+                bracketNode.text.name = bracketNode.children[0].text.name
+              }
+              new Treant(this.chartData, this.handleNodeClick)
+            }
+          })
+        })
       }
     },
     components: {

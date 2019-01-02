@@ -101,14 +101,24 @@ export default new Vuex.Store({
       api.get('entry/' + uid)
         .then(res => {
           // debugger
-          commit('setTournaments2', res.data)
+          dispatch('getTournament', res.data)
         })
     },
-    getTournament({ commit, dispatch }, tournamentId) {
-      api.get('tournament/' + tournamentId)
-        .then(res => {
-          commit('setTournament', res.data)
-        })
+    // getTournament({ commit, dispatch }, tournamentId) {
+    //   api.get('tournament/' + tournamentId)
+    //     .then(res => {
+    //       commit('setTournament', res.data)
+    //     })
+    // },
+    getTournament({ commit, dispatch }, tournamentIds) {
+      let output = []
+      for (let i = 0; i < tournamentIds.length; i++) {
+        api.get('tournament/' + tournamentIds)
+          .then(res => {
+            output.push(res.data)
+          })
+      }
+      commit('setTournaments2', output)
     },
     addTournament({ commit, dispatch }, tournamentData) {
       api.post('tournament', tournamentData)
@@ -185,7 +195,10 @@ export default new Vuex.Store({
         }
       }
       calcPreGames()
-      let root = { text: { name: "winner" } }
+      let root = {
+        text: { name: "winner" },
+        HTMLid: 'node-WINNER'
+      }
       let preGamesNeeded = arr.length - sweetSpot
       let tree = []
 
@@ -239,10 +252,13 @@ export default new Vuex.Store({
 
       function buildRound(competitors, round, roundNum) {
         for (var i = 0; i < competitors; i++) {
-          round.push({ text: { name: "match " + (i + 1) + ' round ' + roundNum } })
+          let node = {
+            text: { name: "match " + (i + 1) + ' round ' + roundNum },
+            HTMLid: `node-${roundNum}-${i + 1}`,
+          }
+          round.push(node)
         }
         return round
-        debugger
       }
 
       let bracketArray = [].concat(...tree)
