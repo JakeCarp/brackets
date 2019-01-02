@@ -1,13 +1,16 @@
 <template>
-  <div class="testBracket">
-    <div id="treeMe" v-if="bracketArray.length">
-      <playerpool> </playerpool>
+  <div>
+    <navbar />
+    <div class="testBracket">
+      <div id="treeMe" v-if="bracketArray.length">
+      </div>
+      <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
     </div>
-    <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
   </div>
 </template>
 
 <script>
+  import navbar from "@/components/navbar"
   import raphael from '@/assets/treant/raphael.js'
   import Treant from '@/assets/treant/Treant.js'
   export default {
@@ -59,6 +62,7 @@
       }
     },
     components: {
+      navbar
       // Treant
     },
     props: [],
