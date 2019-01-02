@@ -1,6 +1,11 @@
 <template>
   <div class="login container-fluid home">
-    <div class="row login-info">
+    <div class="row">
+      <div class="col-12 header">
+        <h4>[Brackets]</h4>
+      </div>
+    </div>
+    <div class="row login-info mt-5">
       <div class="col-4"></div>
       <div class="col-4">
         <form v-if="loginForm" @submit.prevent="loginUser">
@@ -58,6 +63,13 @@
 <style scoped>
   input {
     margin-top: 10px;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-end;
+    height: 10vh;
+    background-color: #18BC9C;
   }
 
   .password {

@@ -76,7 +76,9 @@
         this.$store.dispatch('createEntry', this.newEntry)
       }
     },
-    components: {},
+    components: {
+      navbar
+    },
     props: [],
   }
 

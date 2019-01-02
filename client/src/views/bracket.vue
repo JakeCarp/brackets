@@ -17,7 +17,8 @@
       }
     },
     components: {
-      playerPool
+      playerPool,
+      navbar
     },
   }
 </script>
