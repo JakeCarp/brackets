@@ -6,7 +6,8 @@
       <button type="submit">Submit</button>
     </form>
     <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-      <input placeholder="Add Player" type="text" v-model="playerName">
+      <input placeholder="Add Player" type="text" v-model="newEntry.name">
+      <!--was playerName-->
       <input placeholder="Team Name" type="text" v-model="newEntry.name" v-if="newEntry.members.length > 1">
       <button type="submit">Submit</button>
       <div v-if="playerName.length > 0">
@@ -36,7 +37,6 @@
           tournamentId: this.$route.params.tournamentId,
           members: []
         }
-
       }
     },
     computed: {
@@ -57,6 +57,9 @@
         }
         return players
       },
+      // entry() {
+      //   return this.$store.state.entry
+      // }
     },
     methods: {
       addPlayer(player) {

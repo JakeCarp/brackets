@@ -43,6 +43,7 @@ export default new Vuex.Store({
     },
     setEntry(state, entry) {
       state.entry = entry
+      console.log(entry)
     },
     setProfiles(state, profiles) {
       state.profiles = profiles
@@ -92,7 +93,6 @@ export default new Vuex.Store({
           commit('setTournament', res.data)
         })
     },
-
     getTournament({ commit, dispatch }, tournamentId) {
       api.get('tournament/' + tournamentId)
         .then(res => {
@@ -104,7 +104,6 @@ export default new Vuex.Store({
         .then(tournament => {
           router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
           dispatch('getTournament', tournament.data._id)
-
         })
     },
     deleteTournament({ commit, dispatch }, tournamentId) {
@@ -127,16 +126,12 @@ export default new Vuex.Store({
           commit("setTournament", tournament.data)
         })
     },
-    // not using this so repurpose to create entry
     createEntry({ commit, dispatch }, newEntry) {
       api.post('entry/', newEntry)
-        //you'll receive the newly created entry - 
-        // can do:
-        //1) save this one entry to your state
-        //2) and/or two get all entries with the same tourney id
         .then(res => {
-          dispatch('getEntries', newEntry._id)
-          commit('setEntry')
+          //getEntries doesnt exist in this version of this file
+          // dispatch('getEntries', newEntry._id)
+          commit('setEntry', res.data)
         })
     },
     getAllProfiles({ commit, dispatch }) {
@@ -144,15 +139,14 @@ export default new Vuex.Store({
         .then(res => {
           commit('setProfiles', res.data)
         })
-
     },
-
     getSchedule({ commit, dispatch }, tournamentId) {
       api.get('tournament/' + tournamentId + '/entries')
         .then(res => {
           commit("setSchedule", res.data)
         })
     },
+
 
 
 
