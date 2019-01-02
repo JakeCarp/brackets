@@ -18,10 +18,11 @@ import test from './views/testBracket.vue'
 import bracket from './views/bracket.vue'
 // @ts-ignore
 import profile from './views/profile.vue'
+import store from './store'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: '/login',
@@ -86,3 +87,21 @@ export default new Router({
     // }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects
+  if (to.path == '/login' || to.path == '/register') {
+    next()
+    // if it doesnt match a route, go to the dashboard '/'
+  } else if (to.matched.length == 0) {
+    next("/")
+    // if there is no user, dont navigate to the new route
+  } else if (!store.state.user._id) {
+    next(false)
+    // if we passed all these statements, this is a valid route, proceed.
+  } else {
+    next()
+  }
+})
+
+export default router

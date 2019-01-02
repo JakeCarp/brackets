@@ -1,7 +1,7 @@
 <template>
   <div class="testing123">
     <nav class="navbar navbar-dark bg-dark">
-      <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+      <button class="navbar-toggler navbar-brand nav-button" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
         aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -49,3 +49,17 @@
     props: [],
   }
 </script>
+
+<style>
+  .nav-button {
+    /* background-color: green; */
+    transition: 0.3s;
+
+  }
+
+  .nav-button:hover {
+    background-color: #1ddab4;
+    /* box-shadow: 10px 10px black;
+    transform: scale(.95); */
+  }
+</style>
