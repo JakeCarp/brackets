@@ -31,6 +31,7 @@ export default new Vuex.Store({
     },
     entry: {},
     entries: [],
+    tournaments: [],
     bracketArray: []
   },
   mutations: {
@@ -40,6 +41,9 @@ export default new Vuex.Store({
     },
     setTournament(state, tournament) {
       state.tournament = tournament
+    },
+    setTournaments2(state, tournaments) {
+      state.tournaments = tournaments
     },
     setEntry(state, entry) {
       state.entry = entry
@@ -91,6 +95,13 @@ export default new Vuex.Store({
       api.get('tournament/')
         .then(res => {
           commit('setTournament', res.data)
+        })
+    },
+    getTournaments2({ commit, dispatch }, uid) {
+      api.get('entry/' + uid)
+        .then(res => {
+          // debugger
+          commit('setTournaments2', res.data)
         })
     },
     getTournament({ commit, dispatch }, tournamentId) {
