@@ -70,4 +70,22 @@ router.get('/', (req, res, next) => {
     })
 })
 
+//get tournament Ids for a User Id
+
+//get all entries with a particular user Id
+router.get('/:userId', (req, res, next) => {
+  let tournamentIds = []
+  Entries.find({ members: [req.params.userId] })
+    .then(entries => {
+      entries.forEach(entry => {
+        tournamentIds.push(entry.tournamentId)
+      })
+      res.send(tournamentIds)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+      return
+    })
+})
 module.exports = router

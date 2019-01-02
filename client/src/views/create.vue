@@ -1,46 +1,50 @@
 <template>
-  <div class="create home">
-    <div class="containter-fluid">
-      <form @submit.prevent="addTournament">
-        <div class="form-group row">
-          <div class="col-12">
-            <label class="col-6" for="title">Bracket Title: </label>
-            <input v-model="newTournament.title" class="col-6" type="text" name="title">
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-12">
-            <label class="col-6" for="description">Description: </label>
-            <input v-model="newTournament.description" class="col-6" type="field" name="description">
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="dropdown col-12 d-flex">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              {{newTournament.style}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <h4 @click="setTournamentType('Single-Elimitation')" class="dropdown-item">Single-Elimination</h4>
-              <h4 @click="setTournamentType('Double-Elimination')" class="dropdown-item">Double-Elimination</h4>
-              <h4 @click="setTournamentType('Round-Robin')" class="dropdown-item">Round-Robin</h4>
-              <h4 @click="setTournamentType('Round-Robin-Split')" class="dropdown-item">Round-Robin-Split</h4>
+  <div>
+    <navbar />
+    <div class="create home">
+      <div class="containter-fluid">
+        <form @submit.prevent="addTournament">
+          <div class="form-group row">
+            <div class="col-12">
+              <label class="col-6" for="title">Bracket Title: </label>
+              <input v-model="newTournament.title" class="col-6" type="text" name="title">
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-12">
-            <label class="col-6" for="title">Entry Code: </label>
-            <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex. SoftballSeason2018">
+          <div class="form-group row">
+            <div class="col-12">
+              <label class="col-6" for="description">Description: </label>
+              <input v-model="newTournament.description" class="col-6" type="field" name="description">
+            </div>
           </div>
-        </div>
-        <button type="submit">Create Bracket</button>
-      </form>
+          <div class="form-group row">
+            <div class="dropdown col-12 d-flex">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{newTournament.style}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <h4 @click="setTournamentType('Single-Elimitation')" class="dropdown-item">Single-Elimination</h4>
+                <h4 @click="setTournamentType('Double-Elimination')" class="dropdown-item">Double-Elimination</h4>
+                <h4 @click="setTournamentType('Round-Robin')" class="dropdown-item">Round-Robin</h4>
+                <h4 @click="setTournamentType('Round-Robin-Split')" class="dropdown-item">Round-Robin-Split</h4>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-12">
+              <label class="col-6" for="title">Entry Code: </label>
+              <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex. SoftballSeason2018">
+            </div>
+          </div>
+          <button type="submit">Create Bracket</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import navbar from "@/components/navbar"
   export default {
     name: 'create',
     data() {
@@ -64,7 +68,9 @@
         this.newTournament.style = str
       }
     },
-    components: {},
+    components: {
+      navbar
+    },
     props: [],
   }
 

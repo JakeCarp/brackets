@@ -143,5 +143,4 @@ router.get('/join/:entryCode', (req, res, next) => {
 })
 
 
-//Get tournaments by userID
 module.exports = router

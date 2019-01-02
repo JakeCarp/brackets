@@ -1,5 +1,6 @@
 <template>
   <div class="active-component">
+
     <!-- v-for="tournament in tournaments" -->
     <div class="card border-dark mb-3 col-12 tournamentCard">
       <div class="card-header tournamentCard">
