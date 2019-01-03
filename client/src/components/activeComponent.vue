@@ -34,6 +34,7 @@
     },
     computed: {
       tournament() {
+        console.log(this.$store.state.tournament)
         return this.$store.state.tournament
       },
       user() {
@@ -53,7 +54,7 @@
     components: {},
     props: [],
     mounted() {
-      this.$store.dispatch("getTournament", this.$route.params.tournamentId)
+      // debugger
     }
   }
 

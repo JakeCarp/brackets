@@ -98,6 +98,13 @@ export default new Vuex.Store({
           commit('setTournament', res.data)
         })
     },
+    getTournamentById({ commit, dispatch }, id) {
+      debugger
+      api.get('tournament/' + id)
+        .then(res => {
+          commit('setTournament', res.data)
+        })
+    },
     getTournaments2({ commit, dispatch }, uid) {
       api.get('entry/' + uid)
         .then(res => {
