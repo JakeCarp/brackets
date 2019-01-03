@@ -147,6 +147,12 @@ export default new Vuex.Store({
           dispatch('getTournament')
         })
     },
+    editTournamentowner({ commit, dispatch }, tournamentId) {
+      api.put('tournament/' + tournamentId + '/userId')
+        .then(res => {
+          dispatch('getTournament')
+        })
+    },
     editTournament({ commit, dispatch }, tournamentId) {
       api.put('tournament/' + tournamentId)
         .then(res => {
