@@ -169,6 +169,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
+      debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
