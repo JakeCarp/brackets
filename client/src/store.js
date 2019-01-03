@@ -41,7 +41,7 @@ export default new Vuex.Store({
       console.log(user)
     },
     setTournament(state, tournament) {
-      debugger
+      // debugger
       state.tournament = tournament
     },
     setTournamentById(state, tournament) {
