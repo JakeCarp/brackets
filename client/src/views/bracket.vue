@@ -2,8 +2,8 @@
   <div>
     <navbar />
     <activeComponent class="row"></activeComponent>
-    <singleElimination v-if="tournament.style == 'Single-Elimination'" />
-    <roundRobin v-if="tournament.style == 'Round-Robin'" />
+    <singleElimination v-if="getTournament.style == 'Single-Elimination'"></singleElimination>
+    <roundRobin v-if="getTournament.style == 'Round-Robin'"></roundRobin>
     <playerPool> </playerPool>
   </div>
 </template>
@@ -31,6 +31,11 @@
       roundRobinSplit,
       singleElimination,
     },
+    computed: {
+      getTournament() {
+        return this.$store.state.tournament
+      }
+    }
   }
 </script>
 
