@@ -16,6 +16,19 @@ router.post('/', (req, res, next) => {
     })
 })
 
+//create a new owner entry
+router.post('/ownerEntry', (req, res, next) => {
+  req.body.members.push('5c2e3a7e59668217d031e064')
+  Entries.create(req.body)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
 //owner may delete an entry
 router.delete('/:entryId', (req, res, next) => {
   Entries.findById({ _id: req.params.entryId })
