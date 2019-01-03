@@ -41,10 +41,6 @@ export default new Vuex.Store({
       console.log(user)
     },
     setTournament(state, tournament) {
-<<<<<<< HEAD
-=======
-      // debugger
->>>>>>> 56793016dcdf84fc069f0c222f0114a23e691bbf
       state.tournament = tournament
     },
     setTournamentById(state, tournament) {
