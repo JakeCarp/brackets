@@ -21,6 +21,7 @@
               <th scope="col">Title</th>
               <th scope="col">Number of Entrants</th>
               <th scope="col">Tournament Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -29,6 +30,7 @@
               <td>{{tournament.title}}</td>
               <td>Column content</td>
               <td>Column content</td>
+              <td><button type="button" class="btn btn-outline-primary" @click="">View</button></td>
             </tr>
           </tbody>
         </table>
@@ -75,9 +77,14 @@
 <style>
   .table {
     background-color: gray;
+    /* display: flex; */
+    /* justify-content: space-between; */
   }
 
   .rows {
-    color: #0c5e4e
+    color: #0c5e4e;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    align-items: center;
   }
 </style>

@@ -41,7 +41,7 @@
     },
     computed: {
       tournament() {
-        return this.$store.state.tournament.entries
+        return this.$store.state.testTournament.entries
       },
       bracketArray() {
         return this.$store.state.bracketArray || []
