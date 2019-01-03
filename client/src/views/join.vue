@@ -7,19 +7,29 @@
         <input type="text" placeholder="Bracket Code" v-model="entryCode">
         <button type="submit">Submit</button>
       </form>
-      <div class="jumbotron button" v-if="$route.params.tournamentId && showTeam" @click="showTeam = false">
-        <h1 class="display-3">Single Entry</h1>
-      </div>
-      <div class="jumbotron button" v-if="$route.params.tournamentId && !showTeam" @click="showTeam = true">
+      <div class="jumbotron button" v-if="$route.params.tournamentId && showTeam">
         <h1 class="display-3">Team Entry</h1>
+      </div>
+      <div class="jumbotron button" v-if="$route.params.tournamentId && !showTeam">
+        <h1 class="display-3">Single Entry</h1>
       </div>
       <single v-if="!showTeam"></single>
       <team v-if="showTeam"></team>
+      <div v-if="!showTeam">
+        <p>Click here for team entry</p>
+        <button type="button" class="btn btn-primary" @click="showTeam = true">Team Entry</button>
+      </div>
+      <div v-if="showTeam">
+        <p>Click here for single entry</p>
+        <button type="button" class="btn btn-primary" @click="showTeam = false">Single Entry</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
+  //@click="showTeam = true"
   import navbar from "@/components/navbar"
   import single from "@/components/singleEntry"
   import team from "@/components/teamEntry"

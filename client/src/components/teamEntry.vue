@@ -11,7 +11,6 @@
           <p @click="addPlayer(player)">{{player.name}}</p>
         </div>
       </div>
-      <h5>Members</h5>
       <p v-for="member in newEntry.members">{{member.name}}</p>
     </form>
   </div>
