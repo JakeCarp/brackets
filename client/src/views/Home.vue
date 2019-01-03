@@ -62,6 +62,6 @@
   }
 
   .home {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Anton';
   }
 </style>
