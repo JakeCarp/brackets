@@ -46,8 +46,8 @@ let router = new Router({
     },
     {
       path: '/tournament/:tournamentId',
-      name: 'active',
-      component: active
+      name: 'bracket',
+      component: bracket
     },
     {
       path: '/about',
