@@ -10,7 +10,8 @@ let schema = new Schema({
   style: { type: String, required: true },
   description: { type: String, required: true },
   owner: { type: ObjectId, ref: 'User' },
-  entrycode: { type: String, required: true, unique: true }
+  entrycode: { type: String, required: true, unique: true },
+  bracket: {}
 })
 
 
