@@ -42,10 +42,8 @@
       }
     },
     mounted() {
-      this.$store.dispatch("getTournamentById", this.$route.params.tId)
-    },
-    mounted() {
-      this.$store.dispatch("getSchedule", this.$route.params.tournamentId)
+      this.$store.dispatch("getTournamentById", this.$route.params.tId),
+        this.$store.dispatch("getSchedule", this.$route.params.tournamentId)
     },
   }
 </script>
