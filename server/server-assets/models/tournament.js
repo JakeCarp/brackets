@@ -12,6 +12,7 @@ let schema = new Schema({
   owner: { type: ObjectId, ref: 'User' },
   entrycode: { type: String, required: true, unique: true },
   entryId: [{ type: ObjectId, ref: 'Entry' }],
+  entries: [],
   bracket: {},
   status: { type: Boolean, default: true }
 })
