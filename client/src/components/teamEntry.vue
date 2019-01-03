@@ -2,7 +2,6 @@
   <div class="team-entry">
     <!-- team entry -->
     <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-      <h1>Team Entry</h1>
       <input placeholder="Add Player" type="text" v-model="playerName">
       <input placeholder="Team Name" type="text" v-model="newEntry.name">
       <button type="submit">Submit</button>
