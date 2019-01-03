@@ -1,10 +1,12 @@
 <template>
   <div>
     <navbar />
-    <activeComponent class="row"></activeComponent>
-    <singleElimination v-if="getTournament.style == 'Single-Elimination'"></singleElimination>
-    <roundRobin v-if="getTournament.style == 'Round-Robin'"></roundRobin>
-    <playerPool> </playerPool>
+    <div class="container-fluid">
+      <activeComponent class="row"></activeComponent>
+      <singleElimination v-if="getTournament.style == 'Single-Elimination'"></singleElimination>
+      <roundRobin v-if="getTournament.style == 'Round-Robin'"></roundRobin>
+      <playerPool> </playerPool>
+    </div>
   </div>
 </template>
 
