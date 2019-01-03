@@ -24,6 +24,9 @@
     methods: {
       createEntry() {
         this.$store.dispatch('createEntry', this.newEntry)
+      },
+      addEntry() {
+        this.$store.dispatch('editTournament', this.newEntry)
       }
     }
   }

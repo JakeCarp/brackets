@@ -147,6 +147,7 @@ export default new Vuex.Store({
           dispatch('getTournament')
         })
     },
+<<<<<<< HEAD
     editTournamentowner({ commit, dispatch }, tournamentId) {
       api.put('tournament/' + tournamentId + '/userId')
         .then(res => {
@@ -155,6 +156,11 @@ export default new Vuex.Store({
     },
     editTournament({ commit, dispatch }, tournamentId) {
       api.put('tournament/' + tournamentId)
+=======
+    editTournament({ commit, dispatch }, payload) {
+      debugger
+      api.put('tournament/' + payload.tId)
+>>>>>>> 4cb5665d126393cb8504a1a6814e4528af771c23
         .then(res => {
           dispatch('getTournament')
         })
@@ -174,6 +180,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
+      debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
