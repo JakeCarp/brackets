@@ -1,8 +1,8 @@
 <template>
   <div class="single-entry">
     <!-- single entry -->
-    <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-      <input placeholder="Add Player" type="text" v-model="newEntry.name">
+    <form @submit.prevent="addEntry" v-if="$route.params.tournamentId">
+      <input placeholder="Add Player" type="text" v-model="entries.name">
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -13,10 +13,8 @@
     name: 'single',
     data() {
       return {
-        newEntry: {
-          name: "",
-          tournamentId: this.$route.params.tournamentId,
-          members: []
+        entries: {
+          name: ""
         }
       }
     },
@@ -24,6 +22,9 @@
     methods: {
       createEntry() {
         this.$store.dispatch('createEntry', this.newEntry)
+      },
+      addEntry() {
+        this.$store.dispatch('editTournament', { entries: this.entries, tId: "$route.params.tournamentId" })
       }
     }
   }
