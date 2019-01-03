@@ -11,6 +11,17 @@
                 Picture</button>
             </form>
           </div>
+          <div class="col-12">
+            <form v-if="!getUser.bio">
+              <input type="text-field">
+              <button type="submit">Add Bio</button>
+            </form>
+            <form v-if="getUser.bio">
+              <input type="text-field">
+              <button type="submit">Change Bio</button>
+            </form>
+            {{getUser.bio}}
+          </div>
         </div>
       </div>
       <div class="col-9">

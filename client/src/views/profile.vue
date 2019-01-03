@@ -3,10 +3,6 @@
     <navbar />
     <div class="profile container-fluid">
       <profileComponent></profileComponent>
-      <form>
-        <input type="text-field" name="userBio" v-model="this.user.bio">
-        <button type="submit">Add Bio</button>
-      </form>
     </div>
   </div>
 </template>
