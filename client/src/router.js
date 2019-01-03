@@ -60,7 +60,7 @@ let router = new Router({
       component: test
     },
     {
-      path: '/bracket',
+      path: '/tournament/:tournamentId',
       name: 'bracket',
       component: bracket
     },
