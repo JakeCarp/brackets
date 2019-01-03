@@ -15,11 +15,11 @@
       </div>
       <single v-if="!showTeam"></single>
       <team v-if="showTeam"></team>
-      <div v-if="!showTeam">
+      <div v-if="$route.params.tournamentId && !showTeam">
         <p>Click here for team entry</p>
         <button type="button" class="btn btn-primary" @click="showTeam = true">Team Entry</button>
       </div>
-      <div v-if="showTeam">
+      <div v-if="$route.params.tournamentId && showTeam">
         <p>Click here for single entry</p>
         <button type="button" class="btn btn-primary" @click="showTeam = false">Single Entry</button>
       </div>
