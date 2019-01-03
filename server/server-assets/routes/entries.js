@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
 
 //create a new owner entry
 router.post('/ownerEntry', (req, res, next) => {
-  req.body.members.push('5c2e3a7e59668217d031e064')
+  req.body.members.push("5c2e434d59668217d031e065")
   Entries.create(req.body)
     .then(data => {
       res.send(data)
