@@ -7,18 +7,27 @@
         <input type="text" placeholder="Bracket Code" v-model="entryCode">
         <button type="submit">Submit</button>
       </form>
+      <!-- single entry -->
       <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
+        <h1>Single Entry</h1>
+        <input placeholder="Add Player" type="text" v-model="newEntry.name">
+        <button type="submit">Submit</button>
+      </form>
+      <!-- team entry -->
+      <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
+        <h1>Team Entry</h1>
         <input placeholder="Add Player" type="text" v-model="playerName">
-        <input placeholder="Team Name" type="text" v-model="newEntry.name" v-if="newEntry.members.length > 1">
+        <input placeholder="Team Name" type="text" v-model="newEntry.name">
         <button type="submit">Submit</button>
         <div v-if="playerName.length > 0">
           <div v-for="player in playersToAdd">
             <p @click="addPlayer(player)">{{player.name}}</p>
           </div>
         </div>
+        <h5>Members</h5>
+        <p v-for="member in newEntry.members">{{member.name}}</p>
       </form>
-      <h5>Members</h5>
-      <p v-for="member in newEntry.members">{{member.name}}</p>
+
 
     </div>
   </div>
