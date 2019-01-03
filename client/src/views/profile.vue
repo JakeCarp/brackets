@@ -3,6 +3,9 @@
     <navbar />
     <div class="profile container-fluid">
       <profileComponent></profileComponent>
+      <form>
+        <input type="text-field" name="userBio" v-model="user.bio">
+      </form>
     </div>
   </div>
 </template>
@@ -17,7 +20,11 @@
 
       }
     },
-    computed: {},
+    computed: {
+      user() {
+        return this.$store.user
+      }
+    },
     methods: {},
     components: {
       profileComponent,

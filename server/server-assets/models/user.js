@@ -15,7 +15,8 @@ let schema = new Schema({
   created: { type: Number, required: true, default: Date.now() },
   picture: {
     type: String, default: 'https://via.placeholder.com/150'
-  }
+  },
+  bio: { type: String }
 })
 
 
