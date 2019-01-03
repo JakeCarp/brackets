@@ -40,7 +40,8 @@ let router = new Router({
       component: create
     },
     {
-      path: '/join',
+      path: '/join/:tournamentId',
+      props: true,
       name: 'join',
       component: join
     },

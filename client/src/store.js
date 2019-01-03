@@ -41,7 +41,11 @@ export default new Vuex.Store({
       console.log(user)
     },
     setTournament(state, tournament) {
-      state.testTournament = tournament
+      debugger
+      state.tournament = tournament
+    },
+    setTournamentById(state, tournament) {
+      state.tournament = tournament
     },
     setTournaments2(state, tournaments) {
       state.tournaments = tournaments
@@ -99,10 +103,10 @@ export default new Vuex.Store({
         })
     },
     getTournamentById({ commit, dispatch }, id) {
-      debugger
+      // debugger
       api.get('tournament/' + id)
         .then(res => {
-          commit('setTournament', res.data)
+          commit('setTournamentById', res.data)
         })
     },
     getTournaments2({ commit, dispatch }, uid) {
@@ -150,6 +154,7 @@ export default new Vuex.Store({
         })
     },
     getTournamentByEntryCode({ commit, dispatch }, entryCode) {
+      // debugger
       api.get('tournament/join/' + entryCode)
         .then(tournament => {
           router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
