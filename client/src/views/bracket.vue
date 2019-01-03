@@ -38,12 +38,14 @@
         return this.$store.state.tournament
       },
       schedule() {
-        return this.$store.state.tournament
+        return this.$store.state.schedule
       }
     },
     mounted() {
-      this.$store.dispatch("getTournamentById", this.$route.params.tId),
-        this.$store.dispatch("getSchedule", this.$route.params.tournamentId)
+      if (this.$store.state.tournament) {
+        this.$store.dispatch("getTournamentById", this.$route.params.tId)
+      }
+      this.$store.dispatch("getSchedule", this.$route.params.tId)
     },
   }
 </script>
