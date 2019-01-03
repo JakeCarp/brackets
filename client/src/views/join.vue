@@ -7,34 +7,22 @@
         <input type="text" placeholder="Bracket Code" v-model="entryCode">
         <button type="submit">Submit</button>
       </form>
-      <!-- single entry -->
-      <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-        <h1>Single Entry</h1>
-        <input placeholder="Add Player" type="text" v-model="newEntry.name">
-        <button type="submit">Submit</button>
-      </form>
-      <!-- team entry -->
-      <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-        <h1>Team Entry</h1>
-        <input placeholder="Add Player" type="text" v-model="playerName">
-        <input placeholder="Team Name" type="text" v-model="newEntry.name">
-        <button type="submit">Submit</button>
-        <div v-if="playerName.length > 0">
-          <div v-for="player in playersToAdd">
-            <p @click="addPlayer(player)">{{player.name}}</p>
-          </div>
-        </div>
-        <h5>Members</h5>
-        <p v-for="member in newEntry.members">{{member.name}}</p>
-      </form>
-
-
+      <div class="jumbotron" v-if="$route.params.tournamentId && showTeam" @click="showTeam = false">
+        <h1 class="display-3">Single Entry</h1>
+      </div>
+      <div class="jumbotron" v-if="$route.params.tournamentId && !showTeam" @click="showTeam = true">
+        <h1 class="display-3">Team Entry</h1>
+      </div>
+      <single v-if="!showTeam"></single>
+      <team v-if="showTeam"></team>
     </div>
   </div>
 </template>
 
 <script>
   import navbar from "@/components/navbar"
+  import single from "@/components/singleEntry"
+  import team from "@/components/teamEntry"
   export default {
     name: 'join',
     mounted() {
@@ -43,50 +31,26 @@
     data() {
       return {
         entryCode: "",
-        playerName: "",
-        newEntry: {
-          name: "",
-          tournamentId: this.$route.params.tournamentId,
-          members: []
-        }
+        showTeam: false
       }
     },
     computed: {
-      profiles() {
-        return this.$store.state.profiles
-      },
-      playersToAdd() {
-        var keyword = this.playerName
-        var temp = this.profiles
-        var players = []
-        for (var i = 0; i < temp.length; i++) {
-          var player = temp[i]
-          var value = player.name.toLowerCase()
-          var term = keyword.toLowerCase()
-          if (value.indexOf(term) !== -1 && players.length < 20) {
-            players.push(player)
-          }
-        }
-        return players
-      },
+
       // entry() {
       //   return this.$store.state.entry
       // }
     },
     methods: {
-      addPlayer(player) {
-        this.newEntry.members.push(player)
-        this.playerName = ""
-      },
+
       getTournamentByEntryCode() {
         this.$store.dispatch('getTournamentByEntryCode', this.entryCode)
-      },
-      createEntry() {
-        this.$store.dispatch('createEntry', this.newEntry)
       }
+
     },
     components: {
-      navbar
+      navbar,
+      single,
+      team
     },
     props: [],
   }

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ownerEntries v-if="tournament.owner = session.uid" <div class="container-fluid">
+    <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
+    <div class="container-fluid">
       <div class="row">
         <div class="col-12 Teams">
           <h1>Competitors</h1>
@@ -12,7 +13,7 @@
           <h4>{{entry.members}}</h4>
         </div>
       </div>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +27,9 @@
       },
       tournament() {
         return this.$store.state.tournament
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     data() {
