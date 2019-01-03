@@ -40,8 +40,10 @@
               <th scope="row">{{tournament.style}}</th>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-outline-primary" @click="">View</button></td>
+              <td>{{tournament._id}}</td>
+              <td>
+                <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+              </td>
             </tr>
           </tbody>
         </table>
