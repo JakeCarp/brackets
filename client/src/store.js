@@ -192,6 +192,7 @@ export default new Vuex.Store({
 
     //making the tree
     buildTree({ commit, dispatch }, payload) {
+      // debugger
       let arr = payload.entries
       let sweetSpot = 0
       function calcPreGames() {

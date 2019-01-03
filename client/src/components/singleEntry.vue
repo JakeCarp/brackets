@@ -2,11 +2,9 @@
   <div class="single-entry">
     <!-- single entry -->
     <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-      <h1>Single Entry</h1>
       <input placeholder="Add Player" type="text" v-model="newEntry.name">
       <button type="submit">Submit</button>
     </form>
-
   </div>
 </template>
 
