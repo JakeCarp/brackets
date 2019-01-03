@@ -4,7 +4,7 @@
     <div class="profile container-fluid">
       <profileComponent></profileComponent>
       <form>
-        <input type="text-field" name="userBio" v-model="this.user.bio">
+        <input type="text-field" name="userBio">
         <button type="submit">Add Bio</button>
       </form>
     </div>
