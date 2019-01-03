@@ -7,10 +7,10 @@
         <input type="text" placeholder="Bracket Code" v-model="entryCode">
         <button type="submit">Submit</button>
       </form>
-      <div class="jumbotron" v-if="$route.params.tournamentId && showTeam" @click="showTeam = false">
+      <div class="jumbotron button" v-if="$route.params.tournamentId && showTeam" @click="showTeam = false">
         <h1 class="display-3">Single Entry</h1>
       </div>
-      <div class="jumbotron" v-if="$route.params.tournamentId && !showTeam" @click="showTeam = true">
+      <div class="jumbotron button" v-if="$route.params.tournamentId && !showTeam" @click="showTeam = true">
         <h1 class="display-3">Team Entry</h1>
       </div>
       <single v-if="!showTeam"></single>
@@ -58,6 +58,12 @@
 </script>
 
 <style>
+  .button {
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-
+  .button:hover {
+    color: black
+  }
 </style>
