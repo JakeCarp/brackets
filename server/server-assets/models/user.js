@@ -19,7 +19,6 @@ let schema = new Schema({
   bio: { type: String }
 })
 
-
 //THESE TWO METHODS CAN BE COPIED FOR ALL USER SCHEMA'S
 
 //statics are used to create Model methods
