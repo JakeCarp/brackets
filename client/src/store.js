@@ -26,7 +26,8 @@ export default new Vuex.Store({
     profiles: [],
     user: {},
     schedule: {},
-    tournament: {
+    tournament: {},
+    testTournament: {
       entries: ["player 1", "player 2", "player 3", "player 4", "player 5", "player 6", "player 7", "player 8", "player 9", "player 10", "player 11", "player 12", "player 13", "player 14", "player 15", "player 16", "player 17"]
     },
     entry: {},
@@ -40,7 +41,7 @@ export default new Vuex.Store({
       console.log(user)
     },
     setTournament(state, tournament) {
-      state.tournament = tournament
+      state.testTournament = tournament
     },
     setTournaments2(state, tournaments) {
       state.tournaments = tournaments
@@ -111,9 +112,10 @@ export default new Vuex.Store({
     //     })
     // },
     getTournament({ commit, dispatch }, tournamentIds) {
+      // debugger
       let output = []
       for (let i = 0; i < tournamentIds.length; i++) {
-        api.get('tournament/' + tournamentIds)
+        api.get('tournament/' + tournamentIds[i])
           .then(res => {
             output.push(res.data)
           })
@@ -145,6 +147,12 @@ export default new Vuex.Store({
         .then(tournament => {
           router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
           commit("setTournament", tournament.data)
+        })
+    },
+    addNewOwnerEntry({ commit, dispatch }, newEntry) {
+      api.post('entry/ownerEntry', newEntry)
+        .then(res => {
+          commit('setEntry, res.data')
         })
     },
     createEntry({ commit, dispatch }, newEntry) {

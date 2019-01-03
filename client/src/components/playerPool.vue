@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 Teams">
@@ -17,11 +18,18 @@
 </template>
 
 <script>
+  import ownerEntries from "@/components/ownerEntries"
   export default {
     name: 'playerPool',
     computed: {
       schedule() {
         return this.$store.state.schedule
+      },
+      tournament() {
+        return this.$store.state.tournament
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     data() {
@@ -39,7 +47,10 @@
           }
         })
         return valid
-      },
+      }
+    },
+    components: {
+      ownerEntries
     }
   }
 </script>
