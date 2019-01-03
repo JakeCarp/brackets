@@ -29,12 +29,30 @@ router.post('/', (req, res, next) => {
 })
 
 //update a tournament
-router.put('/:tournamentId', (req, res, next) => {
+router.put('/:tournamentId/:userId', (req, res, next) => {
   Tournaments.findById({ _id: req.params.tournamentId })
     .then(tournament => {
       if (!tournament.owner.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
+      tournament.update(req.body, (err) => {
+        if (err) {
+          console.log(err)
+          next()
+          return
+        }
+        res.send("Successfully Updated")
+      });
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
+router.put('/:tournamentId', (req, res, next) => {
+  Tournaments.findById({ _id: req.params.tournamentId })
+    .then(tournament => {
       tournament.update(req.body, (err) => {
         if (err) {
           console.log(err)

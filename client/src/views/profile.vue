@@ -17,9 +17,14 @@
 
       }
     },
+    watch: {
+      user: function (val) {
+        this.$store.dispatch("getTournaments2", val._id)
+      }
+    },
     computed: {
       user() {
-        return this.$store.user
+        return this.$store.state.user
       }
     },
     methods: {},
