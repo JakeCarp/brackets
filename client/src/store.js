@@ -41,7 +41,6 @@ export default new Vuex.Store({
       console.log(user)
     },
     setTournament(state, tournament) {
-      debugger
       state.tournament = tournament
     },
     setTournamentById(state, tournament) {
@@ -77,6 +76,7 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
+          // router.push({ name: 'home' })
         })
         .catch(() => { router.push({ name: 'login' }) })
     },

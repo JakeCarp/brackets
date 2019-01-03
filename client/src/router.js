@@ -93,8 +93,8 @@ router.beforeEach((to, from, next) => {
   } else if (to.matched.length == 0) {
     next("/")
     // if there is no user, dont navigate to the new route
-  } else if (!store.state.user._id) {
-    next(false)
+    // } else if (!store.state.user._id) {
+    //   next(false)
     // if we passed all these statements, this is a valid route, proceed.
   } else {
     next()
