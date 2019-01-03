@@ -11,7 +11,11 @@ let schema = new Schema({
   description: { type: String, required: true },
   owner: { type: ObjectId, ref: 'User' },
   entrycode: { type: String, required: true, unique: true },
+<<<<<<< HEAD
+  bracket: {}
+=======
   entryId: { type: ObjectId, ref: 'Entry' },
+>>>>>>> c2205814e7f31194253490a8a1b46af5d3179418
 })
 
 

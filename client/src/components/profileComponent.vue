@@ -14,9 +14,27 @@
         </div>
       </div>
       <div class="col-9">
-        <ul>
-          <li v-for="tournament in getTournaments">{{tournament}}</li>
-        </ul>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Title</th>
+              <th scope="col">Number of Entrants</th>
+              <th scope="col">Tournament Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="tournament in getTournaments" class="table-success rows">
+              <th scope="row">{{tournament.style}}</th>
+              <td>{{tournament.title}}</td>
+              <td>Column content</td>
+              <td>Column content</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <ul>
+          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
+        </ul> -->
       </div>
     </div>
   </div>
@@ -55,6 +73,11 @@
 </script>
 
 <style>
+  .table {
+    background-color: gray;
+  }
 
-
+  .rows {
+    color: #0c5e4e
+  }
 </style>
