@@ -7,8 +7,9 @@
           <div class="col-12"> <img :src="getUser.picture" alt=""></div>
           <div class="col-12">
             <form>
-              <button type="button" class="btn btn-outline-primary mt-1" @click="changePicture">Change
-                Picture</button>
+              <button type="button" class="btn btn-outline-primary m-2" @click="changePicture">
+                <span class="sizing">Change
+                  Picture</span></button>
             </form>
           </div>
           <div class="col-12">
@@ -92,6 +93,10 @@
     background-color: gray;
     /* display: flex; */
     /* justify-content: space-between; */
+  }
+
+  .sizing {
+    font-size: .9rem;
   }
 
   .rows {

@@ -6,16 +6,16 @@
         <div class="col-12" @click="">
           <router-link :to="{name: 'create'}">
             <div class="jumbotron">
-              <h1 class="display-3">Create</h1>
-              <p class="lead">Click to create a new tournament</p>
+              <h1 class="display-3">Create [Bracket]</h1>
+              <!-- <p class="lead">Click to create a new tournament</p> -->
             </div>
           </router-link>
         </div>
         <div class="col-12">
           <router-link :to="{name: 'join'}">
             <div class="jumbotron">
-              <h1 class="display-3">Join</h1>
-              <p class="lead">Click to join a tournament</p>
+              <h1 class="display-3">Join [Bracket]</h1>
+              <!-- <p class="lead">Click to join a tournament</p> -->
             </div>
           </router-link>
         </div>
@@ -62,6 +62,6 @@
   }
 
   .home {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Anton';
   }
 </style>

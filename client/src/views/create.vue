@@ -6,14 +6,14 @@
         <form @submit.prevent="addTournament">
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6" for="title">Bracket Title: </label>
-              <input v-model="newTournament.title" class="col-6" type="text" name="title">
+              <label class="col-6" for="title">Bracket Name: </label>
+              <input v-model="newTournament.title" class="col-6" type="text" placeholder="Men's 3-on-3" name="title">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-12">
               <label class="col-6" for="description">Description: </label>
-              <input v-model="newTournament.description" class="col-6" type="field" name="description">
+              <input v-model="newTournament.description" class="col-6" type="field" placeholder="65 and older" name="description">
             </div>
           </div>
           <div class="form-group row">
@@ -21,6 +21,7 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 {{newTournament.style}}
+                <!--Need to rename this^^^-->
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <h4 @click="setTournamentType('Single-Elimitation')" class="dropdown-item">Single-Elimination</h4>
@@ -33,7 +34,7 @@
           <div class="form-group row">
             <div class="col-12">
               <label class="col-6" for="title">Entry Code: </label>
-              <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex. SoftballSeason2018">
+              <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Entry2019">
             </div>
           </div>
           <button type="submit">Create Bracket</button>
@@ -52,7 +53,7 @@
         newTournament: {
           title: '',
           description: '',
-          style: 'Choose Your Style',
+          style: 'Tournament Type',
           numberOfEntries: 0,
           entrycode: ''
         }
@@ -79,7 +80,7 @@
 <style scoped>
   label {
     font-size: 1.75rem;
-
+    color: black;
   }
 
   .dropdown {
