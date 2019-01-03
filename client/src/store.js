@@ -147,6 +147,12 @@ export default new Vuex.Store({
           commit("setTournament", tournament.data)
         })
     },
+    addNewOwnerEntry({ commit, dispatch }, newEntry) {
+      api.post('entry/ownerEntry', newEntry)
+        .then(res => {
+          commit('setEntry, res.data')
+        })
+    },
     createEntry({ commit, dispatch }, newEntry) {
       api.post('entry/', newEntry)
         .then(res => {
