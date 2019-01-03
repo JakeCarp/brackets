@@ -9,7 +9,7 @@ import create from './views/create.vue'
 // @ts-ignore
 import join from './views/join.vue'
 // @ts-ignore
-import active from './views/active.vue'
+// import active from './views/active.vue'
 // @ts-ignore
 import about from './views/about.vue'
 // @ts-ignore
@@ -40,15 +40,15 @@ let router = new Router({
       component: create
     },
     {
-      path: '/join/:tournamentId',
+      path: '/join',
       name: 'join',
       component: join
     },
-    {
-      path: '/tournament/:tournamentId',
-      name: 'active',
-      component: active
-    },
+    // {
+    //   path: '/tournament/:tournamentId',
+    //   name: 'active',
+    //   component: active
+    // },
     {
       path: '/about',
       name: 'about',
@@ -60,7 +60,8 @@ let router = new Router({
       component: test
     },
     {
-      path: '/tournament/:tournamentId',
+      path: '/tournament/:tId',
+      props: true,
       name: 'bracket',
       component: bracket
     },
