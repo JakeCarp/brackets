@@ -5,7 +5,6 @@
       <div class="col-3">
         <div class="row">
           <div class="col-12"> <img :src="getUser.picture" alt=""></div>
-<<<<<<< HEAD
           <div class="col-6 picBtn">
             <!-- modal start -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePic">
@@ -61,16 +60,6 @@
                 Picture</button>
             </form> -->
           <!-- <div class="col-12">
-=======
-          <div class="col-12">
-            <form>
-              <button type="button" class="btn btn-outline-primary m-2" @click="changePicture">
-                <span class="sizing">Change
-                  Picture</span></button>
-            </form>
-          </div>
-          <div class="col-12">
->>>>>>> 9e1e62e5dd7ab7644792f8e8c58c511009389a40
             <form v-if="!getUser.bio">
               <input type="text-field">
               <button type="submit">Add Bio</button>
