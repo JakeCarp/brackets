@@ -44,7 +44,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <input type="text-field" style="width:350px">
+                    <input type="text-box" style="width:350px">
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
