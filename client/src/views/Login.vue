@@ -10,20 +10,20 @@
       <div class="row login-info mt-5">
         <div class="col-4"></div>
         <div class="col-4">
-          <form v-if="loginForm" @submit.prevent="loginUser">
-            <input type="email" v-model="creds.email" placeholder="email" style="margin-bottom: 5px"><br>
-            <input type="password" v-model="creds.password" placeholder="password" style="margin-bottom: 5px"><br>
+          <form v-if="loginForm" @submit.prevent="loginUser" class="text">
+            <input type="email" v-model="creds.email" placeholder="Email" style="margin-bottom: 5px" class="input"><br>
+            <input type="password" v-model="creds.password" placeholder="Password" style="margin-bottom: 5px" class="input"><br>
             <div class="action" @click="loginForm = !loginForm">
-              <p v-if="loginForm" class="login-text">No account? Click here to Register</p>
+              <p v-if="loginForm" class="login-text login-text-size">No account? Click here to register</p>
             </div>
             <button type="submit">Login</button>
           </form>
           <form v-else @submit.prevent="register">
-            <input type="text" v-model="newUser.name" placeholder="name">
-            <input type="email" v-model="newUser.email" placeholder="email">
-            <input type="password" v-model="newUser.password" placeholder="password">
+            <input type="text" v-model="newUser.name" placeholder="Name">
+            <input type="email" v-model="newUser.email" placeholder="Email">
+            <input type="password" v-model="newUser.password" placeholder="Password">
             <p class="password">*must be 6 or more characters*</p>
-            <div class="action" @click="loginForm = !loginForm">
+            <div class="action register-text-size" @click="loginForm = !loginForm">
               <p v-if="!loginForm">Already have an account? Click here to Login</p>
             </div>
             <button class="mt-2" type="submit">Create Account</button>
@@ -87,6 +87,27 @@
   }
 
   .password {
-    font-size: 1rem;
+    font-size: 16px;
+  }
+
+  .text {
+    color: black;
+  }
+
+  ::placeholder {
+    /* color: black; */
+    text-align: center;
+  }
+
+  p {
+    color: black;
+  }
+
+  .login-text-size {
+    font-size: 28px;
+  }
+
+  .register-text-size {
+    font-size: 28px;
   }
 </style>
