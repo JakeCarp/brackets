@@ -238,7 +238,7 @@ export default new Vuex.Store({
     //     }
     //   }
     // },
-
+    ,
     //making the tree
     buildTree({ commit, dispatch }, payload) {
       // debugger
