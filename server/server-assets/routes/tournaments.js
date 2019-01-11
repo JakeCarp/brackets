@@ -162,7 +162,7 @@ router.get('/join/:entryCode', (req, res, next) => {
 })
 
 //get all tournaments made by an owner
-router.get('/:ownerId', (req, res, next) => {
+router.get('/:ownerId/owner', (req, res, next) => {
   let tournamentIds = []
   Tournaments.find({ owner: req.params.ownerId })
     .then(Tournaments => {

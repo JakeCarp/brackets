@@ -87,7 +87,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="tournament in getTournaments" class="table-success rows">
+            <tr v-for="tournament in getOwnedTournaments" class="table-success rows">
               <th scope="row">{{tournament.style}}</th>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
@@ -99,7 +99,7 @@
           </tbody>
         </table>
         <!-- seperatioin -->
-        <table class="table table-hover">
+        <table v-if="getTournaments.length" class="table table-hover">
           <thead>
             <tr>
               <th scope="col">Type</th>
@@ -114,7 +114,7 @@
               <th scope="row">{{tournament.style}}</th>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
-              <td>{{tournament._id}}</td>
+              <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td>
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
               </td>
@@ -137,11 +137,19 @@
 
       }
     },
+    watch: {
+      getUser: function (user) {
+        this.$store.dispatch("getOwnedTournaments", user._id)
+        this.$store.dispatch("getTournaments2", user._id)
+        // debugger
+      }
+    },
     computed: {
       getUser() {
         return this.$store.state.user
       },
       getTournaments() {
+        // debugger
         // console.log(this.$store.state.tournaments)
         return this.$store.state.tournaments
       },
@@ -151,6 +159,7 @@
       },
 
       getOwnedTournaments() {
+        // debugger
         return this.$store.state.ownedTournaments
       }
     },
@@ -166,8 +175,7 @@
     components: {},
     props: [],
     mounted() {
-      this.$store.dispatch("getOwnedTournaments", this.getUsser._id),
-        this.$store.dispatch("getTournaments2", this.getUser._id)
+
     }
   }
 
