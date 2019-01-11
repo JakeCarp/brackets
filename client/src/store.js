@@ -33,7 +33,8 @@ export default new Vuex.Store({
     entry: {},
     entries: [],
     tournaments: [],
-    bracketArray: []
+    bracketArray: [],
+    archived: []
   },
   mutations: {
     setUser(state, user) {
@@ -61,6 +62,9 @@ export default new Vuex.Store({
     },
     setSchedule(state, schedule) {
       state.schedule = schedule
+    },
+    setArchive(state, tournament) {
+      state.archived.push(tournament)
     }
 
   },
@@ -194,7 +198,15 @@ export default new Vuex.Store({
         .then(res => {
           commit("setSchedule", res.data)
         })
-    },
+    }, archiveTournament({ commit, dispatch }, tournamentId) {
+      api.put('tournament/' + tournamentId + '/archive')
+        .then(res => {
+          commit('setArchive', res.data)
+
+        })
+    }
+
+
 
 
 
