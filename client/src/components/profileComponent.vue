@@ -158,6 +158,7 @@
     components: {},
     props: [],
     mounted() {
+      debugger
       this.$store.dispatch("getTournaments2", this.getUser._id)
     }
   }
@@ -193,6 +194,6 @@
   }
 
   .profilePic {
-    max-width: 150px;
+    max-width: 200px;
   }
 </style>
