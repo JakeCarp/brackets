@@ -130,9 +130,10 @@ export default new Vuex.Store({
         })
     },
     getOwnedTournaments({ commit, dispatch }, uid) {
-      api.get('/' + uid)
+      debugger
+      api.get('tournament/' + uid)
         .then(res => {
-          // debugger
+          debugger
           dispatch('getTournament', res.data)
         })
     },

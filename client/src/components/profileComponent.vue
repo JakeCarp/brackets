@@ -166,8 +166,8 @@
     components: {},
     props: [],
     mounted() {
-      debugger
-      this.$store.dispatch("getTournaments2", this.getUser._id)
+      this.$store.dispatch("getOwnedTournaments", this.getUsser._id),
+        this.$store.dispatch("getTournaments2", this.getUser._id)
     }
   }
 
