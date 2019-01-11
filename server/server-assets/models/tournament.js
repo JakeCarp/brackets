@@ -14,7 +14,7 @@ let schema = new Schema({
   entryId: [{ type: ObjectId, ref: 'Entry' }],
   entries: [],
   bracket: {},
-  Archived: { type: Boolean, default: true },
+  archived: { type: Boolean, default: true },
   enrollment: { type: Boolean, default: true }
 })
 
