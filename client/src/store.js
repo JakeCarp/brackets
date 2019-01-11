@@ -37,7 +37,6 @@ export default new Vuex.Store({
     bracketArray: [],
     archived: [],
     ownedTournaments: [],
-    bracketArray: []
   },
   mutations: {
     setUser(state, user) {
@@ -68,7 +67,7 @@ export default new Vuex.Store({
       state.schedule = schedule
     },
     setArchive(state, archive) {
-      state.archived = archive
+      state.archived.push(archive)
 
     },
     setOwnedTournaments(state, owned) {
@@ -221,6 +220,7 @@ export default new Vuex.Store({
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)
+          router.push({ name: 'profile' })
 
         })
     },
@@ -240,7 +240,7 @@ export default new Vuex.Store({
     //     }
     //   }
     // },
-    ,
+
     //making the tree
     buildTree({ commit, dispatch }, payload) {
       // debugger
