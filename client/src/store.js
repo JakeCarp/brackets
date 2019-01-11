@@ -54,6 +54,7 @@ export default new Vuex.Store({
       state.tournaments = tournaments
     },
     setEntry(state, entry) {
+      // debugger
       state.entry = entry
       console.log(entry)
     },
@@ -121,7 +122,7 @@ export default new Vuex.Store({
         })
     },
     getTournaments2({ commit, dispatch }, uid) {
-      debugger
+      // debugger
       api.get('entry/' + uid)
         .then(res => {
           // debugger
@@ -196,7 +197,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
-      debugger
+      // debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
@@ -221,7 +222,7 @@ export default new Vuex.Store({
           commit('setArchive', res.data)
 
         })
-    }
+    },
 
 
 
