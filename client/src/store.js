@@ -136,6 +136,7 @@ export default new Vuex.Store({
     addTournament({ commit, dispatch }, tournamentData) {
       api.post('tournament', tournamentData)
         .then(tournament => {
+          debugger
           router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
           dispatch('getTournament', tournament.data._id)
         })
