@@ -77,4 +77,8 @@
   .button:hover {
     color: black
   }
+
+  ::placeholder {
+    text-align: center;
+  }
 </style>

@@ -6,7 +6,7 @@
 
 <style>
   #app {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -24,7 +24,7 @@
   .home {
     color: rgba(0, 0, 0, 0.5);
     font-size: 2.5rem;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton';
   }
 
 
@@ -34,6 +34,6 @@
   }
 
   .font {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton';
   }
 </style>
