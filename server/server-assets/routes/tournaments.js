@@ -86,6 +86,7 @@ router.delete('/:tournamentId', (req, res, next) => {
     })
 })
 
+
 //get entries by tournamentId
 router.get('/:tournamentId/entries', (req, res, next) => {
   Tournaments.findById(req.params.tournamentId)
@@ -160,5 +161,21 @@ router.get('/join/:entryCode', (req, res, next) => {
     })
 })
 
+//get all tournaments made by an owner
+router.get('/:ownerId', (req, res, next) => {
+  let tournamentIds = []
+  Tournaments.find({ owner: req.params.ownerId })
+    .then(Tournaments => {
+      Tournaments.forEach(t => {
+        tournamentIds.push(t._id)
+      })
+      res.send(tournamentIds)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+      return
+    })
+})
 
 module.exports = router

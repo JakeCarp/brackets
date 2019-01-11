@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
+import { stat } from 'fs';
 
 let baseUrl = '//localhost:3000/'
 
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     entry: {},
     entries: [],
     tournaments: [],
+    bracketArray: [],
+    archived: [],
+    ownedTournaments: [],
     bracketArray: []
   },
   mutations: {
@@ -50,6 +54,7 @@ export default new Vuex.Store({
       state.tournaments = tournaments
     },
     setEntry(state, entry) {
+      // debugger
       state.entry = entry
       console.log(entry)
     },
@@ -61,6 +66,13 @@ export default new Vuex.Store({
     },
     setSchedule(state, schedule) {
       state.schedule = schedule
+    },
+    setArchive(state, archive) {
+      state.archived = archive
+
+    },
+    setOwnedTournaments(state, owned) {
+      state.ownedTournaments = owned
     }
 
   },
@@ -110,9 +122,18 @@ export default new Vuex.Store({
         })
     },
     getTournaments2({ commit, dispatch }, uid) {
+      // debugger
       api.get('entry/' + uid)
         .then(res => {
           // debugger
+          dispatch('getTournament', res.data)
+        })
+    },
+    getOwnedTournaments({ commit, dispatch }, uid) {
+      debugger
+      api.get('tournament/' + uid)
+        .then(res => {
+          debugger
           dispatch('getTournament', res.data)
         })
     },
@@ -134,10 +155,12 @@ export default new Vuex.Store({
       commit('setTournaments2', output)
     },
     addTournament({ commit, dispatch }, tournamentData) {
+      // debugger
       api.post('tournament', tournamentData)
         .then(tournament => {
-          router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
-          dispatch('getTournament', tournament.data._id)
+          router.push({ name: 'bracket', params: { tId: tournament.data._id } })
+          // debugger
+          commit('setTournament', tournament.data)
         })
     },
     deleteTournament({ commit, dispatch }, tournamentId) {
@@ -175,6 +198,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
+      // debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
@@ -193,7 +217,15 @@ export default new Vuex.Store({
         .then(res => {
           commit("setSchedule", res.data)
         })
+    }, archiveTournament({ commit, dispatch }, tournamentId) {
+      api.put('tournament/' + tournamentId + '/archive')
+        .then(res => {
+          commit('setArchive', res.data)
+
+        })
     },
+
+
 
 
 
@@ -208,7 +240,7 @@ export default new Vuex.Store({
     //     }
     //   }
     // },
-
+    ,
     //making the tree
     buildTree({ commit, dispatch }, payload) {
       // debugger

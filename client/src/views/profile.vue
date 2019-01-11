@@ -3,6 +3,7 @@
     <navbar />
     <div class="profile container-fluid">
       <profileComponent></profileComponent>
+      <historyComponent></historyComponent>
     </div>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
   import navbar from "@/components/navbar"
   import profileComponent from "@/components/profileComponent"
+  import historyComponent from "@/components/historyComponent"
   export default {
     name: 'profile',
     data() {
@@ -27,10 +29,13 @@
         return this.$store.state.user
       }
     },
-    methods: {},
+    methods: {
+
+    },
     components: {
       profileComponent,
-      navbar
+      navbar,
+      historyComponent
     },
     props: [],
   }

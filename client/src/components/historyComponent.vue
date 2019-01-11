@@ -1,8 +1,8 @@
 <template>
-  <div class="active-component">
+  <div class="historyComponent">
 
     <!-- v-for="tournament in tournaments" -->
-    <div class="card border-dark mb-3 col-12 tournamentCard">
+    <div class="card border-dark mb-3 col-12 tournamentCard" v-if="tournament.archived == true">
       <div class="card-header tournamentCard">
         <h5>{{tournament.title}}</h5>
       </div>
@@ -12,7 +12,6 @@
       </div>
     </div>
     <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
-    <button v-if="user._id == tournament.owner">Archive Tournament</button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -25,53 +24,27 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
-    name: 'active-component',
+    name: 'historyComponent',
     data() {
       return {
 
       }
     },
     computed: {
-      tournament() {
-        console.log(this.$store.state.tournament)
-        return this.$store.state.tournament
-      },
-      user() {
-        return this.$store.state.user
-      },
-      getArchive() {
-        console.log(this.$store.state.archived)
-        return this.$store.state.archived
+      tournaments() {
+        this.$store.state.tournaments
       }
     },
     methods: {
-      deleteTournament() {
-
-        this.$store.dispatch('deleteTournament', this.tournament._id)
-
-      },
-      editTournament() {
-        this.$store.dispatch('editTournament', this.tournament._id)
-      },
-      archive() {
-        this.$store.dispatch('archiveTournament', this.tournament._id)
-      }
-    },
-    components: {},
-    props: [],
-    mounted() {
-      // debugger
     }
   }
 
 </script>
 
 <style>
-  .tournamentCard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
+
 </style>
