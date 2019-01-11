@@ -134,7 +134,7 @@ export default new Vuex.Store({
       // debugger
       api.get('tournament/' + uid + "/owner")
         .then(res => {
-          // debugger
+          // debugger 
           dispatch('getOwnedTournaments2', res.data)
         })
     },

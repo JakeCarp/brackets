@@ -91,7 +91,7 @@
               <th scope="row">{{tournament.style}}</th>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
-              <td>{{tournament._id}}</td>
+              <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td>
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
               </td>
@@ -101,6 +101,9 @@
         <!-- seperatioin -->
         <table v-if="getTournaments.length" class="table table-hover">
           <thead>
+            <tr>
+              <th>Tournaments Participating in</th>
+            </tr>
             <tr>
               <th scope="col">Type</th>
               <th scope="col">Title</th>
