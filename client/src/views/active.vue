@@ -6,6 +6,7 @@
       <roundRobin v-if="tournament.style == 'Round-Robin'" />
       <activeComponent class="row"></activeComponent>
     </div>
+    <chat />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
   import roundRobin from "@/components/roundRobin"
   import roundRobinSplit from "@/components/roundRobinSplit"
   import singleElimination from "@/components/singleElimination"
+  import Chat from "@/components/Chat"
 
   export default {
     name: 'active',
@@ -40,7 +42,8 @@
       roundRobin,
       roundRobinSplit,
       singleElimination,
-      navbar
+      navbar,
+      Chat
     },
     props: [],
   }

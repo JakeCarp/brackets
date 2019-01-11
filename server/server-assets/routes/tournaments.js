@@ -28,6 +28,28 @@ router.post('/', (req, res, next) => {
     })
 })
 
+router.put('/:tournamentId/archive', (req, res, next) => {
+  Tournaments.findById(req.params.tournamentId)
+    .then(tournament => {
+      if (!tournament.owner.equals(req.session.uid)) {
+        return res.status(401).send("ACCESS DENIED!")
+      }
+      tournament._doc.archived = true
+      tournament.save(err => {
+        if (err) {
+          console.log(err)
+          next()
+          return
+        }
+        res.send(tournament)
+      });
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
 //update a tournament
 router.put('/:tournamentId/:userId', (req, res, next) => {
   Tournaments.findById({ _id: req.params.tournamentId })
