@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
+import io from 'socket.io-client'
+let socket = {}
 
 let baseUrl = '//localhost:3000/'
 
@@ -23,6 +25,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    chatJoined: false,
+    chatMessages: [],
+    roomData: {},
+    chatName: {},
     profiles: [],
     user: {},
     schedule: {},
@@ -36,10 +42,40 @@ export default new Vuex.Store({
     bracketArray: []
   },
   mutations: {
+    //tournament chat mutations
+    //#region 
+    setJoined(state, payload) {
+      state.chatJoined = true
+      state.chatName = payload
+    },
+    setRoom(state, payload) {
+      state.roomData = payload;
+    },
+    newChatUser(state, payload) {
+      Vue.set(state.roomData.connectedUsers, payload.userName, payload.userName)
+    },
+    userLeft(state, payload) {
+      Vue.set(state.roomData.connectedUsers, payload, undefined)
+    },
+    addMessage(state, payload) {
+      state.chatMessages.push(payload)
+    },
+    leave(state) {
+      state.chatJoined = false
+      state.chatName = ''
+      state.chatMessages = []
+      state.roomData = {}
+    },
+    //#endregion
+    //Auth mutations
+    //#region 
     setUser(state, user) {
       state.user = user
       console.log(user)
     },
+    //#endregion
+    //set tournament mutations
+    //#region 
     setTournament(state, tournament) {
       state.tournament = tournament
     },
@@ -49,10 +85,16 @@ export default new Vuex.Store({
     setTournaments2(state, tournaments) {
       state.tournaments = tournaments
     },
+    //#endregion
+    //Entry mutations
+    //#region 
     setEntry(state, entry) {
       state.entry = entry
       console.log(entry)
     },
+    //#endregion
+    //misc mutations
+    //#region 
     setProfiles(state, profiles) {
       state.profiles = profiles
     },
@@ -64,6 +106,7 @@ export default new Vuex.Store({
     }
 
   },
+  //#endregion
   actions: {
     //Tournament chat actions
     //#region 
@@ -79,7 +122,7 @@ export default new Vuex.Store({
       socket.on('CONNECTED', data => {
         console.log('Connected to socket')
         //connect to room
-        socket.emit('join', {name:payload})
+        socket.emit('join', { name: payload })
       })
       socket.on('joinedRoom', data => {
         commit('setRoom', data)
@@ -95,7 +138,14 @@ export default new Vuex.Store({
         commit('addMessage', data)
       })
     },
-    sendMessage
+    sendMessage({ commit, dispatch }, payload) {
+      socket.emit('message', payload)
+    },
+    leaveRoom({ commit, dispatch }, payload) {
+      socket.emit('leave')
+      socket.close()
+      commit('leave')
+    },
     //#endregion
     //auth actions
     //#region 
@@ -128,8 +178,9 @@ export default new Vuex.Store({
         })
       router.push({ name: 'login' })
     },
-
-    //tournaments
+    //#endregion
+    //tournaments actions
+    //#region 
     getTournaments({ commit, dispatch }) {
       api.get('tournament/')
         .then(res => {
@@ -220,6 +271,9 @@ export default new Vuex.Store({
           commit('setEntry', res.data)
         })
     },
+    //#endregion
+    //misc actions
+    //#region 
     getAllProfiles({ commit, dispatch }) {
       api.get('entry/')
         .then(res => {
@@ -232,10 +286,12 @@ export default new Vuex.Store({
           commit("setSchedule", res.data)
         })
     },
+    //#endregion
 
 
 
-
+    //Treant actions
+    //#region 
 
     //testing tourney generation
     //finding the sweetSpot 
@@ -427,3 +483,4 @@ export default new Vuex.Store({
 
 // //     // router.push({ name: 'join', params: { entryCode: entryCode } })
 // // )}
+//#endregion
