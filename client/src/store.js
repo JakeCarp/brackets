@@ -37,12 +37,11 @@ export default new Vuex.Store({
     bracketArray: [],
     archived: [],
     ownedTournaments: [],
-    bracketArray: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user
-      console.log(user)
+      // console.log(user)
     },
     setTournament(state, tournament) {
       state.tournament = tournament
@@ -56,7 +55,7 @@ export default new Vuex.Store({
     setEntry(state, entry) {
       // debugger
       state.entry = entry
-      console.log(entry)
+      // console.log(entry)
     },
     setProfiles(state, profiles) {
       state.profiles = profiles
@@ -68,10 +67,11 @@ export default new Vuex.Store({
       state.schedule = schedule
     },
     setArchive(state, archive) {
-      state.archived = archive
+      state.archived.push(archive)
 
     },
     setOwnedTournaments(state, owned) {
+      // debugger
       state.ownedTournaments = owned
     }
 
@@ -130,11 +130,11 @@ export default new Vuex.Store({
         })
     },
     getOwnedTournaments({ commit, dispatch }, uid) {
-      debugger
-      api.get('tournament/' + uid)
+      // debugger
+      api.get('tournament/' + uid + "/owner")
         .then(res => {
-          debugger
-          dispatch('getTournament', res.data)
+          // debugger 
+          dispatch('getOwnedTournaments2', res.data)
         })
     },
     // getTournament({ commit, dispatch }, tournamentId) {
@@ -143,6 +143,18 @@ export default new Vuex.Store({
     //       commit('setTournament', res.data)
     //     })
     // },
+    getOwnedTournaments2({ commit, dispatch }, tournamentIds) {
+      // debugger
+      let output = []
+      for (let i = 0; i < tournamentIds.length; i++) {
+        api.get('tournament/' + tournamentIds[i])
+          .then(res => {
+            output.push(res.data)
+          })
+      }
+      // debugger
+      commit('setOwnedTournaments', output)
+    },
     getTournament({ commit, dispatch }, tournamentIds) {
       // debugger
       let output = []
@@ -221,6 +233,7 @@ export default new Vuex.Store({
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)
+          router.push({ name: 'profile' })
 
         })
     },
