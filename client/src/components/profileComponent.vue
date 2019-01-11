@@ -140,13 +140,13 @@
 
       }
     },
-    watch: {
-      getUser: function (user) {
-        this.$store.dispatch("getOwnedTournaments", user._id)
-        this.$store.dispatch("getTournaments2", user._id)
-        // debugger
-      }
-    },
+    // watch: {
+    //   getUser: function (user) {
+    //     this.$store.dispatch("getOwnedTournaments", user._id)
+    //     this.$store.dispatch("getTournaments2", user._id)
+    //     // debugger
+    //   }
+    // },
     computed: {
       getUser() {
         return this.$store.state.user
@@ -177,9 +177,12 @@
     },
     components: {},
     props: [],
-    mounted() {
-
-    }
+    // mounted() {
+    //   if (this.getUser._id) {
+    //     this.$store.dispatch("getOwnedTournaments", this.getUser._id)
+    //     this.$store.dispatch("getTournaments2", this.getUser._id)
+    //   }
+    // }
   }
 
 </script>

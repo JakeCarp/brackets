@@ -82,6 +82,8 @@ export default new Vuex.Store({
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
+          dispatch("getOwnedTournaments", res.data._id)
+          dispatch("getTournaments2", res.data._id)
           router.push({ name: 'home' })
         })
     },
@@ -89,6 +91,8 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
+          dispatch("getOwnedTournaments", res.data._id)
+          dispatch("getTournaments2", res.data._id)
           // router.push({ name: 'home' })
         })
         .catch(() => { router.push({ name: 'login' }) })
@@ -97,6 +101,8 @@ export default new Vuex.Store({
       auth.post('login', creds)
         .then(res => {
           commit('setUser', res.data)
+          dispatch("getOwnedTournaments", res.data._id)
+          dispatch("getTournaments2", res.data._id)
           router.push({ name: 'home' })
         })
     },
@@ -134,7 +140,7 @@ export default new Vuex.Store({
       // debugger
       api.get('tournament/' + uid + "/owner")
         .then(res => {
-          // debugger 
+          // debugger
           dispatch('getOwnedTournaments2', res.data)
         })
     },
@@ -172,8 +178,8 @@ export default new Vuex.Store({
       api.post('tournament', tournamentData)
         .then(tournament => {
           router.push({ name: 'bracket', params: { tId: tournament.data._id } })
-          // debugger
-          commit('setTournament', tournament.data)
+          debugger
+          dispatch('getOwnedTournaments')
         })
     },
     deleteTournament({ commit, dispatch }, tournamentId) {
@@ -211,7 +217,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
-      // debugger
+      debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
