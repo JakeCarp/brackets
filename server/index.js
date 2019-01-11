@@ -1,24 +1,23 @@
 var express = require('express');
-var app = require('express')();
 var bp = require('body-parser')
 var server = express()
 var cors = require('cors')
 var port = 3000
-var socketServer = new (require('http').Server)(app);
-var io = require('socket.io')(socketServer);
+// var socketServer = new (require('http').Server)(server);
+// var io = require('socket.io')(socketServer);
 
-socketServer.listen(80)
+// socketServer.listen(80)
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-//socket implementation
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('YEEET!', function (data) {
-    console.log(data)
-  })
-})
+// server.get('/', function (req, res) {
+//   res.sendFile(__dirname + '/index.html');
+// });
+// //socket implementation
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });
+//   socket.on('YEEET!', function (data) {
+//     console.log(data)
+//   })
+// })
 
 
 var whitelist = ['http://localhost:8080'];
