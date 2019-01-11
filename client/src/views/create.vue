@@ -7,13 +7,14 @@
           <div class="form-group row">
             <div class="col-12">
               <label class="col-6" for="title">Bracket Name: </label>
-              <input v-model="newTournament.title" class="col-6" type="text" placeholder="Men's 3-on-3" name="title">
+              <input v-model="newTournament.title" class="col-6" type="text" placeholder="Ex: MensBasketball2019" name="title">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-12">
               <label class="col-6" for="description">Description: </label>
-              <input v-model="newTournament.description" class="col-6" type="field" placeholder="65 and older" name="description">
+              <input v-model="newTournament.description" class="col-6" type="field" placeholder="Ex: Competitive 5-on-5 Men's League"
+                name="description">
             </div>
           </div>
           <div class="form-group row">
@@ -34,7 +35,7 @@
           <div class="form-group row">
             <div class="col-12">
               <label class="col-6" for="title">Entry Code: </label>
-              <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Entry2019">
+              <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex: EntryCode5">
             </div>
           </div>
           <button type="submit">Create Bracket</button>
@@ -53,7 +54,7 @@
         newTournament: {
           title: '',
           description: '',
-          style: 'Tournament Type',
+          style: 'Bracket Type',
           numberOfEntries: 0,
           entrycode: ''
         }
@@ -90,5 +91,11 @@
   input {
     font-size: 1.25rem;
     margin-left: 10px;
+  }
+
+  .btn {
+    font-size: 1.54rem;
+    font-weight: 300;
+    outline: 2px solid lightgrey;
   }
 </style>

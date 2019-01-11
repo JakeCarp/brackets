@@ -53,7 +53,7 @@
     methods: {
 
       getTournamentByEntryCode() {
-        debugger
+        // debugger
         this.$store.dispatch('getTournamentByEntryCode', this.entryCode)
       }
 

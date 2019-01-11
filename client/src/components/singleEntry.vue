@@ -23,6 +23,7 @@
     computed: {},
     methods: {
       createEntry() {
+        // debugger
         this.$store.dispatch('createEntry', this.newEntry)
       },
       addEntry() {
