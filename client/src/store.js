@@ -65,6 +65,40 @@ export default new Vuex.Store({
 
   },
   actions: {
+    //Tournament chat actions
+    //#region 
+    chatJoin({ commit, dispatch }, payload) {
+      commit('setJoined', payload);
+      dispatch('socket', payload)
+    },
+    socket({ commit, dispatch }, payload) {
+      //establish connection with socket
+      socket = io('//localhost:3000')
+
+      //register all listeners
+      socket.on('CONNECTED', data => {
+        console.log('Connected to socket')
+        //connect to room
+        socket.emit('join', {name:payload})
+      })
+      socket.on('joinedRoom', data => {
+        commit('setRoom', data)
+      })
+      socket.on('newChatUser', data => {
+        commit('newChatUser', data)
+      })
+      socket.on('left', data => {
+        console.log('user left', data)
+        commit('userLeft', data)
+      })
+      socket.on('newMessage', data => {
+        commit('addMessage', data)
+      })
+    },
+    sendMessage
+    //#endregion
+    //auth actions
+    //#region 
     register({ commit, dispatch }, newUser) {
       auth.post('register', newUser)
         .then(res => {
@@ -169,6 +203,9 @@ export default new Vuex.Store({
           commit("setTournament", tournament.data)
         })
     },
+    //#endregion
+    //Entry actions
+    //#region 
     addNewOwnerEntry({ commit, dispatch }, newEntry) {
       api.post('entry/ownerEntry', newEntry)
         .then(res => {
