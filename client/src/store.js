@@ -2,12 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
-<<<<<<< HEAD
 import io from 'socket.io-client'
 let socket = {}
-=======
-import { stat } from 'fs';
->>>>>>> b6e687d7334417e3f8377d2c928eef75be3a9a64
 
 let baseUrl = '//localhost:3000/'
 
