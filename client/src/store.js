@@ -135,173 +135,173 @@ export default new Vuex.Store({
     },
     addTournament({ commit, dispatch }, tournamentData) {
       api.post('tournament', tournamentData)
-      debugger
         .then(tournament => {
-        router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
-        dispatch('getTournament', tournament.data._id)
-      })
-  },
-  deleteTournament({ commit, dispatch }, tournamentId) {
-    api.delete('tournament/' + tournamentId)
-      .then(res => {
-        router.push({ name: 'home' })
-        dispatch('getTournament')
-      })
-  },
-  editTournamentowner({ commit, dispatch }, tournamentId) {
-    api.put('tournament/' + tournamentId + '/userId')
-      .then(res => {
-        dispatch('getTournament')
-      })
-  },
-  editTournament({ commit, dispatch }, payload) {
+          debugger
+          router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
+          dispatch('getTournament', tournament.data._id)
+        })
+    },
+    deleteTournament({ commit, dispatch }, tournamentId) {
+      api.delete('tournament/' + tournamentId)
+        .then(res => {
+          router.push({ name: 'home' })
+          dispatch('getTournament')
+        })
+    },
+    editTournamentowner({ commit, dispatch }, tournamentId) {
+      api.put('tournament/' + tournamentId + '/userId')
+        .then(res => {
+          dispatch('getTournament')
+        })
+    },
+    editTournament({ commit, dispatch }, payload) {
 
-    api.put('tournament/' + payload.tId)
-      .then(res => {
-        dispatch('getTournament')
-      })
-  },
-  getTournamentByEntryCode({ commit, dispatch }, entryCode) {
-    // debugger
-    api.get('tournament/join/' + entryCode)
-      .then(tournament => {
-        router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
-        commit("setTournament", tournament.data)
-      })
-  },
-  addNewOwnerEntry({ commit, dispatch }, newEntry) {
-    api.post('entry/ownerEntry', newEntry)
-      .then(res => {
-        commit('setEntry, res.data')
-      })
-  },
-  createEntry({ commit, dispatch }, newEntry) {
-    api.post('entry/', newEntry)
-      .then(res => {
-        //getEntries doesnt exist in this version of this file
-        // dispatch('getEntries', newEntry._id)
-        commit('setEntry', res.data)
-      })
-  },
-  getAllProfiles({ commit, dispatch }) {
-    api.get('entry/')
-      .then(res => {
-        commit('setProfiles', res.data)
-      })
-  },
-  getSchedule({ commit, dispatch }, tournamentId) {
-    api.get('tournament/' + tournamentId + '/entries')
-      .then(res => {
-        commit("setSchedule", res.data)
-      })
-  },
-
-
-
+      api.put('tournament/' + payload.tId)
+        .then(res => {
+          dispatch('getTournament')
+        })
+    },
+    getTournamentByEntryCode({ commit, dispatch }, entryCode) {
+      // debugger
+      api.get('tournament/join/' + entryCode)
+        .then(tournament => {
+          router.push({ name: 'join', params: { tournamentId: tournament.data._id } })
+          commit("setTournament", tournament.data)
+        })
+    },
+    addNewOwnerEntry({ commit, dispatch }, newEntry) {
+      api.post('entry/ownerEntry', newEntry)
+        .then(res => {
+          commit('setEntry, res.data')
+        })
+    },
+    createEntry({ commit, dispatch }, newEntry) {
+      api.post('entry/', newEntry)
+        .then(res => {
+          //getEntries doesnt exist in this version of this file
+          // dispatch('getEntries', newEntry._id)
+          commit('setEntry', res.data)
+        })
+    },
+    getAllProfiles({ commit, dispatch }) {
+      api.get('entry/')
+        .then(res => {
+          commit('setProfiles', res.data)
+        })
+    },
+    getSchedule({ commit, dispatch }, tournamentId) {
+      api.get('tournament/' + tournamentId + '/entries')
+        .then(res => {
+          commit("setSchedule", res.data)
+        })
+    },
 
 
-  //testing tourney generation
-  //finding the sweetSpot 
-  // calcPreGames({ commit, dispatch }, payload) {
-  //   for (let i = 0; i < payload.sweetSpots.length; i++) {
-  //     if (payload.sweetSpots[i] > payload.entries) {
-  //       return payload.sweetSpots[i - 1]
-  //     }
-  //   }
-  // },
 
-  //making the tree
-  buildTree({ commit, dispatch }, payload) {
-    // debugger
-    let arr = payload.entries
-    let sweetSpot = 0
-    function calcPreGames() {
-      for (let i = 0; i < payload.sweetSpots.length; i++) {
-        console.log(payload.sweetSpots[i])
-        if (payload.sweetSpots[i] > payload.entries.length) {
-          return sweetSpot = payload.sweetSpots[i - 1]
-        }
-      }
-    }
-    calcPreGames()
-    let root = {
-      text: { name: "winner" },
-      HTMLid: 'node-WINNER'
-    }
-    let preGamesNeeded = arr.length - sweetSpot
-    let tree = []
 
-    let competitors = arr.length - preGamesNeeded
-    let i = 1
-    let buyInstance = 0
-    while (competitors > 1) {
-      let round = []
-      tree.push(buildRound(competitors, round, i))
-      competitors = round.length / 2
-      i++
-    }
 
-    function assignParents() {
-      tree.push([root])
-      tree.reverse()
-      let nextRound = []
-      for (let j = tree.length - 1; j > 0; j--) {
-        const currRound = tree[j];
-        nextRound = tree[j - 1]
+    //testing tourney generation
+    //finding the sweetSpot 
+    // calcPreGames({ commit, dispatch }, payload) {
+    //   for (let i = 0; i < payload.sweetSpots.length; i++) {
+    //     if (payload.sweetSpots[i] > payload.entries) {
+    //       return payload.sweetSpots[i - 1]
+    //     }
+    //   }
+    // },
 
-        let pi = 0
-        for (let z = 0; z < currRound.length; z += 2) {
-          let currentP = nextRound[pi]
-          const entry1 = currRound[z];
-          const entry2 = currRound[z + 1];
-          entry1.parent = currentP
-          if (entry2) {
-            entry2.parent = currentP
+    //making the tree
+    buildTree({ commit, dispatch }, payload) {
+      // debugger
+      let arr = payload.entries
+      let sweetSpot = 0
+      function calcPreGames() {
+        for (let i = 0; i < payload.sweetSpots.length; i++) {
+          console.log(payload.sweetSpots[i])
+          if (payload.sweetSpots[i] > payload.entries.length) {
+            return sweetSpot = payload.sweetSpots[i - 1]
           }
-          pi++
         }
       }
-    }
-    assignParents()
-
-    function assignPreGames() {
-      let preGameCompetitors = []
-      for (let pg = 1; pg <= preGamesNeeded; pg++) {
-        preGameCompetitors.push({ text: { name: "pregame " + pg } }, { text: { name: "pregame " + pg } })
+      calcPreGames()
+      let root = {
+        text: { name: "winner" },
+        HTMLid: 'node-WINNER'
       }
-      let parentCount = 0
-      for (let i = 0; i < preGameCompetitors.length; i += 2) {
-        preGameCompetitors[i].parent = tree[tree.length - 1][parentCount]
-        preGameCompetitors[i + 1].parent = tree[tree.length - 1][parentCount]
-        parentCount++
-      }
-      tree.push(preGameCompetitors)
-    }
-    assignPreGames()
+      let preGamesNeeded = arr.length - sweetSpot
+      let tree = []
 
-    function buildRound(competitors, round, roundNum) {
-      for (var i = 0; i < competitors; i++) {
-        let node = {
-          text: { name: "match " + (i + 1) + ' round ' + roundNum },
-          HTMLid: `node-${roundNum}-${i + 1}`,
+      let competitors = arr.length - preGamesNeeded
+      let i = 1
+      let buyInstance = 0
+      while (competitors > 1) {
+        let round = []
+        tree.push(buildRound(competitors, round, i))
+        competitors = round.length / 2
+        i++
+      }
+
+      function assignParents() {
+        tree.push([root])
+        tree.reverse()
+        let nextRound = []
+        for (let j = tree.length - 1; j > 0; j--) {
+          const currRound = tree[j];
+          nextRound = tree[j - 1]
+
+          let pi = 0
+          for (let z = 0; z < currRound.length; z += 2) {
+            let currentP = nextRound[pi]
+            const entry1 = currRound[z];
+            const entry2 = currRound[z + 1];
+            entry1.parent = currentP
+            if (entry2) {
+              entry2.parent = currentP
+            }
+            pi++
+          }
         }
-        round.push(node)
       }
-      return round
+      assignParents()
+
+      function assignPreGames() {
+        let preGameCompetitors = []
+        for (let pg = 1; pg <= preGamesNeeded; pg++) {
+          preGameCompetitors.push({ text: { name: "pregame " + pg } }, { text: { name: "pregame " + pg } })
+        }
+        let parentCount = 0
+        for (let i = 0; i < preGameCompetitors.length; i += 2) {
+          preGameCompetitors[i].parent = tree[tree.length - 1][parentCount]
+          preGameCompetitors[i + 1].parent = tree[tree.length - 1][parentCount]
+          parentCount++
+        }
+        tree.push(preGameCompetitors)
+      }
+      assignPreGames()
+
+      function buildRound(competitors, round, roundNum) {
+        for (var i = 0; i < competitors; i++) {
+          let node = {
+            text: { name: "match " + (i + 1) + ' round ' + roundNum },
+            HTMLid: `node-${roundNum}-${i + 1}`,
+          }
+          round.push(node)
+        }
+        return round
+      }
+
+      let bracketArray = [].concat(...tree)
+
+      for (let b = 0; b < arr.length; b++) {
+        const person = arr[b];
+        bracketArray[(bracketArray.length - 1) - b].text.name = person
+      }
+      commit('setBracketArray', bracketArray)
     }
 
-    let bracketArray = [].concat(...tree)
 
-    for (let b = 0; b < arr.length; b++) {
-      const person = arr[b];
-      bracketArray[(bracketArray.length - 1) - b].text.name = person
-    }
-    commit('setBracketArray', bracketArray)
+    // router.push({ name: 'join', params: { entryCode: entryCode } })
   }
-
-
-  // router.push({ name: 'join', params: { entryCode: entryCode } })
-}
 })
 //       //testing tourney generation
 //       //finding the sweetSpot 
