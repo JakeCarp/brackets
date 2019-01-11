@@ -205,7 +205,7 @@ export default new Vuex.Store({
           commit('setTournament', res.data)
         })
     },
-    //get tournament by an id
+    //get tournament by a tournament id
     getTournamentById({ commit, dispatch }, id) {
       // debugger
       api.get('tournament/' + id)
@@ -222,7 +222,7 @@ export default new Vuex.Store({
           dispatch('getTournament', res.data)
         })
     },
-    //get tournaments id's by owner
+    //get tournaments id's by owner  (user id)
     getOwnedTournaments({ commit, dispatch }, uid) {
       // debugger
       api.get('tournament/' + uid + "/owner")
@@ -237,6 +237,7 @@ export default new Vuex.Store({
     //       commit('setTournament', res.data)
     //     })
     // },
+
     //turn tournament ids into tournament objects for OWNED tournaments
     getOwnedTournaments2({ commit, dispatch }, tournamentIds) {
       // debugger
