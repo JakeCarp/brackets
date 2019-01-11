@@ -86,6 +86,7 @@ router.delete('/:tournamentId', (req, res, next) => {
     })
 })
 
+
 //get entries by tournamentId
 router.get('/:tournamentId/entries', (req, res, next) => {
   Tournaments.findById(req.params.tournamentId)

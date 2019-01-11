@@ -1,5 +1,5 @@
 <template>
-  <div class="history-component">
+  <div class="historyComponent">
 
     <!-- v-for="tournament in tournaments" -->
     <div class="card border-dark mb-3 col-12 tournamentCard" v-if="tournament.archived == true">
@@ -27,7 +27,7 @@
 
 <script>
   export default {
-    name: 'history-component',
+    name: 'historyComponent',
     data() {
       return {
 

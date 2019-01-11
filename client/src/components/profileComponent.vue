@@ -145,6 +145,11 @@
         // console.log(this.$store.state.tournaments)
         return this.$store.state.tournaments
       },
+      getArchive() {
+        console.log(this.$store.state.archived)
+        return this.$store.state.archived
+      },
+
       getOwnedTournaments() {
         return this.$store.state.ownedTournaments
       }
@@ -153,11 +158,15 @@
       changePicture() {
         let prompt = prompt("Please enter your image URL")
         this.$store.dispatch("changePicture")
+      },
+      archive(tournament) {
+        this.$store.dispatch("archiveTournament")
       }
     },
     components: {},
     props: [],
     mounted() {
+      debugger
       this.$store.dispatch("getTournaments2", this.getUser._id)
     }
   }
@@ -193,6 +202,6 @@
   }
 
   .profilePic {
-    max-width: 150px;
+    max-width: 200px;
   }
 </style>

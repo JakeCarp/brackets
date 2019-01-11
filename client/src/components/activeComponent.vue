@@ -12,6 +12,7 @@
       </div>
     </div>
     <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
+    <button v-if="user._id == tournament.owner">Archive Tournament</button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -39,6 +40,10 @@
       },
       user() {
         return this.$store.state.user
+      },
+      getArchive() {
+        console.log(this.$store.state.archived)
+        return this.$store.state.archived
       }
     },
     methods: {
@@ -49,6 +54,9 @@
       },
       editTournament() {
         this.$store.dispatch('editTournament', this.tournament._id)
+      },
+      archive() {
+        this.$store.dispatch('archiveTournament', this.tournament._id)
       }
     },
     components: {},
