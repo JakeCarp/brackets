@@ -86,69 +86,68 @@ router.delete('/:tournamentId', (req, res, next) => {
     })
 })
 
-router.
 
-  //get entries by tournamentId
-  router.get('/:tournamentId/entries', (req, res, next) => {
-    Tournaments.findById(req.params.tournamentId)
-      .then(activeTournament => {
-        Entries.find({ tournamentId: req.params.tournamentId })
-          .then(data => {
-            if (activeTournament.style == "Single-Elimination" || activeTournament.style == "Double-Elimination") {
-              res.send(data)
-              next()
-            }
-            if (activeTournament.style == "Round-Robin-Split") {
-              let group1 = []
-              let group2 = []
-              let out = {
-                rounds: {
-                  group1: {},
-                  group2: {}
-                }
-              }
-              for (let i = 1; i < data.length + 1; i++) {
-                const entry = data[i - 1];
-                if (i % 2) {
-                  group1.push(entry)
-                } else {
-                  group2.push(entry)
-                }
-              }
-              let group1Rounds = robin(group1.length, group1)
-              let group2Rounds = robin(group2.length, group2)
-              let count = 1
-              group1Rounds.forEach(round => {
-                out.rounds.group1["round" + count++] = round
-                count = 1
-              })
-              group2Rounds.forEach(round => {
-                out.rounds.group2["round" + count++] = round
-              })
-              out["entries"] = data
-              res.send(out)
-            }
-            if (activeTournament.style === "Round-Robin") {
-              let out = {
-                rounds: {
-
-                }
-              }
-              let round = robin(data.length, data)
-              let count = 1
-              round.forEach(round => {
-                out.rounds["round" + count++] = round
-              })
-              out.entries = data
-              res.send(out)
-            }
-          })
-          .catch(err => {
-            console.log(err)
+//get entries by tournamentId
+router.get('/:tournamentId/entries', (req, res, next) => {
+  Tournaments.findById(req.params.tournamentId)
+    .then(activeTournament => {
+      Entries.find({ tournamentId: req.params.tournamentId })
+        .then(data => {
+          if (activeTournament.style == "Single-Elimination" || activeTournament.style == "Double-Elimination") {
+            res.send(data)
             next()
-          })
-      })
-  })
+          }
+          if (activeTournament.style == "Round-Robin-Split") {
+            let group1 = []
+            let group2 = []
+            let out = {
+              rounds: {
+                group1: {},
+                group2: {}
+              }
+            }
+            for (let i = 1; i < data.length + 1; i++) {
+              const entry = data[i - 1];
+              if (i % 2) {
+                group1.push(entry)
+              } else {
+                group2.push(entry)
+              }
+            }
+            let group1Rounds = robin(group1.length, group1)
+            let group2Rounds = robin(group2.length, group2)
+            let count = 1
+            group1Rounds.forEach(round => {
+              out.rounds.group1["round" + count++] = round
+              count = 1
+            })
+            group2Rounds.forEach(round => {
+              out.rounds.group2["round" + count++] = round
+            })
+            out["entries"] = data
+            res.send(out)
+          }
+          if (activeTournament.style === "Round-Robin") {
+            let out = {
+              rounds: {
+
+              }
+            }
+            let round = robin(data.length, data)
+            let count = 1
+            round.forEach(round => {
+              out.rounds["round" + count++] = round
+            })
+            out.entries = data
+            res.send(out)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          next()
+        })
+    })
+})
 
 //get a tournament by an entry code
 router.get('/join/:entryCode', (req, res, next) => {
@@ -162,5 +161,21 @@ router.get('/join/:entryCode', (req, res, next) => {
     })
 })
 
+//get all tournaments made by an owner
+router.get('/:ownerId', (req, res, next) => {
+  let tournamentIds = []
+  Tournaments.find({ owner: req.params.ownerId })
+    .then(Tournaments => {
+      Tournaments.forEach(t => {
+        tournamentIds.push(t._id)
+      })
+      res.send(tournamentIds)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+      return
+    })
+})
 
 module.exports = router
