@@ -33,6 +33,7 @@ export default new Vuex.Store({
     entry: {},
     entries: [],
     tournaments: [],
+    ownedTournaments: [],
     bracketArray: []
   },
   mutations: {
@@ -61,6 +62,9 @@ export default new Vuex.Store({
     },
     setSchedule(state, schedule) {
       state.schedule = schedule
+    },
+    setOwnedTournaments(state, owned) {
+      state.ownedTournaments = owned
     }
 
   },
@@ -116,6 +120,13 @@ export default new Vuex.Store({
           dispatch('getTournament', res.data)
         })
     },
+    getOwnedTournaments({ commit, dispatch }, uid) {
+      api.get('/' + uid)
+        .then(res => {
+          // debugger
+          dispatch('getTournament', res.data)
+        })
+    },
     // getTournament({ commit, dispatch }, tournamentId) {
     //   api.get('tournament/' + tournamentId)
     //     .then(res => {
@@ -134,11 +145,12 @@ export default new Vuex.Store({
       commit('setTournaments2', output)
     },
     addTournament({ commit, dispatch }, tournamentData) {
+      // debugger
       api.post('tournament', tournamentData)
         .then(tournament => {
-          debugger
-          router.push({ name: 'active', params: { tournamentId: tournament.data._id } })
-          dispatch('getTournament', tournament.data._id)
+          router.push({ name: 'bracket', params: { tId: tournament.data._id } })
+          // debugger
+          commit('setTournament', tournament.data)
         })
     },
     deleteTournament({ commit, dispatch }, tournamentId) {

@@ -4,7 +4,7 @@
       <div class="col-12">Welcome {{getUser.name}}</div>
       <div class="col-3">
         <div class="row">
-          <div class="col-12"> <img :src="getUser.picture" alt=""></div>
+          <div class="col-12"> <img :src="getUser.picture" alt="" class="profilePic"></div>
           <div class="col-6 picBtn">
             <!-- modal start -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePic">
@@ -73,6 +73,32 @@
         </div>
       </div>
       <div class="col-9">
+        <table v-if="getOwnedTournaments.length" class="table table-hover">
+          <thead>
+            <tr>
+              <th>Managed Brackets</th>
+            </tr>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Title</th>
+              <th scope="col">Number of Entrants</th>
+              <th scope="col">Tournament Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="tournament in getTournaments" class="table-success rows">
+              <th scope="row">{{tournament.style}}</th>
+              <td>{{tournament.title}}</td>
+              <td>Column content</td>
+              <td>{{tournament._id}}</td>
+              <td>
+                <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- seperatioin -->
         <table class="table table-hover">
           <thead>
             <tr>
@@ -116,8 +142,11 @@
         return this.$store.state.user
       },
       getTournaments() {
-        console.log(this.$store.state.tournaments)
+        // console.log(this.$store.state.tournaments)
         return this.$store.state.tournaments
+      },
+      getOwnedTournaments() {
+        return this.$store.state.ownedTournaments
       }
     },
     methods: {
@@ -161,5 +190,9 @@
   .bioBtn {
     display: flex;
     justify-content: flex-start;
+  }
+
+  .profilePic {
+    max-width: 150px;
   }
 </style>
