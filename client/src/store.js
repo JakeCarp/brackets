@@ -121,6 +121,7 @@ export default new Vuex.Store({
         })
     },
     getTournaments2({ commit, dispatch }, uid) {
+      debugger
       api.get('entry/' + uid)
         .then(res => {
           // debugger
@@ -195,6 +196,7 @@ export default new Vuex.Store({
         })
     },
     createEntry({ commit, dispatch }, newEntry) {
+      debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
