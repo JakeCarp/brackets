@@ -40,8 +40,13 @@
       }
     },
     computed: {
-      tournament() {
-        return this.$store.state.testTournament.entries
+      getEntries() {
+        console.log(this.$store.state.schedule)
+        debugger
+        return this.$store.state.schedule
+      },
+      tournament2() {
+        return this.$store.state.tournament.entries
       },
       tournament3() {
         return this.$store.state.testTournament33.entries
@@ -52,7 +57,7 @@
     },
     methods: {
       buildTree() {
-        this.$store.dispatch("buildTree", { entries: this.tournament3, sweetSpots: this.sweetSpots })
+        this.$store.dispatch("buildTree", { entries: this.getEntries, sweetSpots: this.sweetSpots })
         this.chartData = [this.config2, ...this.bracketArray]
         this.treant = new window.Treant(this.chartData, this.handleNodeClick)
         // this.treant = new Treant.Treant(config)
@@ -95,9 +100,7 @@
     //   this.config2, ...this.bracketArray
     // ]
     mounted() {
-      console.log("treant", Treant)
-      this.$store.dispatch("getTournaments")
-      console.log(this.tournament)
+      this.$store.dispatch("getSchedule", this.$route.params.tId)
     }
   }
 
