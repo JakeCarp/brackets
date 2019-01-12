@@ -5,6 +5,7 @@
       <activeComponent class="row"></activeComponent>
       <singleElimination v-if="tournament.style == 'Single-Elimination'"></singleElimination>
       <roundRobin v-if="tournament.style == 'Round-Robin'"></roundRobin>
+      <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 Teams">
@@ -18,13 +19,14 @@
           </div>
         </div>
       </div>
-      <playerPool> </playerPool>
+      <!-- <playerPool> </playerPool> -->
     </div>
     <Chat />
   </div>
 </template>
 
 <script>
+  import ownerEntries from "@/components/ownerEntries"
   import navbar from "@/components/navbar"
   import playerPool from '@/components/playerPool'
   import activeComponent from "@/components/activeComponent"
@@ -47,7 +49,8 @@
       roundRobin,
       roundRobinSplit,
       singleElimination,
-      Chat
+      Chat,
+      ownerEntries
     },
     computed: {
       tournament() {
@@ -55,7 +58,10 @@
       },
       schedule() {
         return this.$store.state.schedule
-      }
+      },
+      user() {
+        return this.$store.state.user
+      },
     },
     mounted() {
       if (this.$store.state.tournament) {
