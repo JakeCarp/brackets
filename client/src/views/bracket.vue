@@ -7,6 +7,7 @@
       <roundRobin v-if="tournament.style == 'Round-Robin'"></roundRobin>
       <playerPool> </playerPool>
     </div>
+    <Chat />
   </div>
 </template>
 
@@ -17,6 +18,7 @@
   import roundRobin from "@/components/roundRobin"
   import roundRobinSplit from "@/components/roundRobinSplit"
   import singleElimination from "@/components/singleElimination"
+  import Chat from "@/components/Chat"
 
   export default {
     name: 'bracket',
@@ -32,6 +34,7 @@
       roundRobin,
       roundRobinSplit,
       singleElimination,
+      Chat
     },
     computed: {
       tournament() {
