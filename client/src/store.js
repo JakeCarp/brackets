@@ -339,14 +339,8 @@ export default new Vuex.Store({
         .then(res => {
           commit("setSchedule", res.data)
         })
-<<<<<<< HEAD
     }, archiveTournament({ commit, dispatch }, tournamentId) {
       debugger
-=======
-    },
-    //set tournament to active or inactive
-    archiveTournament({ commit, dispatch }, tournamentId) {
->>>>>>> 345487e17884b9ec4c7c9e21754c79ed8722befa
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)

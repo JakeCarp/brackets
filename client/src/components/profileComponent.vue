@@ -164,7 +164,7 @@
 
       getOwnedTournaments() {
         // debugger
-        return this.$store.state.ownedTournaments
+        return this.$store.state.ownedTournaments.filter(t => !t.archived)
       }
     },
     methods: {
