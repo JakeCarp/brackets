@@ -27,9 +27,7 @@ export default new Vuex.Store({
   state: {
     chatJoined: false,
     chatMessages: [],
-    roomData: {
-      connectedUsers: []
-    },
+    connectedUsers: [],
     chatName: {},
     profiles: [],
     user: {},
@@ -48,18 +46,21 @@ export default new Vuex.Store({
   mutations: {
     //tournament chat mutations
     //#region 
+    setConnectedUsers(state, payload) {
+      state.connectedUsers = payload
+    },
     setJoined(state, payload) {
       state.chatJoined = true
       state.chatName = payload
     },
-    setRoom(state, payload) {
-      state.roomData = payload;
-    },
     newChatUser(state, payload) {
-      Vue.set(state.roomData.connectedUsers, payload.userName, payload.userName)
+      state.connectedUsers.push(payload.name)
     },
     userLeft(state, payload) {
-      Vue.set(state.roomData.connectedUsers, payload, undefined)
+      let i = state.connectedUsers.findIndex(user => {
+        return user == payload.name
+      })
+      state.connectedUsers.splice(i, 1)
     },
     addMessage(state, payload) {
       state.chatMessages.push(payload)
@@ -68,9 +69,8 @@ export default new Vuex.Store({
       state.chatJoined = false
       state.chatName = ''
       state.chatMessages = []
-      state.roomData = {
-        connectedUsers: []
-      }
+      state.connectedUsers = []
+
     },
     //#endregion
     //Auth mutations
@@ -142,8 +142,7 @@ export default new Vuex.Store({
         socket.emit('join', { name: payload.name, room: payload.roomName })
       })
       socket.on('joinedRoom', data => {
-
-        commit('setRoom', data)
+        commit('setConnectedUsers', data.connectedUsers)
       })
       socket.on('newChatUser', data => {
         commit('newChatUser', data)
