@@ -27,7 +27,9 @@ export default new Vuex.Store({
   state: {
     chatJoined: false,
     chatMessages: [],
-    roomData: {},
+    roomData: {
+      connectedUsers: []
+    },
     chatName: {},
     profiles: [],
     user: {},
@@ -66,7 +68,9 @@ export default new Vuex.Store({
       state.chatJoined = false
       state.chatName = ''
       state.chatMessages = []
-      state.roomData = {}
+      state.roomData = {
+        connectedUsers: []
+      }
     },
     //#endregion
     //Auth mutations
@@ -123,9 +127,8 @@ export default new Vuex.Store({
     //Tournament chat actions
     //#region 
     chatJoin({ commit, dispatch }, payload) {
-      debugger
       commit('setJoined', payload);
-      dispatch('socket', payload)
+      dispatch('socket', payload);
     },
     socket({ commit, dispatch }, payload) {
       //establish connection with socket
@@ -133,11 +136,13 @@ export default new Vuex.Store({
 
       //register all listeners
       socket.on('CONNECTED', data => {
+
         console.log('Connected to socket')
         //connect to room
-        socket.emit('join', { name: payload })
+        socket.emit('join', { name: payload.name, room: payload.roomName })
       })
       socket.on('joinedRoom', data => {
+
         commit('setRoom', data)
       })
       socket.on('newChatUser', data => {
@@ -155,7 +160,7 @@ export default new Vuex.Store({
       socket.emit('message', payload)
     },
     leaveRoom({ commit, dispatch }, payload) {
-      socket.emit('leave')
+      socket.emit('leave', payload)
       socket.close()
       commit('leave')
     },
@@ -321,6 +326,7 @@ export default new Vuex.Store({
           //getEntries doesnt exist in this version of this file
           // dispatch('getEntries', newEntry._id)
           commit('setEntry', res.data)
+          router.push({ name: 'bracket', params: { tournamentId: res.data._id } })
         })
     },
     //#endregion

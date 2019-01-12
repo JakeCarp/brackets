@@ -5,11 +5,10 @@ var cors = require('cors')
 var port = 3000
 
 //create server for socked and connect socket to it
-var socketServer = require('http').createServer(server);
-var io = require("socket.io")(socketServer);
+var app = require('http').createServer(server);
+var io = require("socket.io")(app);
 
-let Socket = require("./socket")
-let socket = new Socket(io)
+
 
 var whitelist = ['http://localhost:8080'];
 var corsOptions = {
@@ -70,7 +69,76 @@ server.use('*', (req, res, next) => {
   })
 })
 
+//socket stuff
+let connectedUsers = {}
+let rooms = {}
 
-server.listen(port, () => {
+io.on("connection", socket => {
+  console.log("User Connected");
+
+  //notify controller of successful connection
+  socket.emit("CONNECTED", {
+    socket: socket.id,
+    message: "successfully connected",
+    openRooms: Object.keys(rooms)
+
+  })
+
+  socket.on("join", data => {
+    //insure connection passed name
+    if (data.name, data.room) {
+      //attaches name to socket
+      //@ts-ignore
+      socket.user = data.name;
+      if (!rooms[data.room]) {
+        rooms[data.room] = []
+      }
+      //@ts-ignore
+      rooms[data.room].push(socket.user)
+      //add connection to room
+      socket.join(data.room);
+
+
+      //notify connection of room connection
+      socket.emit("joinedRoom", {
+        roomName: data.room,
+        connectedUsers: rooms[data.room],
+      });
+
+      //notify room of new connection
+      io.to(data.room).emit("newUser", { userName: data.name });
+    }
+  });
+  //connection leaves room
+  socket.on('leave', data => {
+    //confirm they were in the room
+    //@ts-ignore
+    if (socket.user) {
+      //remove connection from room
+      //@ts-ignore
+      let i = rooms[data.roomName].findIndex(user => {
+        return user == data.name
+      })
+      rooms[data.roomName].splice(i, 1)
+      //@ts-ignore
+      io.to(data.roomName).emit('left', socket.user)
+    }
+  })
+  socket.on('message', data => {
+    if (data.message && data.user) {
+      console.log('message received')
+      io.to(data.roomName).emit('newMessage', data)
+    }
+  })
+
+  // socket.on('newBoard', data => {
+  //   Boards.create(data)
+  //     .then(res => {
+  //       io.to('tournament').emit('boardCreated', res)
+  //     })
+  // })
+})
+
+app.listen(port, () => {
   console.log('server running on port', port)
 })

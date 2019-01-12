@@ -1,10 +1,10 @@
 <template>
   <div class="profileComponent">
     <div class="row">
-      <div class="col-12">Welcome {{getUser.name}}</div>
+      <div class="col-12 welcome">Welcome {{getUser.name}}</div>
       <div class="col-3">
         <div class="row">
-          <div class="col-12"> <img :src="getUser.picture" alt="" class="profilePic"></div>
+          <div class="col-12"> <img :src="getUser.picture" class="profilePic"></div>
           <div class="col-6 picBtn">
             <!-- modal start -->
             <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#changePic">
@@ -226,6 +226,12 @@
   }
 
   .profilePic {
-    max-width: 200px;
+    max-width: 250px;
+  }
+
+  .welcome {
+    font-size: 50px;
+    display: flex;
+    justify-content: start;
   }
 </style>

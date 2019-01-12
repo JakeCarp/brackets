@@ -48,15 +48,15 @@
     data: function () {
       return {
         name: '',
-        message: ''
+        message: '',
       }
     },
     computed: {
       joined() {
-        return this.$store.state.joined;
+        return this.$store.state.chatJoined;
       },
       messages() {
-        return this.$store.state.messages;
+        return this.$store.state.chatMessages;
       },
       connectedUsers() {
         return this.$store.state.roomData.connectedUsers;
@@ -64,13 +64,13 @@
     },
     methods: {
       join() {
-        this.$store.dispatch('chatJoin', this.name)
+        this.$store.dispatch('chatJoin', { name: this.name, roomName: this.$route.params.tId })
       },
       leave() {
-        this.$store.dispatch('leaveRoom')
+        this.$store.dispatch('leaveRoom', { name: this.name, roomName: this.$route.params.tId })
       },
       send() {
-        this.$store.dispatch('sendMessage', { user: this.name, message: this.message })
+        this.$store.dispatch('sendMessage', { user: this.name, message: this.message, roomName: this.$route.params.tId })
       }
     },
   }
