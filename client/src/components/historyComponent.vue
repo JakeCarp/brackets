@@ -1,34 +1,41 @@
 <template>
   <div class="historyComponent">
-    <h3>Bracket History</h3>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Managed Brackets</th>
-        </tr>
-        <tr>
-          <th scope="col">Type</th>
-          <th scope="col">Title</th>
-          <th scope="col">Number of Entrants</th>
-          <th scope="col">Tournament Status</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="tournament in archivedTournaments" class="table-success rows">
-          <th scope="row">{{tournament.style}}</th>
-          <td>{{tournament.title}}</td>
-          <td>Column content</td>
-          <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
-          <td>
-            <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- <ul>
-          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
-        </ul> -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+
+          <h3>Bracket History</h3>
+          <table class="table table-hover">
+            <thead>
+
+              <tr>
+                <th class="header" scope="col">Type</th>
+                <th class="header" scope="col">Title</th>
+                <th class="header" scope="col">Number of Entrants</th>
+                <th class="header" scope="col">Tournament Status</th>
+                <th class="header">Managed Brackets</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="tournament in archivedTournaments" class=" rows">
+                <th class="colors" scope="row">{{tournament.style}}</th>
+                <td class="colors">{{tournament.title}}</td>
+                <td class="colors">Column content</td>
+                <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
+                <td class="colors">
+                  <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <ul>
+        <li v-for="tournament in getTournaments">{{tournament.title}}</li>
+      </ul> -->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,6 +59,12 @@
 </script>
 
 <style>
+  .colors {
+    background-color: white;
+  }
 
-
+  .header {
+    background-color: black;
+    color: white;
+  }
 </style>
