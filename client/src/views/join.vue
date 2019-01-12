@@ -13,7 +13,7 @@
       <div class="jumbotron button" v-if="$route.params.tournamentId && !showTeam">
         <h1 class="display-3">Single Entry</h1>
       </div>
-      <single v-if="!showTeam"></single>
+      <single v-if="!showTeam && $route.params.tournamentId"></single>
       <team v-if="showTeam"></team>
       <div v-if="$route.params.tournamentId && !showTeam">
         <p>Click here for team entry</p>
