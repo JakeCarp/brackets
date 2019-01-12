@@ -199,12 +199,14 @@ export default new Vuex.Store({
     //#endregion
     //tournaments actions
     //#region 
+    // Get all tournaments
     getTournaments({ commit, dispatch }) {
       api.get('tournament/')
         .then(res => {
           commit('setTournament', res.data)
         })
     },
+    //get tournament by an id
     getTournamentById({ commit, dispatch }, id) {
       // debugger
       api.get('tournament/' + id)
@@ -212,6 +214,7 @@ export default new Vuex.Store({
           commit('setTournamentById', res.data)
         })
     },
+    //get tournaments by user
     getTournaments2({ commit, dispatch }, uid) {
       // debugger
       api.get('entry/' + uid)
@@ -220,6 +223,7 @@ export default new Vuex.Store({
           dispatch('getTournament', res.data)
         })
     },
+    //get tournaments id's by owner
     getOwnedTournaments({ commit, dispatch }, uid) {
       // debugger
       api.get('tournament/' + uid + "/owner")
@@ -234,6 +238,7 @@ export default new Vuex.Store({
     //       commit('setTournament', res.data)
     //     })
     // },
+    //turn tournament ids into tournament objects for OWNED tournaments
     getOwnedTournaments2({ commit, dispatch }, tournamentIds) {
       // debugger
       let output = []
@@ -246,6 +251,7 @@ export default new Vuex.Store({
       // debugger
       commit('setOwnedTournaments', output)
     },
+    //turn tournament ids into tournament objects for PARTICIPATING tournaments
     getTournament({ commit, dispatch }, tournamentIds) {
       // debugger
       let output = []
@@ -257,6 +263,7 @@ export default new Vuex.Store({
       }
       commit('setTournaments2', output)
     },
+    //add tournament
     addTournament({ commit, dispatch }, tournamentData) {
       // debugger
       api.post('tournament', tournamentData)
@@ -266,6 +273,7 @@ export default new Vuex.Store({
           dispatch('getOwnedTournaments')
         })
     },
+    //delete tournament
     deleteTournament({ commit, dispatch }, tournamentId) {
       api.delete('tournament/' + tournamentId)
         .then(res => {
@@ -303,8 +311,9 @@ export default new Vuex.Store({
           commit('setEntry, res.data')
         })
     },
+    //create an entry, adds a tourney id to that entry
     createEntry({ commit, dispatch }, newEntry) {
-      debugger
+      // debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
@@ -326,7 +335,9 @@ export default new Vuex.Store({
         .then(res => {
           commit("setSchedule", res.data)
         })
-    }, archiveTournament({ commit, dispatch }, tournamentId) {
+    },
+    //set tournament to active or inactive
+    archiveTournament({ commit, dispatch }, tournamentId) {
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)
