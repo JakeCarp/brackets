@@ -59,7 +59,7 @@
         return this.$store.state.chatMessages;
       },
       connectedUsers() {
-        return this.$store.state.roomData.connectedUsers;
+        return this.$store.state.connectedUsers;
       }
     },
     methods: {
@@ -71,7 +71,9 @@
       },
       send() {
         this.$store.dispatch('sendMessage', { user: this.name, message: this.message, roomName: this.$route.params.tId })
+        this.message = ""
       }
+
     },
   }
 </script>
