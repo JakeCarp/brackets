@@ -36,6 +36,13 @@ export default new Vuex.Store({
     testTournament: {
       entries: ["player 1", "player 2", "player 3", "player 4", "player 5", "player 6", "player 7", "player 8", "player 9", "player 10", "player 11", "player 12", "player 13", "player 14", "player 15", "player 16", "player 17"]
     },
+    testTournament33: {
+      entries: [{ name: "player 1", record: "0-0" }, { name: "player 2", record: "0-0" }, { name: "player 3", record: "0-0" }, { name: "player 4", record: "0-0" }, { name: "player 5", record: "0-0" }]
+    },
+    testTournament87: {
+      entries: [{ text: { name: "player 1", record: "0-0" } }, { text: { name: "player 2", record: "0-0" } }, { text: { name: "player 3", record: "0-0" } }, { text: { name: "player 4", record: "0-0" } }, { text: { name: "player 5", record: "0-0" } }]
+    },
+    //{ text: { name: "pregame " + pg } }
     entry: {},
     entries: [],
     tournaments: [],
@@ -316,12 +323,12 @@ export default new Vuex.Store({
     },
     //create an entry, adds a tourney id to that entry
     createEntry({ commit, dispatch }, newEntry) {
-      debugger
+      // debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
           // dispatch('getEntries', newEntry._id)
-          debugger
+          // debugger
           commit('setEntry', res.data)
         })
     },
@@ -382,7 +389,7 @@ export default new Vuex.Store({
       }
       calcPreGames()
       let root = {
-        text: { name: "winner" },
+        text: { name: "winner", title: '\xa0' },
         HTMLid: 'node-WINNER'
       }
       let preGamesNeeded = arr.length - sweetSpot
@@ -424,7 +431,7 @@ export default new Vuex.Store({
       function assignPreGames() {
         let preGameCompetitors = []
         for (let pg = 1; pg <= preGamesNeeded; pg++) {
-          preGameCompetitors.push({ text: { name: "pregame " + pg } }, { text: { name: "pregame " + pg } })
+          preGameCompetitors.push({ text: { name: "pregame " + pg, title: '\xa0' } }, { text: { name: "pregame " + pg, title: '\xa0' } })
         }
         let parentCount = 0
         for (let i = 0; i < preGameCompetitors.length; i += 2) {
@@ -439,7 +446,7 @@ export default new Vuex.Store({
       function buildRound(competitors, round, roundNum) {
         for (var i = 0; i < competitors; i++) {
           let node = {
-            text: { name: "match " + (i + 1) + ' round ' + roundNum },
+            text: { name: "match " + (i + 1) + ' round ' + roundNum, title: '\xa0' },
             HTMLid: `node-${roundNum}-${i + 1}`,
           }
           round.push(node)
@@ -450,7 +457,8 @@ export default new Vuex.Store({
       let bracketArray = [].concat(...tree)
 
       for (let b = 0; b < arr.length; b++) {
-        const person = arr[b];
+        const person = arr[b].name;
+        // console.log(bracketArray[(bracketArray.length - 1) - b].text.name)
         bracketArray[(bracketArray.length - 1) - b].text.name = person
       }
       commit('setBracketArray', bracketArray)
