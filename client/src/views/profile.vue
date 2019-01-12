@@ -29,9 +29,7 @@
         return this.$store.state.user
       }
     },
-    methods: {
-
-    },
+    methods: {},
     components: {
       profileComponent,
       navbar,

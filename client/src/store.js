@@ -296,10 +296,10 @@ export default new Vuex.Store({
         })
     },
     editTournament({ commit, dispatch }, payload) {
-
-      api.put('tournament/' + payload.tId)
+      debugger
+      api.put('tournament/' + payload)
         .then(res => {
-          dispatch('getTournament')
+          dispatch('getTournaments2')
         })
     },
     getTournamentByEntryCode({ commit, dispatch }, entryCode) {
@@ -346,9 +346,8 @@ export default new Vuex.Store({
         .then(res => {
           commit("setSchedule", res.data)
         })
-    },
-    //set tournament to active or inactive
-    archiveTournament({ commit, dispatch }, tournamentId) {
+    }, archiveTournament({ commit, dispatch }, tournamentId) {
+      debugger
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)
