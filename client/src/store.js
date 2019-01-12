@@ -269,8 +269,8 @@ export default new Vuex.Store({
       api.post('tournament', tournamentData)
         .then(tournament => {
           router.push({ name: 'bracket', params: { tId: tournament.data._id } })
-          debugger
-          dispatch('getOwnedTournaments')
+          // debugger
+          dispatch('getOwnedTournaments', tournament.data.owner)
         })
     },
     //delete tournament
@@ -305,6 +305,8 @@ export default new Vuex.Store({
     //#endregion
     //Entry actions
     //#region 
+
+    //for adding guests
     addNewOwnerEntry({ commit, dispatch }, newEntry) {
       api.post('entry/ownerEntry', newEntry)
         .then(res => {
@@ -313,11 +315,12 @@ export default new Vuex.Store({
     },
     //create an entry, adds a tourney id to that entry
     createEntry({ commit, dispatch }, newEntry) {
-      // debugger
+      debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
           // dispatch('getEntries', newEntry._id)
+          debugger
           commit('setEntry', res.data)
         })
     },
