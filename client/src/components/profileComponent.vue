@@ -73,6 +73,7 @@
         </div>
       </div>
       <div class="col-9">
+        <h3>Active Brackets</h3>
         <table v-if="getOwnedTournaments.length" class="table table-hover">
           <thead>
             <tr>

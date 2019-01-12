@@ -230,6 +230,7 @@ export default new Vuex.Store({
           commit("setSchedule", res.data)
         })
     }, archiveTournament({ commit, dispatch }, tournamentId) {
+      debugger
       api.put('tournament/' + tournamentId + '/archive')
         .then(res => {
           commit('setArchive', res.data)

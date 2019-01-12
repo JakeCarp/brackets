@@ -2,7 +2,8 @@
   <div class="historyComponent">
 
     <!-- v-for="tournament in tournaments" -->
-    <div class="card border-dark mb-3 col-12 tournamentCard" v-if="tournament.archived == true">
+    <h3>Bracket History</h3>
+    <!-- <div class="card border-dark mb-3 col-12 tournamentCard" v-if="tournament.archived == false">
       <div class="card-header tournamentCard">
         <h5>{{tournament.title}}</h5>
       </div>
@@ -20,8 +21,8 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <form @submit.prevent="editTournament">
           <input type="text" placeholder="New Tournament Name"></form>
-      </div>
-    </div>
+  </div>
+  </div> -->
   </div>
 </template>
 
