@@ -14,7 +14,7 @@
         <h1 class="display-3">Single Entry</h1>
       </div>
       <single v-if="!showTeam && $route.params.tournamentId"></single>
-      <team v-if="showTeam"></team>
+      <team v-if="showTeam && $route.params.tournamentId"></team>
       <div v-if="$route.params.tournamentId && !showTeam">
         <p>Click here for team entry</p>
         <button type="button" class="btn btn-primary" @click="showTeam = true">Team Entry</button>
@@ -55,7 +55,6 @@
     methods: {
 
       getTournamentByEntryCode() {
-        // debugger
         this.$store.dispatch('getTournamentByEntryCode', this.entryCode)
       }
 

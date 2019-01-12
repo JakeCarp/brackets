@@ -14,14 +14,14 @@
     <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
     <button @click="archive" v-if="user._id == tournament.owner">Archive Tournament</button>
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Dropdown button
+        Change Tournament Name
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <form @submit.prevent="editTournament">
-          <input type="text" placeholder="New Tournament Name"></form>
-      </div>
+          <input type="text" v-model="editTournament.title" placeholder="New Tournament Name"></form>
+      </div> -->
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@
 
       },
       editTournament() {
-        this.$store.dispatch('editTournament', this.tournament._id)
+        this.$store.dispatch('editTournament', { tournament: this.title })
       },
       archive() {
         this.$store.dispatch('archiveTournament', this.tournament._id)

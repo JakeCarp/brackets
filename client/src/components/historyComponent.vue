@@ -1,27 +1,34 @@
 <template>
   <div class="historyComponent">
-
-    <!-- v-for="tournament in tournaments" -->
-    <div class="card border-dark mb-3 col-12 tournamentCard" v-if="tournament.archived == true">
-      <div class="card-header tournamentCard">
-        <h5>{{tournament.title}}</h5>
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">{{tournament.style}}</h4>
-        <p class="card-text">{{tournament.description}}</p>
-      </div>
-    </div>
-    <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form @submit.prevent="editTournament">
-          <input type="text" placeholder="New Tournament Name"></form>
-      </div>
-    </div>
+    <h3>Bracket History</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Managed Brackets</th>
+        </tr>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Title</th>
+          <th scope="col">Number of Entrants</th>
+          <th scope="col">Tournament Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="tournament in archivedTournaments" class="table-success rows">
+          <th scope="row">{{tournament.style}}</th>
+          <td>{{tournament.title}}</td>
+          <td>Column content</td>
+          <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
+          <td>
+            <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <ul>
+          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
+        </ul> -->
   </div>
 </template>
 
@@ -34,8 +41,8 @@
       }
     },
     computed: {
-      tournaments() {
-        this.$store.state.tournaments
+      archivedTournaments() {
+        return this.$store.state.ownedTournaments.filter(t => t.archived)
       }
     },
     methods: {

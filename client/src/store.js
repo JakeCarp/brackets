@@ -110,6 +110,7 @@ export default new Vuex.Store({
     },
     setSchedule(state, schedule) {
       state.schedule = schedule
+      console.log
     },
     setArchive(state, archive) {
       state.archived.push(archive)
@@ -211,7 +212,7 @@ export default new Vuex.Store({
           commit('setTournament', res.data)
         })
     },
-    //get tournament by an id
+    //get tournament by a tournament id
     getTournamentById({ commit, dispatch }, id) {
       // debugger
       api.get('tournament/' + id)
@@ -228,7 +229,7 @@ export default new Vuex.Store({
           dispatch('getTournament', res.data)
         })
     },
-    //get tournaments id's by owner
+    //get tournaments id's by owner  (user id)
     getOwnedTournaments({ commit, dispatch }, uid) {
       // debugger
       api.get('tournament/' + uid + "/owner")
@@ -243,6 +244,7 @@ export default new Vuex.Store({
     //       commit('setTournament', res.data)
     //     })
     // },
+
     //turn tournament ids into tournament objects for OWNED tournaments
     getOwnedTournaments2({ commit, dispatch }, tournamentIds) {
       // debugger
@@ -274,8 +276,8 @@ export default new Vuex.Store({
       api.post('tournament', tournamentData)
         .then(tournament => {
           router.push({ name: 'bracket', params: { tId: tournament.data._id } })
-          debugger
-          dispatch('getOwnedTournaments')
+          // debugger
+          dispatch('getOwnedTournaments', tournament.data.owner)
         })
     },
     //delete tournament
@@ -293,10 +295,9 @@ export default new Vuex.Store({
         })
     },
     editTournament({ commit, dispatch }, payload) {
-
-      api.put('tournament/' + payload.tId)
+      api.put('tournament/' + payload)
         .then(res => {
-          dispatch('getTournament')
+          dispatch('getTournaments2')
         })
     },
     getTournamentByEntryCode({ commit, dispatch }, entryCode) {
@@ -310,6 +311,8 @@ export default new Vuex.Store({
     //#endregion
     //Entry actions
     //#region 
+
+    //for adding guests
     addNewOwnerEntry({ commit, dispatch }, newEntry) {
       api.post('entry/ownerEntry', newEntry)
         .then(res => {
@@ -318,12 +321,12 @@ export default new Vuex.Store({
     },
     //create an entry, adds a tourney id to that entry
     createEntry({ commit, dispatch }, newEntry) {
-      // debugger
       api.post('entry/', newEntry)
         .then(res => {
           //getEntries doesnt exist in this version of this file
           // dispatch('getEntries', newEntry._id)
           commit('setEntry', res.data)
+          router.push({ name: 'bracket', params: { tournamentId: res.data._id } })
         })
     },
     //#endregion

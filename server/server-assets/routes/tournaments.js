@@ -34,7 +34,7 @@ router.put('/:tournamentId/archive', (req, res, next) => {
       if (!tournament.owner.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
-      tournament._doc.archived = true
+      tournament.archived = true
       tournament.save(err => {
         if (err) {
           console.log(err)

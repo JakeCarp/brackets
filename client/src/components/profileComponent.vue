@@ -1,13 +1,13 @@
 <template>
   <div class="profileComponent">
     <div class="row">
-      <div class="col-12">Welcome {{getUser.name}}</div>
+      <div class="col-12 welcome">Welcome {{getUser.name}}</div>
       <div class="col-3">
         <div class="row">
-          <div class="col-12"> <img :src="getUser.picture" alt="" class="profilePic"></div>
+          <div class="col-12"> <img :src="getUser.picture" class="profilePic"></div>
           <div class="col-6 picBtn">
             <!-- modal start -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePic">
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#changePic">
               Change Picture </button>
             <div class="modal" id="changePic" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -32,7 +32,7 @@
           </div>
           <div class="col-6 bioBtn">
             <!-- modal start -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeBio">
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#changeBio">
               Edit Bio </button>
             <div class="modal" id="changeBio" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -73,6 +73,7 @@
         </div>
       </div>
       <div class="col-9">
+        <h3>Active Brackets</h3>
         <table v-if="getOwnedTournaments.length" class="table table-hover">
           <thead>
             <tr>
@@ -163,7 +164,7 @@
 
       getOwnedTournaments() {
         // debugger
-        return this.$store.state.ownedTournaments
+        return this.$store.state.ownedTournaments.filter(t => !t.archived)
       }
     },
     methods: {
@@ -198,6 +199,15 @@
     font-size: .9rem;
   }
 
+  .btn {
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    font-weight: 100;
+    padding: 6px;
+  }
+
   .rows {
     color: #0c5e4e;
     /* display: flex; */
@@ -216,6 +226,12 @@
   }
 
   .profilePic {
-    max-width: 200px;
+    max-width: 250px;
+  }
+
+  .welcome {
+    font-size: 50px;
+    display: flex;
+    justify-content: start;
   }
 </style>

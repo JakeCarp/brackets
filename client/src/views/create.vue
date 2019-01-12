@@ -96,6 +96,6 @@
   .btn {
     font-size: 1.54rem;
     font-weight: 300;
-    outline: 2px solid lightgrey;
+    /* outline: 2px solid lightgrey; */
   }
 </style>
