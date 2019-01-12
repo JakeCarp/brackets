@@ -5,6 +5,19 @@
       <activeComponent class="row"></activeComponent>
       <singleElimination v-if="tournament.style == 'Single-Elimination'"></singleElimination>
       <roundRobin v-if="tournament.style == 'Round-Robin'"></roundRobin>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 Teams">
+            <h1>Competitors</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div v-for="entry in schedule.entries" class="card">
+            <h2>{{entry.name}}</h2>
+            <h4>{{entry.members}}</h4>
+          </div>
+        </div>
+      </div>
       <playerPool> </playerPool>
     </div>
     <Chat />
