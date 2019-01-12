@@ -122,6 +122,7 @@ export default new Vuex.Store({
     //Tournament chat actions
     //#region 
     chatJoin({ commit, dispatch }, payload) {
+      debugger
       commit('setJoined', payload);
       dispatch('socket', payload)
     },

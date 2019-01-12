@@ -64,7 +64,7 @@
     },
     methods: {
       join() {
-        this.$store.dispatch('join', this.name)
+        this.$store.dispatch('chatJoin', this.name)
       },
       leave() {
         this.$store.dispatch('leaveRoom')
