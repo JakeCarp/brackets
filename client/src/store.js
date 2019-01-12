@@ -189,7 +189,7 @@ export default new Vuex.Store({
         })
     },
     editTournament({ commit, dispatch }, payload) {
-
+      // debugger
       api.put('tournament/' + payload.tId)
         .then(res => {
           dispatch('getTournament')

@@ -7,7 +7,7 @@
           <div class="col-12"> <img :src="getUser.picture" alt="" class="profilePic"></div>
           <div class="col-6 picBtn">
             <!-- modal start -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePic">
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#changePic">
               Change Picture </button>
             <div class="modal" id="changePic" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -32,7 +32,7 @@
           </div>
           <div class="col-6 bioBtn">
             <!-- modal start -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeBio">
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#changeBio">
               Edit Bio </button>
             <div class="modal" id="changeBio" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -193,6 +193,15 @@
 
   .sizing {
     font-size: .9rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    font-weight: 100;
+    padding: 6px;
   }
 
   .rows {
