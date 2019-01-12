@@ -330,6 +330,7 @@ export default new Vuex.Store({
           // dispatch('getEntries', newEntry._id)
           // debugger
           commit('setEntry', res.data)
+          router.push({ name: 'bracket', params: { tournamentId: res.data._id } })
         })
     },
     //#endregion
