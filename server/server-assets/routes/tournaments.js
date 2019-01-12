@@ -116,7 +116,11 @@ router.get('/:tournamentId/entries', (req, res, next) => {
       Entries.find({ tournamentId: req.params.tournamentId })
         .then(data => {
           if (activeTournament.style == "Single-Elimination" || activeTournament.style == "Double-Elimination") {
+<<<<<<< HEAD
             return res.send(data)
+=======
+            res.send(data)
+>>>>>>> be9a8da0170ff4ad00c8efaaa730b5d179bac7a4
           }
           if (activeTournament.style == "Round-Robin-Split") {
             let group1 = []

@@ -13,7 +13,7 @@ import join from './views/join.vue'
 // @ts-ignore
 import about from './views/about.vue'
 // @ts-ignore
-import test from './views/testBracket.vue'
+import testBracket from './views/testBracket.vue'
 // @ts-ignore
 import bracket from './views/bracket.vue'
 // @ts-ignore
@@ -51,15 +51,15 @@ let router = new Router({
       component: about
     },
     {
-      path: '/test',
-      name: 'test',
-      component: test
-    },
-    {
       path: '/tournament/:tId',
       props: true,
       name: 'bracket',
       component: bracket
+    },
+    {
+      path: '/bracket/:tId',
+      name: 'testBracket',
+      component: testBracket
     },
     {
       path: '/profile',
