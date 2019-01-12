@@ -45,7 +45,9 @@
       }
     },
     computed: {
-
+      getUser() {
+        return this.$store.state.user
+      },
       // entry() {
       //   return this.$store.state.entry
       // }

@@ -9,7 +9,7 @@ let schema = new Schema({
   wins: { type: Number, default: 0 },
   draws: { type: Number, default: 0 },
   losses: { type: Number, default: 0 },
-  tournamentId: { type: ObjectId, ref: 'Tournament' },
+  tournamentId: { type: ObjectId, ref: 'Tournament', required: true },
   standing: { type: String },
   seed: { type: Number }
 })
