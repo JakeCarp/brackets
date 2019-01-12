@@ -101,7 +101,6 @@ io.on("connection", socket => {
 
       //notify connection of room connection
       socket.emit("joinedRoom", {
-        roomName: data.room,
         connectedUsers: rooms[data.room],
       });
 
