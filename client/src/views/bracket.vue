@@ -13,9 +13,9 @@
           </div>
         </div>
         <div class="row">
-          <div v-for="entry in schedule.entries" class="card">
+          <div v-for="entry in schedule" class="card">
             <h2>{{entry.name}}</h2>
-            <h4>{{entry.members}}</h4>
+            <h4>{{entry.wins}}-{{entry.draws}}-{{entry.losses}}</h4>
           </div>
         </div>
       </div>
@@ -66,8 +66,8 @@
     mounted() {
       if (this.$store.state.tournament) {
         this.$store.dispatch("getTournamentById", this.$route.params.tId)
+        this.$store.dispatch("getSchedule", this.$route.params.tId)
       }
-      this.$store.dispatch("getSchedule", this.$route.params.tId)
     },
   }
 </script>
