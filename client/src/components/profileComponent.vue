@@ -77,18 +77,14 @@
         <table v-if="getOwnedTournaments.length" class="table table-hover">
           <thead>
             <tr>
-              <th>Managed Brackets</th>
-            </tr>
-            <tr>
               <th scope="col">Type</th>
               <th scope="col">Title</th>
               <th scope="col">Number of Entrants</th>
               <th scope="col">Tournament Status</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="tournament in getOwnedTournaments" class="table-success rows">
+            <tr v-for="tournament in getOwnedTournaments" class="rows">
               <th scope="row">{{tournament.style}}</th>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
@@ -102,24 +98,23 @@
         <!-- seperatioin -->
         <table v-if="getTournaments.length" class="table table-hover">
           <thead>
+
             <tr>
-              <th>Tournaments Participating in</th>
-            </tr>
-            <tr>
-              <th scope="col">Type</th>
-              <th scope="col">Title</th>
-              <th scope="col">Number of Entrants</th>
-              <th scope="col">Tournament Status</th>
-              <th></th>
+              <th class="words" scope="col">Type</th>
+              <th class="words" scope="col">Title</th>
+              <th class="words" scope="col">Number of Entrants</th>
+              <th class="words" scope="col">Tournament Status</th>
+              <th class="words">Tournaments Participating in</th>
+
             </tr>
           </thead>
           <tbody>
-            <tr v-for="tournament in getTournaments" class="table-success rows">
-              <th scope="row">{{tournament.style}}</th>
-              <td>{{tournament.title}}</td>
-              <td>Column content</td>
-              <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
-              <td>
+            <tr v-for="tournament in getTournaments" class="rows">
+              <th class="colors" scope="row">{{tournament.style}}</th>
+              <td class="colors">{{tournament.title}}</td>
+              <td class="colors">Column content</td>
+              <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
+              <td class="colors">
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
               </td>
             </tr>
@@ -191,6 +186,8 @@
 <style>
   .table {
     background-color: gray;
+    border: solid 2px black;
+
     /* display: flex; */
     /* justify-content: space-between; */
   }
@@ -208,8 +205,15 @@
     padding: 6px;
   }
 
+
+
+  h3 {
+    font-size: 30px;
+  }
+
   .rows {
-    color: #0c5e4e;
+    color: black;
+    background-color: white;
     /* display: flex; */
     /* justify-content: space-between; */
     align-items: center;
@@ -233,5 +237,15 @@
     font-size: 50px;
     display: flex;
     justify-content: start;
+  }
+
+  .words {
+    background-color: black;
+    color: white;
+  }
+
+  .colors {
+    background-color: white;
+
   }
 </style>
