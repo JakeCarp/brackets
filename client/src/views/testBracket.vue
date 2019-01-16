@@ -3,7 +3,7 @@
     <navbar />
     <div class="testBracket">
       <div id="treeMe"></div>
-      <button type="button" class="btn btn-outline-primary" @click="buildTree">Primary</button>
+      <button type="button" class="btn btn-outline-primary" @click="buildTree">Generate Bracket</button>
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
   require('../assets/treant/Treant.js')
   export default {
     name: 'testBracket',
+    props: ['entries'],
     data() {
       return {
         sweetSpots: [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
@@ -36,20 +37,16 @@
         },
         theBracket: {},
         treant: {},
-        chartData: []
+        chartData: [],
+        // entriesComputed: 0
       }
     },
     computed: {
       getEntries() {
-        console.log(this.$store.state.schedule)
-        debugger
+        // console.log(this.$store.state.schedule)
+
+        // this.entriesComputed++
         return this.$store.state.schedule
-      },
-      tournament2() {
-        return this.$store.state.tournament.entries
-      },
-      tournament3() {
-        return this.$store.state.testTournament33.entries
       },
       bracketArray() {
         return this.$store.state.bracketArray || []
@@ -73,14 +70,35 @@
             console.log("NODE ID", node.id)
 
             let bracketNode = this.bracketArray.find(n => n.HTMLid == node.id)
-            console.log(bracketNode)
 
+            var p1 = this.getEntries.find(p => p._id == bracketNode.children[0].text["data-pid"])
+            var p2 = this.getEntries.find(p => p._id == bracketNode.children[1].text["data-pid"])
+            if (!p1 || !p2) { return }
             if (bracketNode.children) {
-              if (bracketNode.text.name == bracketNode.children[0].text.name) {
-                bracketNode.text.name = bracketNode.children[1].text.name
+              let matchId = bracketNode.HTMLid
+              if (bracketNode.text["data-pid"] == p2._id) {
+                let i = p2.winMatches.indexOf(matchId)
+                if (i != -1) {
+                  p2.winMatches.splice(i, p2.winMatches.length)
+                }
+                if (!p1.winMatches.includes(matchId)) {
+                  p1.winMatches.push(matchId)
+                }
+                bracketNode.text["data-pid"] = p1._id
+                bracketNode.text.name = `${p1.name} W: ${p1.winMatches.length} L: ${p1.lossMatches.length}`
               } else {
-                bracketNode.text.name = bracketNode.children[0].text.name
+                let i = p1.winMatches.indexOf(matchId)
+                if (i != -1) {
+                  p1.winMatches.splice(i, p1.winMatches.length)
+                }
+                if (!p2.winMatches.includes(matchId)) {
+                  p2.winMatches.push(matchId)
+                }
+                bracketNode.text["data-pid"] = p2._id
+                bracketNode.text.name = `${p2.name} W: ${p2.winMatches.length} L: ${p2.lossMatches.length}`
               }
+              this.$store.dispatch("updateEntry", p1);
+              this.$store.dispatch("updateEntry", p2);
               new Treant(this.chartData, this.handleNodeClick)
             }
           })
@@ -93,17 +111,20 @@
     },
     props: [],
     watch: {
-      // bracketArray(val) {
-      //   this.theBracket = this.bracketMaker(this.bracketArray)
+      // entriesComputed: function () {
+      //   this.buildTree()
+      // }
     },
-    // simple_chart_config1: [
-    //   this.config2, ...this.bracketArray
-    // ]
     mounted() {
-      this.$store.dispatch("getSchedule", this.$route.params.tId)
-    }
-  }
 
+      if (!this.getEntries.length) {
+        this.$store.dispatch("getSchedule", this.$route.params.tId)
+      }
+    },
+    beforeDestroy() {
+    }
+
+  }
 </script>
 
 <style>

@@ -49,7 +49,7 @@ router.delete('/:entryId', (req, res, next) => {
 })
 
 //owner update an entry
-router.put(':entryId', (req, res, next) => {
+router.put('/:entryId', (req, res, next) => {
   Entries.findById({ _id: req.params.entryId })
     .then(entry => {
       entry.update(req.body, (err) => {

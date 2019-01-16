@@ -338,8 +338,10 @@ export default new Vuex.Store({
         })
     },
     getSchedule({ commit, dispatch }, tournamentId) {
+      // debugger
       api.get('tournament/' + tournamentId + '/entries')
         .then(res => {
+          // debugger
           commit("setSchedule", res.data)
         })
     },
@@ -351,6 +353,9 @@ export default new Vuex.Store({
           router.push({ name: 'profile' })
 
         })
+    },
+    updateEntry({ commit }, entry) {
+      api.put(`entry/${entry._id}`, entry)
     },
     //#endregion
 
@@ -373,7 +378,6 @@ export default new Vuex.Store({
 
     //making the tree
     buildTree({ commit, dispatch }, payload) {
-      // debugger
       let arr = payload.entries
       let sweetSpot = 0
       function calcPreGames() {
@@ -386,7 +390,7 @@ export default new Vuex.Store({
       }
       calcPreGames()
       let root = {
-        text: { name: "winner" },
+        text: { name: "winner", title: '\xa0' },
         HTMLid: 'node-WINNER'
       }
       let preGamesNeeded = arr.length - sweetSpot
@@ -428,7 +432,7 @@ export default new Vuex.Store({
       function assignPreGames() {
         let preGameCompetitors = []
         for (let pg = 1; pg <= preGamesNeeded; pg++) {
-          preGameCompetitors.push({ text: { name: "" } }, { text: { name: "" } })
+          preGameCompetitors.push({ text: { name: "", title: '\xa0' } }, { text: { name: "", title: '\xa0' } })
         }
         let parentCount = 0
         for (let i = 0; i < preGameCompetitors.length; i += 2) {
@@ -443,7 +447,7 @@ export default new Vuex.Store({
       function buildRound(competitors, round, roundNum) {
         for (var i = 0; i < competitors; i++) {
           let node = {
-            text: { name: "" },
+            text: { name: "", title: '\xa0' },
             HTMLid: `node-${roundNum}-${i + 1}`,
           }
           round.push(node)
@@ -454,8 +458,18 @@ export default new Vuex.Store({
       let bracketArray = [].concat(...tree)
 
       for (let b = 0; b < arr.length; b++) {
-        const person = arr[b].name;
-        bracketArray[(bracketArray.length - 1) - b].text.name = person
+        const person = arr[b];
+        bracketArray[(bracketArray.length - 1) - b].text.name = person.name
+        bracketArray[(bracketArray.length - 1) - b]._id = person._id
+        bracketArray[(bracketArray.length - 1) - b].text["data-pid"] = person._id
+        person.winMatches.forEach(v => {
+          let node = bracketArray.find(n => n.HTMLid == v)
+          if (node) {
+            node.text["data-pid"] = person._id
+            node.text.name = `${person.name} W: ${person.winMatches.length}`
+            console.log(node.HTMLid, person.name, person._id)
+          }
+        })
       }
       commit('setBracketArray', bracketArray)
     }

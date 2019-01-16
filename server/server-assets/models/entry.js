@@ -6,6 +6,8 @@ let schemaName = "Entry"
 let schema = new Schema({
   name: { type: String, required: true },
   members: [{ type: ObjectId, ref: "User" }],
+  winMatches: [{ type: String }],
+  lossMatches: [{ type: String }],
   wins: { type: Number, default: 0 },
   draws: { type: Number, default: 0 },
   losses: { type: Number, default: 0 },
