@@ -11,13 +11,11 @@
             <div class="row">
               <div class="col-12">
                 <h6>W-</h6>
-                <h6>D-</h6>
                 <h6>L</h6>
               </div>
               <div class="col-12">
-                <h6>{{entry.wins}}-</h6>
-                <h6>{{entry.draws}}-</h6>
-                <h6>{{entry.losses}}</h6>
+                <h6>{{entry.winMatches.length}}-</h6>
+                <h6>{{entry.lossMatches.length}}</h6>
               </div>
             </div>
           </div>
@@ -25,6 +23,16 @@
             <div v-for="match in round">
               <div v-if="findEntry(match, entry)">
                 <h3>{{match[0].name}} vs {{match[1].name}}</h3>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <p onclick="chooseWinner(match[0], match[1])">{{match[0].name}}</p>
+                    <p onclick="chooseWinner(match[0], match[1])">{{match[1].name}}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -65,7 +73,11 @@
         })
         return valid
       },
-
+      chooseWInner(entry1, entry2) {
+        let winner = entry1.winMatches.push(entry2)
+        let looser = entry2.lossMatches.push(entry1)
+        this.$store.dispatch('updateRecord', { Winner: winner, Looser: looser })
+      }
 
     },
 
