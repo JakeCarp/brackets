@@ -310,7 +310,11 @@ export default new Vuex.Store({
     //#endregion
     //Entry actions
     //#region 
-
+    //update record for round robin
+    updateRecord({ commit, dispatch }, payload) {
+      api.put(`entry/${payload.Winner._id}`, payload.Winner)
+      api.put(`entry/${payload.Loser._id}`, payload.Loser)
+    },
     //for adding guests
     addNewOwnerEntry({ commit, dispatch }, newEntry) {
       api.post('entry/ownerEntry', newEntry)

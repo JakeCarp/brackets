@@ -16,6 +16,8 @@
     </div>
   </div>
 </template>
+
+
 <script>
   import ownerEntries from "@/components/ownerEntries"
   export default {
