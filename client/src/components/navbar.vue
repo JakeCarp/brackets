@@ -18,10 +18,10 @@
             <router-link class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/create">Create</router-link>
             <router-link class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent" :to="{name: 'join'}">Join</router-link>
             <!-- <router-link class="home font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/active">Active</router-link> -->
-            <router-link class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
+            <!-- <router-link class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/test">Test
               Bracket</router-link>
             <router-link class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent" to="/bracket">
-              [Bracket]</router-link>
+              [Bracket]</router-link> -->
             <router-link @click.native='logout()' class="home-font" data-toggle="collapse" data-target="#navbarToggleExternalContent"
               to="/login">Logout</router-link>
           </ul>
