@@ -357,6 +357,10 @@ export default new Vuex.Store({
     updateEntry({ commit }, entry) {
       api.put(`entry/${entry._id}`, entry)
     },
+
+    // addBio({ commit, dispatch }, bio) {
+    //   api.
+    // }
     //#endregion
 
 

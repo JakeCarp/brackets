@@ -22,7 +22,7 @@
               <tr v-for="tournament in archivedTournaments" class=" rows">
                 <th class="colors" scope="row">{{tournament.style}}</th>
                 <td class="colors">{{tournament.title}}</td>
-                <td class="colors">Column content</td>
+                <td class="colors">{{tournament.entries.length}}</td>
                 <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
                 <td class="colors">
                   <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
