@@ -54,7 +54,8 @@ let tournamentRoutes = require('./server-assets/routes/tournaments')
 server.use('/api/tournament', tournamentRoutes)
 let entryRoutes = require('./server-assets/routes/entries')
 server.use('/api/entry', entryRoutes)
-
+let profileRoutes = require('./server-assets/routes/profiles')
+server.use('/api/profile/', profileRoutes)
 
 
 
