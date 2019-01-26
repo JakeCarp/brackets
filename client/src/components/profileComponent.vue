@@ -112,7 +112,7 @@
             <tr v-for="tournament in getTournaments" class="rows">
               <th class="colors" scope="row">{{tournament.style}}</th>
               <td class="colors">{{tournament.title}}</td>
-              <td class="colors">Column content</td>
+              <td class="colors">{{schedule.length}}</td>
               <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td class="colors">
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
@@ -146,6 +146,9 @@
     computed: {
       getUser() {
         return this.$store.state.user
+      },
+      getSchedule() {
+        return this.$store.state.schedule
       },
       getTournaments() {
         // debugger
