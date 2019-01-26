@@ -362,9 +362,18 @@ export default new Vuex.Store({
       api.put(`entry/${entry._id}`, entry)
     },
 
-    // addBio({ commit, dispatch }, bio) {
-    //   api.
-    // }
+    addBio({ commit, dispatch }, bio) {
+      api.put(`profile/`)
+    },
+
+    profilePic({ commit, dispatch }, payload) {
+      debugger
+      api.put(`profile/${payload.userId}`, payload.picture)
+        .then(res => {
+          dispatch('authenticate')
+        })
+    },
+
     //#endregion
 
 

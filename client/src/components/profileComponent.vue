@@ -103,13 +103,11 @@
       <!-- seperatioin -->
       <table v-if="getTournaments.length" class="table table-hover">
         <thead>
-
           <tr>
             <th class="words" scope="col">Type</th>
             <th class="words" scope="col">Title</th>
             <th class="words" scope="col">Tournament Status</th>
             <th class="words">Tournaments Participating in</th>
-
           </tr>
         </thead>
         <tbody>
@@ -185,7 +183,7 @@
       },
       profilePic() {
         debugger
-        this.$store.dispatch("profilePic", this.profile.picture)
+        this.$store.dispatch("profilePic", { picture: this.profile.picture, userId: this.getUser._id })
       }
     },
     components: {},
