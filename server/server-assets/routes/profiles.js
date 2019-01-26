@@ -19,3 +19,5 @@ router.put('/:userId', (req, res, next) => {
       next()
     })
 })
+
+module.exports = router
