@@ -15,7 +15,7 @@
         <div class="row">
           <div v-for="entry in schedule" class="card">
             <h2>{{entry.name}}</h2>
-            <h4>{{entry.wins}}-{{entry.draws}}-{{entry.losses}}</h4>
+            <h4>{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
           </div>
         </div>
       </div>

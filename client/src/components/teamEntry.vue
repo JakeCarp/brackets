@@ -2,16 +2,25 @@
   <div class="team-entry">
     <!-- team entry -->
     <form @submit.prevent="createEntry" v-if="$route.params.tournamentId">
-      <input placeholder="Add Player" type="text" v-model="playerName">
-      <input placeholder="Team Name" type="text" v-model="newEntry.name">
-      <button type="submit">Submit</button>
-      <div v-if="playerName.length > 0">
-        <div v-for="player in playersToAdd">
-          <p @click="addPlayer(player)">{{player.name}}</p>
-        </div>
+      <div class="form-group">
+        <label for="playersearch">Search For Players:</label>
+        <input placeholder="Add Player" name="playersearch" type="text" v-model="playerName">
       </div>
-      <p v-for="member in newEntry.members">{{member.name}}</p>
+      <div v-for="player in playersToAdd">
+        <p @click="addPlayer(player)">{{player.name}}</p>
+      </div>
+      <div class="form-group">
+        <label for="teamname">Team Name:</label>
+        <input placeholder="Team Name" type="text" v-model="newEntry.name">
+      </div>
+      <h3>Your Team Members</h3>
+      <div v-if="playerName.length > 0">
+        <p v-for="member in newEntry.members">{{member.name}}</p>
+      </div>
+      <button type="submit">Submit</button>
     </form>
+    <div>
+    </div>
   </div>
 </template>
 
