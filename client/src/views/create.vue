@@ -6,19 +6,19 @@
         <form @submit.prevent="addTournament">
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6" for="title">Bracket Name: </label>
+              <label class="col-6 required" for="title">Bracket Name: </label>
               <input v-model="newTournament.title" class="col-6" type="text" placeholder="Ex: MensBasketball2019" name="title">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6" for="description">Description: </label>
+              <label class="col-6 required" for="description">Description: </label>
               <input v-model="newTournament.description" class="col-6" type="field" placeholder="Ex: Competitive 5-on-5 Men's League"
                 name="description">
             </div>
           </div>
           <div class="form-group row">
-            <div class="dropdown col-12 d-flex">
+            <div class="dropdown col-12 d-flex required">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 {{newTournament.style}}
@@ -34,7 +34,7 @@
           </div>
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6" for="title">Entry Code: </label>
+              <label class="col-6 required" for="title">Entry Code: </label>
               <input class="col-6" v-model="newTournament.entrycode" type="text" placeholder="Ex: EntryCode5">
             </div>
           </div>
@@ -97,5 +97,11 @@
     font-size: 1.54rem;
     font-weight: 300;
     /* outline: 2px solid lightgrey; */
+  }
+
+
+  .required:before {
+    content: " *";
+    color: red;
   }
 </style>

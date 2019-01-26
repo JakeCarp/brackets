@@ -102,7 +102,6 @@
             <tr>
               <th class="words" scope="col">Type</th>
               <th class="words" scope="col">Title</th>
-              <th class="words" scope="col">Number of Entrants</th>
               <th class="words" scope="col">Tournament Status</th>
               <th class="words">Tournaments Participating in</th>
 
@@ -112,7 +111,6 @@
             <tr v-for="tournament in getTournaments" class="rows">
               <th class="colors" scope="row">{{tournament.style}}</th>
               <td class="colors">{{tournament.title}}</td>
-              <td class="colors">{{schedule.length}}</td>
               <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td class="colors">
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
