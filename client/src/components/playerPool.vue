@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="row">
-        <div v-for="entry in schedule.entries" class="card">
+        <div v-for="entry in schedule.entries" class="card col-2">
           <h2>{{entry.name}}</h2>
           <h4>{{entry.wins}}</h4>
         </div>
@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
   import ownerEntries from "@/components/ownerEntries"
