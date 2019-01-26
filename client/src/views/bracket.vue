@@ -5,7 +5,7 @@
       <activeComponent class="row"></activeComponent>
       <singleElimination v-if="tournament.style == 'Single-Elimination'"></singleElimination>
       <roundRobin v-if="tournament.style == 'Round-Robin'"></roundRobin>
-      <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
+      <ownerEntries v-if="tournament.owner == user._id"></ownerEntries>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 Teams">
@@ -13,9 +13,9 @@
           </div>
         </div>
         <div class="row">
-          <div v-for="entry in schedule" class="card">
-            <h2>{{entry.name}}</h2>
-            <h4>{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
+          <div v-for="entry in schedule" class="card col-2">
+            <h2 class="card-title">{{entry.name}}</h2>
+            <h4 class="card-text">{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
           </div>
         </div>
       </div>

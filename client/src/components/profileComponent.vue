@@ -184,7 +184,7 @@
       },
       profilePic() {
         debugger
-        this.$store.dispatch("profilePic", this.profile.picture)
+        this.$store.dispatch("profilePic", { picture: this.profile.picture, userId: this.getUser._id })
       }
     },
     components: {},
