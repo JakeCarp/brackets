@@ -76,7 +76,6 @@
             {{getUser.bio}}
           </div> -->
       </div>
-<<<<<<< HEAD
       <div class="col-9">
         <h3>Active Brackets</h3>
         <table v-if="getOwnedTournaments.length" class="table table-hover">
@@ -124,60 +123,10 @@
           </tbody>
         </table>
         <!-- <ul>
-=======
-    </div>
-    <div class="col-9">
-      <h3>Active Brackets</h3>
-      <table v-if="getOwnedTournaments.length" class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Title</th>
-            <th scope="col">Number of Entrants</th>
-            <th scope="col">Tournament Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="tournament in getOwnedTournaments" class="rows">
-            <th scope="row">{{tournament.style}}</th>
-            <td>{{tournament.title}}</td>
-            <td>Column content</td>
-            <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
-            <td>
-              <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- seperatioin -->
-      <table v-if="getTournaments.length" class="table table-hover">
-        <thead>
-
-          <tr>
-            <th class="words" scope="col">Type</th>
-            <th class="words" scope="col">Title</th>
-            <th class="words" scope="col">Tournament Status</th>
-            <th class="words">Tournaments Participating in</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="tournament in getTournaments" class="rows">
-            <th class="colors" scope="row">{{tournament.style}}</th>
-            <td class="colors">{{tournament.title}}</td>
-            <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
-            <td class="colors">
-              <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- <ul>
->>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
           <li v-for="tournament in getTournaments">{{tournament.title}}</li>
         </ul> -->
+      </div>
     </div>
-  </div>
   </div>
 </template>
 

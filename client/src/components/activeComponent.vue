@@ -15,7 +15,7 @@
       </div>
     </div>
     <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
-    <button @click="archive" v-if="user._id == tournament.owner">Archive Tournament</button>
+    <button @click="archive" v-if="user._id == tournament.owner && !tournament.archived">Archive Tournament</button>
     <div class="dropdown">
       <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
