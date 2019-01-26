@@ -17,48 +17,48 @@
   </div>
 </template>
 
-<<<<<<< HEAD=======>>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
-  <script>
-    import ownerEntries from "@/components/ownerEntries"
-    export default {
-      name: 'playerPool',
-      computed: {
-        schedule() {
-          return this.$store.state.schedule
-        },
-        tournament() {
-          return this.$store.state.tournament
-        },
-        user() {
-          return this.$store.state.user
-        }
-      },
-      data() {
-        return {
 
-        }
+<script>
+  import ownerEntries from "@/components/ownerEntries"
+  export default {
+    name: 'playerPool',
+    computed: {
+      schedule() {
+        return this.$store.state.schedule
       },
-      methods: {
-        findEntry(match, entry) {
-          var valid = false
-          match.forEach(element => {
-            if (element._id == entry._id) {
-              valid = true
-              return
-            }
-          })
-          return valid
-        }
+      tournament() {
+        return this.$store.state.tournament
       },
-      components: {
-        ownerEntries
+      user() {
+        return this.$store.state.user
       }
-    }
-  </script>
+    },
+    data() {
+      return {
 
-  <style>
-    .teams {
-      display: flex;
-      justify-content: center;
+      }
+    },
+    methods: {
+      findEntry(match, entry) {
+        var valid = false
+        match.forEach(element => {
+          if (element._id == entry._id) {
+            valid = true
+            return
+          }
+        })
+        return valid
+      }
+    },
+    components: {
+      ownerEntries
     }
-  </style>
+  }
+</script>
+
+<style>
+  .teams {
+    display: flex;
+    justify-content: center;
+  }
+</style>
