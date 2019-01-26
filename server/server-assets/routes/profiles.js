@@ -4,7 +4,7 @@ let Users = require('../models/user')
 
 //update user bio/picture
 router.put('/:userId', (req, res, next) => {
-  Users.findById({ _id: req.params.userId })
+  Users.findOne({ _id: req.params.userId })
     .then(user => {
       user.update(req.body, (err) => {
         if (err) {

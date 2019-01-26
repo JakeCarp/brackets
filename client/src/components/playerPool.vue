@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
+    <ownerEntries v-if="tournament.owner == user._id"></ownerEntries>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 Teams">
@@ -17,10 +17,6 @@
   </div>
 </template>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
 <script>
   import ownerEntries from "@/components/ownerEntries"
   export default {
