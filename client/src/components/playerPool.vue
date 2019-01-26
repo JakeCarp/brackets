@@ -16,10 +16,11 @@
     </div>
   </div>
 </template>
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
->>>>>>> 28f736fdcebdbd0e0e1943a9f8ac58c91de33c9f
+
+>>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
 <script>
   import ownerEntries from "@/components/ownerEntries"
   export default {
