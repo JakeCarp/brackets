@@ -19,11 +19,13 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <input type="text-field" style="width:350px">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form @submit.prevent="profilePic">
+                      <input type="text-field" v-model="profile.picture" style="width:350px">
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary"></input>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -44,22 +46,25 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <input type="text-box" style="width:350px">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form @submit.prevent="addBio">
+                      <textarea name="paragraph_text" v-model="profile.bio" cols="50" rows="7"></textarea>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary"></input>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- modal end -->
-          <!-- <form>
+        </div>
+        <!-- modal end -->
+        <!-- <form>
               <button type="button" class="btn btn-outline-primary mt-1" @click="changePicture">Change
                 Picture</button>
             </form> -->
-          <!-- <div class="col-12">
+        <!-- <div class="col-12">
             <form v-if="!getUser.bio">
               <input type="text-field">
               <button type="submit">Add Bio</button>
@@ -70,8 +75,8 @@
             </form>
             {{getUser.bio}}
           </div> -->
-        </div>
       </div>
+<<<<<<< HEAD
       <div class="col-9">
         <h3>Active Brackets</h3>
         <table v-if="getOwnedTournaments.length" class="table table-hover">
@@ -119,10 +124,60 @@
           </tbody>
         </table>
         <!-- <ul>
+=======
+    </div>
+    <div class="col-9">
+      <h3>Active Brackets</h3>
+      <table v-if="getOwnedTournaments.length" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Title</th>
+            <th scope="col">Number of Entrants</th>
+            <th scope="col">Tournament Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="tournament in getOwnedTournaments" class="rows">
+            <th scope="row">{{tournament.style}}</th>
+            <td>{{tournament.title}}</td>
+            <td>Column content</td>
+            <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
+            <td>
+              <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- seperatioin -->
+      <table v-if="getTournaments.length" class="table table-hover">
+        <thead>
+
+          <tr>
+            <th class="words" scope="col">Type</th>
+            <th class="words" scope="col">Title</th>
+            <th class="words" scope="col">Tournament Status</th>
+            <th class="words">Tournaments Participating in</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="tournament in getTournaments" class="rows">
+            <th class="colors" scope="row">{{tournament.style}}</th>
+            <td class="colors">{{tournament.title}}</td>
+            <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
+            <td class="colors">
+              <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <ul>
+>>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
           <li v-for="tournament in getTournaments">{{tournament.title}}</li>
         </ul> -->
-      </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -131,7 +186,10 @@
     name: 'profileComponent',
     data() {
       return {
-
+        profile: {
+          bio: "",
+          picture: ""
+        }
       }
     },
     // watch: {
@@ -170,6 +228,14 @@
       },
       archive(tournament) {
         this.$store.dispatch("archiveTournament")
+      },
+      addBio() {
+        debugger
+        this.$store.dispatch("addBio", this.profile.bio)
+      },
+      profilePic() {
+        debugger
+        this.$store.dispatch("profilePic", this.profile.picture)
       }
     },
     components: {},
