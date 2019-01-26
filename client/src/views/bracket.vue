@@ -13,9 +13,9 @@
           </div>
         </div>
         <div class="row">
-          <div v-for="entry in schedule" class="card">
-            <h2>{{entry.name}}</h2>
-            <h4>{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
+          <div v-for="entry in schedule" class="card col-2">
+            <h2 class="card-title">{{entry.name}}</h2>
+            <h4 class="card-text">{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
           </div>
         </div>
       </div>

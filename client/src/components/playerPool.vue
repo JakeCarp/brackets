@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ownerEntries v-if="tournament.owner = user._id"></ownerEntries>
+    <ownerEntries v-if="tournament.owner == user._id"></ownerEntries>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 Teams">
@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="row">
-        <div v-for="entry in schedule.entries" class="card">
+        <div v-for="entry in schedule.entries" class="card col-2">
           <h2>{{entry.name}}</h2>
           <h4>{{entry.wins}}</h4>
         </div>
@@ -17,51 +17,48 @@
   </div>
 </template>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
-<script>
-  import ownerEntries from "@/components/ownerEntries"
-  export default {
-    name: 'playerPool',
-    computed: {
-      schedule() {
-        return this.$store.state.schedule
+<<<<<<< HEAD=======>>>>>>> e88897f346bab8c81379e54eaebdf1a073768e8f
+  <script>
+    import ownerEntries from "@/components/ownerEntries"
+    export default {
+      name: 'playerPool',
+      computed: {
+        schedule() {
+          return this.$store.state.schedule
+        },
+        tournament() {
+          return this.$store.state.tournament
+        },
+        user() {
+          return this.$store.state.user
+        }
       },
-      tournament() {
-        return this.$store.state.tournament
-      },
-      user() {
-        return this.$store.state.user
-      }
-    },
-    data() {
-      return {
+      data() {
+        return {
 
+        }
+      },
+      methods: {
+        findEntry(match, entry) {
+          var valid = false
+          match.forEach(element => {
+            if (element._id == entry._id) {
+              valid = true
+              return
+            }
+          })
+          return valid
+        }
+      },
+      components: {
+        ownerEntries
       }
-    },
-    methods: {
-      findEntry(match, entry) {
-        var valid = false
-        match.forEach(element => {
-          if (element._id == entry._id) {
-            valid = true
-            return
-          }
-        })
-        return valid
-      }
-    },
-    components: {
-      ownerEntries
     }
-  }
-</script>
+  </script>
 
-<style>
-  .teams {
-    display: flex;
-    justify-content: center;
-  }
-</style>
+  <style>
+    .teams {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
