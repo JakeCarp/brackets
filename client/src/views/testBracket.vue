@@ -78,21 +78,28 @@
               let matchId = bracketNode.HTMLid
               if (bracketNode.text["data-pid"] == p2._id) {
                 let i = p2.winMatches.indexOf(matchId)
+                let j = p1.lossMatches.indexOf(matchId)
                 if (i != -1) {
                   p2.winMatches.splice(i, p2.winMatches.length)
+                  p1.lossMatches.splice(j, p1.lossMatches.length)
                 }
                 if (!p1.winMatches.includes(matchId)) {
                   p1.winMatches.push(matchId)
+                  p2.lossMatches.push(matchId)
                 }
                 bracketNode.text["data-pid"] = p1._id
                 bracketNode.text.name = `${p1.name} W: ${p1.winMatches.length} L: ${p1.lossMatches.length}`
               } else {
                 let i = p1.winMatches.indexOf(matchId)
+                let j = p2.lossMatches.indexOf(matchId)
+
                 if (i != -1) {
                   p1.winMatches.splice(i, p1.winMatches.length)
+                  p2.lossMatches.splice(j, p2.lossMatches.length)
                 }
                 if (!p2.winMatches.includes(matchId)) {
                   p2.winMatches.push(matchId)
+                  p1.lossMatches.push(matchId)
                 }
                 bracketNode.text["data-pid"] = p2._id
                 bracketNode.text.name = `${p2.name} W: ${p2.winMatches.length} L: ${p2.lossMatches.length}`
