@@ -3,19 +3,12 @@
     <navbar />
     <div class="container-fluid">
       <activeComponent class="row"></activeComponent>
-      <singleElimination v-if="tournament.style == 'Single-Elimination'"></singleElimination>
+      <singleElimination v-if="tournament.style == 'Single-Elimitation'"></singleElimination>
       <roundRobin v-if="tournament.style == 'Round-Robin'"></roundRobin>
       <ownerEntries v-if="tournament.owner == user._id"></ownerEntries>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 Teams">
-            <h1>Competitors</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div v-for="entry in schedule" class="card col-2">
-            <h2 class="card-title">{{entry.name}}</h2>
-            <h4 class="card-text">{{entry.winMatches.length}} - {{entry.lossMatches.length}}</h4>
           </div>
         </div>
       </div>
@@ -66,7 +59,7 @@
     mounted() {
       if (this.$store.state.tournament) {
         this.$store.dispatch("getTournamentById", this.$route.params.tId)
-        debugger
+        // debugger
         this.$store.dispatch("getSchedule", this.$route.params.tId)
       }
     },

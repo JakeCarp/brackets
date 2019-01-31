@@ -8,6 +8,7 @@ let schema = new Schema({
   members: [{ type: ObjectId, ref: "User" }],
   winMatches: [{ type: String }],
   lossMatches: [{ type: String }],
+  dblLossMatches: [{ type: String, default: "first loss" }],
   tournamentId: { type: ObjectId, ref: 'Tournament', required: true },
   standing: { type: String },
   seed: { type: Number }

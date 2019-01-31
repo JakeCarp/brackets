@@ -10,8 +10,8 @@
         <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View
             Bracket</button></router-link>
 
-        <h4 class="card-title">{{tournament.style}}</h4>
-        <p class="card-text">{{tournament.description}}</p>
+        <h4 class="card-title mt-3">{{tournament.style}}</h4>
+        <p class="card-text mt-2">{{tournament.description}}</p>
       </div>
     </div>
     <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
