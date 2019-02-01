@@ -83,7 +83,7 @@
             <tr>
               <th style="text-align:center" class="heads" scope="col">Type</th>
               <th style="text-align:center" class="heads" scope="col">Title</th>
-              <th style="text-align:center" class="heads" scope="col"># of Entrants</th>
+              <!-- <th style="text-align:center" class="heads" scope="col"># of Entrants</th> -->
               <th style="text-align:center" class="heads" scope="col">Status</th>
               <th style="text-align:center" class="heads" scope="col">Active Bracket</th>
 
@@ -93,7 +93,7 @@
             <tr v-for="tournament in getOwnedTournaments" class="rows">
               <td>{{tournament.style}}</td>
               <td>{{tournament.title}}</td>
-              <td>Column content</td>
+              <!-- <td>Column content</td> -->
               <!--this needs changed-->
               <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td>
