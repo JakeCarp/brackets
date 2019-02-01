@@ -10,11 +10,11 @@
             <thead>
 
               <tr>
-                <th class="header" scope="col">Type</th>
-                <th class="header" scope="col">Title</th>
-                <th class="header" scope="col">Number of Entrants</th>
-                <th class="header" scope="col">Tournament Status</th>
-                <th class="header">Managed Brackets</th>
+                <th style="text-align:center" class="header" scope="col">Type</th>
+                <th style="text-align:center" class="header" scope="col">Title</th>
+                <th style="text-align:center" class="header" scope="col"># of Entrants</th>
+                <th style="text-align:center" class="header" scope="col">Status</th>
+                <th style="text-align:center" class="header">Managed Brackets</th>
 
               </tr>
             </thead>
@@ -66,5 +66,6 @@
   .header {
     background-color: black;
     color: white;
+
   }
 </style>

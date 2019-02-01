@@ -3,14 +3,14 @@
 
     <!-- v-for="tournament in tournaments" -->
     <div class="card border-dark mb-3 col-12 tournamentCard">
-      <div class="titles name">Bracket Name:</div>
+      <u class="titles name">Bracket Name:</u>
       <div class="tournamentTitle">
         {{tournament.title}}
       </div>
       <div class="card-body">
-        <div class="titles type">Bracket Type:</div>
+        <u class="titles type">Bracket Type:</u>
         <div class="card-title mt-3">{{tournament.style}}</div>
-        <div class="titles desc">Bracket Description:</div>
+        <u class="titles desc">Bracket Description:</u>
         <p class="card-text mt-2">{{tournament.description}}</p>
         <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary view">View
             Bracket</button></router-link>

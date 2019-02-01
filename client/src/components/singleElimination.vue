@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1 class="mb-1">Competitors</h1>
+    <u class="mb-1 titles">Competitors</u>
     <div class="row">
       <div v-for="entry in schedule" class="card competitors col-2 mb-3">
         <h2 class="card-title mt-1">{{entry.name}}</h2>
