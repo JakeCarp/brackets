@@ -12,7 +12,8 @@
         <div class="card-title mt-3">{{tournament.style}}</div>
         <u class="titles desc">Bracket Description:</u>
         <p class="card-text mt-2">{{tournament.description}}</p>
-        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary view">View
+        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button v-if="tournament.style == 'Single-Elimitation' || tournament.style == 'Double-Elimination'"
+            type="button" class="btn btn-outline-primary view">View
             Bracket</button></router-link>
       </div>
       <button type="button" class="btn btn-outline-primary tournamentButtons" v-if="user._id == tournament.owner"

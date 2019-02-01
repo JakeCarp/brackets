@@ -367,11 +367,14 @@ export default new Vuex.Store({
     },
 
     profilePic({ commit, dispatch }, payload) {
-      debugger
+      // debugger
       api.put(`profile/${payload.userId}`, payload)
         .then(res => {
           dispatch('authenticate')
         })
+    },
+    addLoserBracket({ commit, dispatch }, payload) {
+      api.put(`tournament`)
     },
 
     //#endregion
