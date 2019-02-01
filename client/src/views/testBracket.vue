@@ -50,6 +50,9 @@
       },
       bracketArray() {
         return this.$store.state.bracketArray || []
+      },
+      getUser() {
+        return this.$store.state.user
       }
     },
     methods: {
@@ -86,6 +89,8 @@
                 if (!p1.winMatches.includes(matchId)) {
                   p1.winMatches.push(matchId)
                   p2.lossMatches.push(matchId)
+                  //new
+                  // this.$store.dispatch("addLoserBracket", { userId: this.getUser,  })
                 }
                 bracketNode.text["data-pid"] = p1._id
                 bracketNode.text.name = `${p1.name} W: ${p1.winMatches.length} L: ${p1.lossMatches.length}`

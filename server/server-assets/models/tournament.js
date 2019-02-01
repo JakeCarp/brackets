@@ -13,6 +13,7 @@ let schema = new Schema({
   entrycode: { type: String, required: true, unique: true },
   entryId: [{ type: ObjectId, ref: 'Entry' }],
   entries: [],
+  loserBracket: [],
   bracket: {},
   archived: { type: Boolean, default: false },
   enrollment: { type: Boolean, default: true }

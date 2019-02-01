@@ -66,7 +66,7 @@
     mounted() {
       if (this.$store.state.tournament) {
         this.$store.dispatch("getTournamentById", this.$route.params.tId)
-        debugger
+        // debugger
         this.$store.dispatch("getSchedule", this.$route.params.tId)
       }
     },

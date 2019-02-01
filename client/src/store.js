@@ -342,10 +342,10 @@ export default new Vuex.Store({
         })
     },
     getSchedule({ commit, dispatch }, tournamentId) {
-      debugger
+      // debugger
       api.get('tournament/' + tournamentId + '/entries')
         .then(res => {
-          debugger
+          // debugger
           commit("setSchedule", res.data)
         })
     },
@@ -367,11 +367,14 @@ export default new Vuex.Store({
     },
 
     profilePic({ commit, dispatch }, payload) {
-      debugger
+      // debugger
       api.put(`profile/${payload.userId}`, payload)
         .then(res => {
           dispatch('authenticate')
         })
+    },
+    addLoserBracket({ commit, dispatch }, payload) {
+      api.put(`tournament`)
     },
 
     //#endregion

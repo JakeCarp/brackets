@@ -7,7 +7,8 @@
         <h5>{{tournament.title}}</h5>
       </div>
       <div class="card-body">
-        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View
+        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button v-if="tournament.style == 'Single-Elimitation' || tournament.style == 'Double-Elimination'"
+            type="button" class="btn btn-outline-primary">View
             Bracket</button></router-link>
 
         <h4 class="card-title">{{tournament.style}}</h4>
