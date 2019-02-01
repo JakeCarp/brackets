@@ -56,8 +56,9 @@
 </script>
 
 <style>
-  .teams {
+  .Teams {
     display: flex;
     justify-content: center;
+    font-size: 25px;
   }
 </style>
