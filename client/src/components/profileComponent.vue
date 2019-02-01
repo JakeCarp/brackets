@@ -103,7 +103,7 @@
           </tbody>
         </table>
         <!-- seperatioin -->
-        <!-- <table v-if="getTournaments.length" class="table table-hover">
+        <table v-if="getTournaments.length" class="table table-hover">
           <thead>
 
             <tr>
@@ -124,10 +124,10 @@
               </td>
             </tr>
           </tbody>
-        </table> -->
-        <!-- <ul>
-          <li v-for="tournament in getTournaments">{{tournament.title}}</li>
-        </ul> -->
+        </table>
+        <!-- <ul> -->
+        <!-- <li v-for="tournament in getTournaments">{{tournament.title}}</li> -->
+        <!-- </ul> -->
       </div>
     </div>
   </div>
