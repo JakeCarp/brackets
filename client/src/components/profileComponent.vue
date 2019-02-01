@@ -81,17 +81,20 @@
         <table v-if="getOwnedTournaments.length" class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Type</th>
-              <th scope="col">Title</th>
-              <th scope="col">Number of Entrants</th>
-              <th scope="col">Tournament Status</th>
+              <th style="text-align:center" class="heads" scope="col">Type</th>
+              <th style="text-align:center" class="heads" scope="col">Title</th>
+              <th style="text-align:center" class="heads" scope="col"># of Entrants</th>
+              <th style="text-align:center" class="heads" scope="col">Status</th>
+              <th style="text-align:center" class="heads" scope="col">Active Bracket</th>
+
             </tr>
           </thead>
           <tbody>
             <tr v-for="tournament in getOwnedTournaments" class="rows">
-              <th scope="row">{{tournament.style}}</th>
+              <td>{{tournament.style}}</td>
               <td>{{tournament.title}}</td>
               <td>Column content</td>
+              <!--this needs changed-->
               <td>{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td>
                 <router-link :to="{name: 'bracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View</button></router-link>
@@ -100,20 +103,20 @@
           </tbody>
         </table>
         <!-- seperatioin -->
-        <table v-if="getTournaments.length" class="table table-hover">
+        <!-- <table v-if="getTournaments.length" class="table table-hover">
           <thead>
 
             <tr>
-              <th class="words" scope="col">Type</th>
-              <th class="words" scope="col">Title</th>
-              <th class="words" scope="col">Tournament Status</th>
-              <th class="words">Tournaments Participating in</th>
+              <th style="text-align:center" class="words" scope="col">Type</th>
+              <th style="text-align:center" class="words" scope="col">Title</th>
+              <th style="text-align:center" class="words" scope="col">Status</th>
+              <th style="text-align:center" class="words">Active In</th>
 
             </tr>
           </thead>
           <tbody>
             <tr v-for="tournament in getTournaments" class="rows">
-              <th class="colors" scope="row">{{tournament.style}}</th>
+              <td class="colors" scope="row">{{tournament.style}}</td>
               <td class="colors">{{tournament.title}}</td>
               <td class="colors">{{tournament.archived ? "Finished" : "Ongoing"}}</td>
               <td class="colors">
@@ -121,7 +124,7 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
         <!-- <ul>
           <li v-for="tournament in getTournaments">{{tournament.title}}</li>
         </ul> -->
@@ -201,7 +204,7 @@
 
 <style>
   .table {
-    background-color: gray;
+    background-color: black;
     border: solid 2px black;
 
     /* display: flex; */
@@ -263,5 +266,10 @@
   .colors {
     background-color: white;
 
+  }
+
+  .heads {
+    margin-left: 15px;
+    color: white;
   }
 </style>

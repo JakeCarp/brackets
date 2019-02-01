@@ -6,13 +6,13 @@
         <form @submit.prevent="addTournament">
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6 required" for="title">Bracket Name: </label>
+              <label class="col-6 required name" for="title">Bracket Name: </label>
               <input v-model="newTournament.title" class="col-6" type="text" placeholder="Ex: MensBasketball2019" name="title">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-12">
-              <label class="col-6 required" for="description">Description: </label>
+              <label class="col-6 required" for="description">Bracket Description: </label>
               <input v-model="newTournament.description" class="col-6" type="field" placeholder="Ex: Competitive 5-on-5 Men's League"
                 name="description">
             </div>
@@ -100,8 +100,10 @@
   }
 
 
-  .required:before {
-    content: " *";
-    color: red;
+  .required {
+    /* content: " *";
+    color: red; */
+    color: black;
+    font-size: 35px;
   }
 </style>

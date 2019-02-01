@@ -11,9 +11,9 @@
     </div>
     <div v-else>
       <div class="connected-users test-left">
-        <h5>Connected Users</h5>
+        <div class="users">Connected Users</div>
         <ul>
-          <li v-for="user in connectedUsers">
+          <li class="user" v-for="user in connectedUsers">
             {{user}}
           </li>
         </ul>
@@ -134,5 +134,14 @@
 
   .row {
     margin-bottom: 5px;
+  }
+
+  .users {
+    font-size: 25px;
+    color: black;
+  }
+
+  .user {
+    font-size: 18px;
   }
 </style>
