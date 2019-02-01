@@ -3,19 +3,23 @@
 
     <!-- v-for="tournament in tournaments" -->
     <div class="card border-dark mb-3 col-12 tournamentCard">
-      <div class="card-header tournamentCard">
-        <h5>{{tournament.title}}</h5>
+      <div class="titles name">Bracket Name:</div>
+      <div class="tournamentTitle">
+        {{tournament.title}}
       </div>
       <div class="card-body">
-        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary">View
-            Bracket</button></router-link>
-
-        <h4 class="card-title mt-3">{{tournament.style}}</h4>
+        <div class="titles type">Bracket Type:</div>
+        <div class="card-title mt-3">{{tournament.style}}</div>
+        <div class="titles desc">Bracket Description:</div>
         <p class="card-text mt-2">{{tournament.description}}</p>
+        <router-link :to="{name: 'testBracket', params: {tId: tournament._id}}"><button type="button" class="btn btn-outline-primary view">View
+            Bracket</button></router-link>
       </div>
+      <button type="button" class="btn btn-outline-primary tournamentButtons" v-if="user._id == tournament.owner"
+        @click="deleteTournament">Delete Bracket</button>
+      <button type="button" class="btn btn-outline-primary tournamentButtons" @click="archive" v-if="user._id == tournament.owner && !tournament.archived">Archive
+        Bracket</button>
     </div>
-    <button v-if="user._id == tournament.owner" @click="deleteTournament">Delete Tournament</button>
-    <button @click="archive" v-if="user._id == tournament.owner && !tournament.archived">Archive Tournament</button>
     <div class="dropdown">
       <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -76,5 +80,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .tournamentTitle {
+    font-size: 25px;
+  }
+
+  .card-title {
+    font-size: 25px;
+  }
+
+  .tournamentButtons {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+
+  .titles {
+    font-size: 40px;
+    color: black;
+  }
+
+  .card-text {
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+
+  .view {
+    margin-bottom: -11px;
+  }
+
+  .name {
+    margin-bottom: -3px;
+  }
+
+  .desc {
+    margin-bottom: -10px;
+  }
+
+  .type {
+    margin-top: -10px;
+    margin-bottom: -13px;
   }
 </style>
