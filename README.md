@@ -1,1 +1,1 @@
-Repo setup from clone
+Repo setup from clones
